@@ -41,7 +41,7 @@
 </div>
 <br>
 <div class="alert alert-info">
-  <p><b>Ejemplo:</b> Arreglos florales, eventos, mariachis, animación, diseñadores ,etc.</p>
+  <p><b>Ejemplo:</b> Arreglos florales, eventos, mariachis, animación, diseñadores ,etc</p>
 </div>
 
 <div class="container-fluid text-center">    
