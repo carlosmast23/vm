@@ -12,7 +12,14 @@
 <input type="hidden" name="base_url" id="base_url" value="<?= base_url() ?>"/>
 
 <footer class="container-fluid">	
-	<img src="<?=base_url()?>img/pie.png" width="100%" height="100%"/>
+	<img 
+	src="<?=base_url()?>img/pie-sd.png" 
+	width="100%" 
+	height="100%"
+	srcset="<?=base_url()?>img/pie-hd.png 1024w , 
+     <?=base_url()?>img/pie-md.png 700w , 
+     <?=base_url()?>img/pie-sd.png 360w" 
+	/>
 </footer>
 
 <!-- #site-footer -->
