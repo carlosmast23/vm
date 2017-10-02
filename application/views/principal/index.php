@@ -26,13 +26,13 @@
 
   <form class="" action="#" id="form_buscar">
 
-    <div class="col-xs-12 col-md-6">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-7 col-sm-offset-0 col-md-6 col-md-offset-0 ">
       <input type="text" class="form-control" id="txt_buscar"  placeholder="Escribe aquí lo que que estas buscando ...">
     </div>
-    <div class="col-xs-12 col-md-4">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-0 col-md-4 col-md-offset-0 ">
       <?=$cmb_actividades?>
     </div>
-    <div class="col-xs-12 col-md-2">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-2 col-sm-offset-0 col-md-2  col-md-offset-0 ">
       <button class="btn btn-primary btn-block" type="button" data-toggle="modal" data-target="#mbuscar">Buscar</button>
     </div>
   </form>
