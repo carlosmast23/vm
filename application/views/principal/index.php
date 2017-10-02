@@ -47,13 +47,13 @@
 <div class="container-fluid text-center">    
   <div class="row">
    <img 
-     src="<?=base_url()?>img/banner4.png"  
+     src="<?=base_url()?>img/banner-sd.png"  
      alt="Instrucciones" 
      width="100%" 
      height="100%" 
-     srcset="<?=base_url()?>img/banner2.png 1024w , 
-     <?=base_url()?>img/banner3.png 700w , 
-     <?=base_url()?>img/banner4.png 360w" 
+     srcset="<?=base_url()?>img/banner-hd.png 1024w , 
+     <?=base_url()?>img/banner-md.png 700w , 
+     <?=base_url()?>img/banner-sd.png 360w" 
    />
  </div>
 </div>
