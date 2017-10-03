@@ -3,6 +3,7 @@
 <table class="table table-striped">
 	<tr>
 		<th>Producto</th>
+		<th>Tiempo</th>
 		<th colspan="2">Opciones</th>
 	</tr>	
 	<?=$html?>	
@@ -12,13 +13,6 @@
 	
 	
 
-	$("[rel='aprobar']").click(function () {
-		$("[rel='combo_act']").each(function () {
-			var variable_id = $(this).attr('id');
-			alert(variable_id);
-			console.log(variable_id);
-		});
-	});
 
 
 </script>

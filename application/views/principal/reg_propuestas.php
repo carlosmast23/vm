@@ -26,7 +26,7 @@
 						</tr>
 						<tr>
 							<th>Tiempo de respuesta:</th>
-							<td><?=diamas($bus_fecha,$bus_tiempo)?></td>
+							<td><?=$bus_fechafin?></td>
 						</tr>
 					</table>
 				
