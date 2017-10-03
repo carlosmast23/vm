@@ -48,7 +48,7 @@ class Cronos_model extends CI_Model {
     $url_cli= $this->google->codificar_parametro("general/revisar/",$bus_id);
 
 
-    $sql="SELECT * FROM `proveedores` WHERE `act_id` ='$act_id'";
+    $sql="SELECT * FROM `proveedores` WHERE `act_id` ='$act_id' AND `prv_estado`='a'";
     $query=$this->db->query($sql);
     
     if($query->num_rows()>0){
