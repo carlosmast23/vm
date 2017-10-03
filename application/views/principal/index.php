@@ -26,13 +26,15 @@
 
   <form class="" action="#" id="form_buscar">
 
-    <div class="col-xs-12 col-xs-offset-0 col-sm-7 col-sm-offset-0 col-md-6 col-md-offset-0 ">
+    <div class="col-xs-12 col-xs-offset-0 col-sm-7 col-sm-offset-0 col-md-6 col-md-offset-1">
       <input type="text" class="form-control" id="txt_buscar"  placeholder="Escribe aquí lo que que estas buscando ...">
     </div>
+    <!--
     <div class="col-xs-12 col-xs-offset-0 col-sm-3 col-sm-offset-0 col-md-4 col-md-offset-0 ">
       <?=$cmb_actividades?>
     </div>
-    <div class="col-xs-12 col-xs-offset-0 col-sm-2 col-sm-offset-0 col-md-2  col-md-offset-0 ">
+    -->
+    <div class="col-xs-12 col-xs-offset-0 col-sm-2 col-sm-offset-0 col-md-3 col-md-offset-0 ">
       <button class="btn btn-primary btn-block" type="button" data-toggle="modal" data-target="#mbuscar">Buscar</button>
     </div>
   </form>
@@ -47,11 +49,7 @@
 <div class="container-fluid text-center">    
   <div class="row">
    <img 
-     src="<?=base_url()?>img/banner-sd.png"  
-     alt="Instrucciones" 
-     width="100%" 
-     height="100%" 
-     srcset="<?=base_url()?>img/banner-hd.png 1024w , 
+     src="<?=base_url()?>img/banner-sd.png" alt="Instrucciones" width="100%" height="100%" srcset="<?=base_url()?>img/banner-hd.png 1024w , 
      <?=base_url()?>img/banner-md.png 700w , 
      <?=base_url()?>img/banner-sd.png 360w" 
    />
@@ -93,7 +91,7 @@
               </div>
               <div class="funkyradio-danger">
                 <input type="radio" name="radio" id="radio4" value="u" />
-                <label for="radio4">Urgente (15 minutos)</label>
+                <label for="radio4">Urgente (30 minutos)</label>
               </div>
 
             </div>
@@ -182,7 +180,7 @@ $("#enviar").on("click",function () {
   var celular=$("#celular").val();
   var txt_buscar=$("#txt_buscar").val();
 
-  if(act_id>0 && celular.length==10 && txt_buscar.length>0 && $('input:radio[name=radio]').is(':checked') ){
+  if(act_id>0 && (celular.length==10 && isNaN(celular)==false)  && txt_buscar.length>3 && $('input:radio[name=radio]').is(':checked') ){
 
     var base_url = $("#base_url").val();
     $.ajax({
@@ -203,13 +201,3 @@ $("#enviar").on("click",function () {
 
 </script>
 
-<script >
-  
-  $(document).ready(function() {
-
-    $('#celular').keyup(function (){
-      this.value = (this.value + '').replace(/[^0-9]/g, '');
-    });
-
-  });
-</script>

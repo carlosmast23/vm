@@ -19,7 +19,7 @@ class General_model extends CI_Model {
      $ncel="+593".substr($celular, 1);
      $hoy=hoy('c');
      $data=array(
-        "act_id"=>$act_id,
+        "act_id"=>0,
         "bus_celular"=>$ncel,
         "bus_texto"=>$buscar,
         "bus_fecha"=>$hoy,

@@ -25,7 +25,7 @@ function diamas($fecha,$deque) {
 
    switch ($deque) {
     case 'u': 
-    $aumentada = mktime(date($hor), date($min)+15, date($seg), date($mes), date($dia), date($ano));
+    $aumentada = mktime(date($hor), date($min)+30, date($seg), date($mes), date($dia), date($ano));
     break;
     case 'a': 
     $aumentada = mktime(date($hor)+1, date($min), date($seg), date($mes), date($dia), date($ano));
