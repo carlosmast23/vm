@@ -176,11 +176,11 @@ $("#enviar").on("click",function () {
 
   $("#mbuscar").modal("hide");
 
-  var act_id = $("#act_id").val();
+  var act_id = 0;//$("#act_id").val();
   var celular=$("#celular").val();
   var txt_buscar=$("#txt_buscar").val();
 
-  if(act_id>0 && (celular.length==10 && isNaN(celular)==false)  && txt_buscar.length>3 && $('input:radio[name=radio]').is(':checked') ){
+  if((celular.length==10 && isNaN(celular)==false)  && txt_buscar.length>3 && $('input:radio[name=radio]').is(':checked') ){
 
     var base_url = $("#base_url").val();
     $.ajax({
