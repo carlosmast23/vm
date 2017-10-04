@@ -24,23 +24,23 @@ class Cronos_model extends CI_Model {
 public function procesar_sms_prov(){
   require_once('./nusoap.php');
 
-  //$cliente = new nusoap_client(base_url()."server.php");
+  $cliente = new nusoap_client(base_url()."server.php");
 
   $sql="SELECT * FROM `envio_sms` WHERE `estado`='p' AND (`deque`='p' OR `deque` LIKE 'cp') ";
   $query=$this->db->query($sql);
   if($query->num_rows()>0){
     foreach ($query->result() as $fila) {
-    //  $error = $cliente->getError();
-      //if ($error) 
-        //log_message('error', 'ERROR WEBSERVICE.'.$error);
-      //else{
-        //$result = $cliente->call("enviarSMS",array($fila->tel_destinatario,$fila->mensaje));
-      $this->db->where("id",$fila->id);
-      $this->db->update("envio_sms",array("estado"=>'e'));
-      //}
+      $error = $cliente->getError();
+      if ($error) 
+        log_message('error', 'ERROR WEBSERVICE.'.$error);
+      else{
+        $result = $cliente->call("enviarSMS",array($fila->tel_destinatario,$fila->mensaje));
+        $this->db->where("id",$fila->id);
+        $this->db->update("envio_sms",array("estado"=>'e'));
+      }
     }
   }
-
+//corregido
 
 }
 
