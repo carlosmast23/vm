@@ -36,3 +36,7 @@ application/config/autoload.php
 application/config/config.php
 application/config/database.php
 application/config/routes.php
+
+#archivo de configuracion inicial si produccion o pruebas
+index.php
+
