@@ -18,6 +18,10 @@ class Cronos extends MY_Controller {
 	}
 
 
+	public function procesar(){
+		$this->model->procesar_sms_pendientes();
+	}
+
 	public function procesar1(){
 		$this->model->procesar_sms_prov();
 	}
