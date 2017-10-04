@@ -19,7 +19,7 @@ class General_model extends CI_Model {
      $ncel="+593".substr($celular, 1);
      $hoy=hoy('c');
      $data=array(
-        "act_id"=>$act_id,
+        "act_id"=>0,
         "bus_celular"=>$ncel,
         "bus_texto"=>$buscar,
         "bus_fecha"=>$hoy,
@@ -28,65 +28,17 @@ class General_model extends CI_Model {
         );
      $this->db->insert("busquedas",$data);
 
-     $this->enviar_mensaje($this->db->insert_id(),$act_id,$buscar);
- }
 
-
- public function enviar_mensaje($bus_id, $act_id,$buscar){
-    $this->load->model("GoogleURL_model","google");
-    $url_cli= $this->google->codificar_parametro("general/revisar/",$bus_id);
-
-
-    $sql="SELECT * FROM `proveedores` WHERE `act_id` ='$act_id'";
-    $query=$this->db->query($sql);
-    
-    if($query->num_rows()>0){
-        foreach ($query->result() as $fila) {
-            $url= $this->google->codificar_parametro("general/recibir/",$bus_id."&".$fila->prv_id);
-            $data=array(
-                "bus_id"=>$bus_id,
-                "ser_id"=>1,
-                "usu_id"=>$fila->prv_id,
-                "email_destinatario"=>$fila->prv_email,
-                "asunto"=>"Solicitud Producto VirtuallMall",
-                "mensaje"=>"Enlace: ".$url,
-                "fecha"=>hoy('c'),
-                "deque"=>"p",
-                );
-            $this->db->insert("envio_email",$data);
-
-            $data2= array(
-                "bus_id"=>$bus_id,
-                'ser_id' => 1, 
-                "usu_id"=>$fila->prv_id,
-                "tel_destinatario"=>$fila->prv_telefono,
-                "mensaje"=>"Se necesita un $buscar.Genere su propuesta ".$url,
-                "fecha"=>hoy('c'),
-                "deque"=>"p",
-                );
-            $this->db->insert("envio_sms",$data2);
-
-
-
-        }
-    }
-
-    $bus_celular=datoDeTablaCampo("busquedas","bus_id","bus_celular",$bus_id);
-    if($bus_celular!=false){
-        $data3= array(
-            "bus_id"=>$bus_id,
-            'ser_id' => 1, 
-            "usu_id"=>0,
-            "tel_destinatario"=>$bus_celular,
-            "mensaje"=>"Revise sus resultados. Link ".$url_cli,
-            "fecha"=>hoy('c'),
-            "deque"=>"c",
-            );
-        $this->db->insert("envio_sms",$data3);
-    }
-
+     require_once('./nusoap.php');
+     $cliente = new nusoap_client(base_url()."server.php");
+     $error = $cliente->getError();
+     if ($error) 
+      log_message('error', 'ERROR WEBSERVICE.'.$error);
+  else
+    $result = $cliente->call("enviarSMS",array("+593994725020","Busqueda registrada ".base_url()."admin/busquedas"));
 
 }
+
 
 
 public function registrar_cliente_mdl(){

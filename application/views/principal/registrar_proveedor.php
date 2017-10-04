@@ -70,7 +70,8 @@
     				required: "* Campo requerido, ingrese email válido",
     				email: "* Ingrese correo electrónico válido  ejm: name@domain.com",
     				remote: "* Este correo electrónico ya ha sido usado "
-    			}
+    			},
+                act_id:"* Campo requerido"
     		}
     	});
 
