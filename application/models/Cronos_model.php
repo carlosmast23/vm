@@ -73,7 +73,7 @@ public function enviar_mensaje($bus_id, $act_id,$buscar){
         'ser_id' => 1, 
         "usu_id"=>$fila->prv_id,
         "tel_destinatario"=>$fila->prv_telefono,
-        "mensaje"=>"Se necesita un $buscar.Genere su propuesta ".$url,
+        "mensaje"=>"$buscar.Genere su propuesta ".$url,
         "fecha"=>hoy('c'),
         "deque"=>"p",
         );
