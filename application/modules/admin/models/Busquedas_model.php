@@ -18,7 +18,6 @@ class Busquedas_model extends CI_Model {
 
 		$sql = "SELECT * FROM `busquedas` WHERE `bus_estado`='p'";
 
-
 		$query = $this->db->query($sql);
 
 		if ($query->num_rows() > 0) {
@@ -38,10 +37,19 @@ class Busquedas_model extends CI_Model {
 	public function asignar_mdl(){
 		$bus_id=$this->input->post("bus_id");
 		$act_id=$this->input->post("act_id");
-		$arr=array(
-			"bus_estado"=>"r",
-			"act_id"=>$act_id,
-			);
+		$tiempo=$this->input->post("tiempo");
+		if($tiempo!="")
+			$arr=array(
+				"bus_estado"=>"r",
+				"act_id"=>$act_id,
+				"bus_tiempo"=>$tiempo,
+				);
+		else
+			$arr=array(
+				"bus_estado"=>"r",
+				"act_id"=>$act_id,
+				);
+
 		$this->db->where("bus_id",$bus_id);
 		$this->db->update("busquedas",$arr);
 	}

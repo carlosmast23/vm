@@ -67,7 +67,7 @@ public function eliminar_mdl(){
 }
 
 public function cmb_actividades($act_id=""){
-    $html = "<select class='form-control chosen-select' name='act_id' id='act_id'><option value=''>Seleccione actividad comercial</option>";
+    $html = "<select class='form-control chosen-select' name='act_id' id='act_id' rel='combo_act'><option value=''>Seleccione actividad comercial</option>";
     $sql = "SELECT * FROM `actividad_empresa`";
     $query = $this->db->query($sql);
     if ($query->num_rows() > 0) {

@@ -185,7 +185,7 @@ $("#enviar").on("click",function () {
     var base_url = $("#base_url").val();
     $.ajax({
       type: "POST",
-      url: base_url + "general/buscar",
+      url: base_url + "busquedas/buscar",
       data: {act_id: act_id,celular:celular,txt_buscar:txt_buscar,tiempo:tiempo},
       success: function (data) {
         $("#info").modal("show");

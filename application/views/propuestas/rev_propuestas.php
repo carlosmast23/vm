@@ -40,11 +40,12 @@
 		var v=$(this);
 		$.ajax({
 			type: "POST",
-			url: $("#base_url").val() + "general/aprobar",
+			url: $("#base_url").val() + "propuestas/aprobar",
 			data: {pro_id: val,prv_id:prv_id,bus_id:bus_id},
 			success: function () {
 				$("#infop").modal("show");
 				v.prop( "disabled", true );
+				setTimeout(location.reload(), 20000) 
 			}
 		});
 	});
@@ -54,7 +55,7 @@
 			var val=$(this).attr('val');
 			$.ajax({
 				type: "POST",
-				url: $("#base_url").val() + "general/rechazar",
+				url: $("#base_url").val() + "propuestas/rechazar",
 				data: {pro_id: val},
 				success: function () {
 					location.reload();

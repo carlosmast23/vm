@@ -47,7 +47,7 @@ public function procesar_sms_prov(){
 
 public function enviar_mensaje($bus_id, $act_id,$buscar){
   $this->load->model("GoogleURL_model","google");
-  $url_cli= $this->google->codificar_parametro("general/revisar/",$bus_id);
+  $url_cli= $this->google->codificar_parametro("propuestas/revisar/",$bus_id);
 
 
   $sql="SELECT * FROM `proveedores` WHERE `act_id` ='$act_id' AND `prv_estado`='a'";
@@ -55,7 +55,7 @@ public function enviar_mensaje($bus_id, $act_id,$buscar){
 
   if($query->num_rows()>0){
     foreach ($query->result() as $fila) {
-      $url= $this->google->codificar_parametro("general/recibir/",$bus_id."&".$fila->prv_id);
+      $url= $this->google->codificar_parametro("propuestas/recibir/",$bus_id."&".$fila->prv_id);
       $data=array(
         "bus_id"=>$bus_id,
         "ser_id"=>1,

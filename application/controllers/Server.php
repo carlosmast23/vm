@@ -55,6 +55,14 @@ class Server extends MY_Controller {
 }
 
 
+public function recibir_sms(){
+	$numero=$this->input->get("numero",true);
+	$mensaje=$this->input->get("mensaje",true);
+
+	
+}
+
+
 
 
 

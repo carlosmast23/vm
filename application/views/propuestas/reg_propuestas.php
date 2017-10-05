@@ -45,7 +45,7 @@
 			</div>
 			<div id="collapse2" class="panel-collapse collapse in">
 				<div class="panel-body">
-					<form action="<?=base_url()?>general/registrar_propuesta" method="POST" id="form_almacenar">
+					<form action="<?=base_url()?>propuestas/registrar_propuesta" method="POST" id="form_almacenar">
 						<div class="col-md-12">
 							<label>Descripción:</label>
 							<textarea class="form-control" name="pro_desc" id="pro_desc"></textarea>
