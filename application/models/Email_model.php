@@ -14,6 +14,10 @@ class Email_model extends CI_Model {
     public function enviar_mail(){
         $this->load->library('email');
 
+        ini_set("SMTP","ssl://smtp.gmail.com");
+        ini_set("smtp_port","465");
+
+
         $this->email->from('virtualmallecu@gmail.com', 'Your Name');
         $this->email->to('juancarlos100pl@gmail.com"');
         //$this->email->cc('another@another-example.com');
