@@ -45,7 +45,7 @@ class Archivos_model extends CI_Model {
         $this->load->library('upload');
         $carpeta = "./uploads/";//$this->config->item('archivos');
         $config['upload_path'] = $carpeta;
-        $config['allowed_types'] = 'gif|jpg|png';
+        $config['allowed_types'] = '*';
         $config['remove_spaces'] = false;
         $this->upload->initialize($config);
         if (!$this->upload->do_upload()) {
