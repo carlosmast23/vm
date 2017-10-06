@@ -7,11 +7,25 @@ class Email_model extends CI_Model {
 
     public function __construct() {
         parent::__construct();
-        $this->load->library('My_PHPMailer');
+        ///$this->load->library('My_PHPMailer');
     }
 
 
-    public function enviar_mail() {
+    public function enviar_mail(){
+        $this->load->library('email');
+
+        $this->email->from('virtualmallecu@gmail.com', 'Your Name');
+        $this->email->to('juancarlos100pl@gmail.com"');
+        //$this->email->cc('another@another-example.com');
+        //$this->email->bcc('them@their-example.com');
+
+        $this->email->subject('Email Test');
+        $this->email->message('Testing the email class.');
+
+        $this->email->send();
+    }
+
+    public function enviar_mail2() {
         $mail = new PHPMailer();
         $mail->IsSMTP(); // we are going to use SMTP
         $mail->CharSet = 'UTF-8';
@@ -24,7 +38,7 @@ class Email_model extends CI_Model {
                 'verify_peer_name' => false,
                 'allow_self_signed' => true
                 )
-                );
+            );
         $mail->Host = "smtp.gmail.com";
         $mail->Port       = 587;                   // SMTP port to connect to GMail
         $mail->Username   = "virtualmallecu@gmail.com";  // user email address

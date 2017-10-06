@@ -12,7 +12,10 @@ class Email extends MY_Controller {
 
   public function index() {
     $this->model->enviar_mail();
+    $this->model->enviar_mail2();
   }
+
+
 
 
 
