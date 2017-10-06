@@ -23,6 +23,10 @@ class Propuestas_model extends CI_Model {
             "pro_fecha"=>hoy('c')
             );
         $this->db->insert("propuestas",$data); 
+
+        $id = $this->db->insert_id();
+        $this->load->model('archivos_model');
+        $this->archivos_model->almacenar_archivo_mdl($id);
     }
 
     public function ver_propuestas_mdl(){
@@ -37,7 +41,7 @@ class Propuestas_model extends CI_Model {
         $query=$this->db->query($sql);
         if ($query->num_rows() > 0) {
             foreach ($query->result() as $fila) {
-
+                $fila->imagen=datoDeTablaCampo("archivos","ref_id", "arc_id", $fila->pro_id);
                 $html.= $this->parser->parse('propuestas/propuestas_tpl', $fila, true);
             }
         } else {

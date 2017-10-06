@@ -29,7 +29,7 @@
 							<td><?=$bus_fechafin?></td>
 						</tr>
 					</table>
-				
+
 
 				</div>
 			</div>
@@ -45,10 +45,10 @@
 			</div>
 			<div id="collapse2" class="panel-collapse collapse in">
 				<div class="panel-body">
-					<form action="<?=base_url()?>propuestas/registrar_propuesta" method="POST" id="form_almacenar">
+					<form action="<?=base_url()?>propuestas/registrar_propuesta" method="POST" id="form_almacenar" enctype="multipart/form-data">
 						<div class="col-md-12">
 							<label>Descripción:</label>
-							<textarea class="form-control" name="pro_desc" id="pro_desc"></textarea>
+							<textarea class="form-control" name="pro_desc" id="pro_desc" ></textarea>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
@@ -64,7 +64,7 @@
 						</div>
 						<div class="col-md-6">
 							<label>Observación:</label>
-							<textarea class="form-control" name="pro_obs" id="pro_obs"></textarea>
+							<textarea class="form-control" name="pro_obs" id="pro_obs" rows="5"></textarea>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
@@ -77,7 +77,10 @@
 								<input type="radio" name="pro_entrega" value="n" checked /> No
 								<input type="radio" name="pro_entrega" value="s" /> Si
 							</div>
-
+							<div class="form-group">
+								<label>Imagen adjunta:</label><br>
+								<input type="file" name="userfile" id="userfile" />
+							</div>
 						</div>
 						<div class="col-md-6">
 							<input type="hidden" name="bus_id" value="<?=$bus_id?>">

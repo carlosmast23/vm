@@ -1,8 +1,14 @@
-
 <div class="list-group">
 	<h4 class="list-group-item-heading"><b>Precio: </b> ${pro_precio} - <b>Cantidad: </b>({pro_cantidad})</h4>
 	<p class="list-group-item-text">
 		<div class="row">
+			<div class="col-xs-12 col-md-2 fondo_img">
+				<div class="col-xs-8 col-xs-offset-2 col-md-10 col-md-offset-1">
+					<?php if($imagen>0) :?>
+						<img src="<?=base_url()?>uploads/{imagen}" alt="{imagen}" class="img-thumbnail">
+					<?php endif;?>
+				</div>
+			</div>
 			<div class="col-xs-12 col-md-6">
 				<b>Descripción: </b>{pro_desc} 
 				<br>
@@ -12,10 +18,12 @@
 				<br>
 				<b>Observación: </b>{pro_obs}
 			</div>
-			<div class="col-xs-12 col-md-6">
+			<div class="col-xs-12 col-md-4">
 				<button class="btn btn-primary col-xs-5 col-xs-offset-0" rel="aprobar" val="{pro_id}" prv_id="{prv_id}" bus_id="{bus_id}">Aprobar</button>
 				<button class="btn btn-danger col-xs-5 col-xs-offset-1" rel="rechazar" val="{pro_id}">Rechazar</button>
 			</div>
 		</div>
 	</p>
 </div>
+<hr>
+<hr>
