@@ -3,6 +3,7 @@
 class My_PHPMailer {
 	public function My_PHPMailer() {
                require_once('PHPMailer/PHPMailerAutoload.php');
+               require_once('PHPMailer/class.smtp.php');
 
 	}
 

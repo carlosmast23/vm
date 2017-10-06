@@ -7,7 +7,7 @@ class Email_model extends CI_Model {
 
     public function __construct() {
         parent::__construct();
-        ///$this->load->library('My_PHPMailer');
+        $this->load->library('My_PHPMailer');
     }
 
 
@@ -33,7 +33,7 @@ class Email_model extends CI_Model {
         $mail = new PHPMailer();
         $mail->IsSMTP(); // we are going to use SMTP
         $mail->CharSet = 'UTF-8';
-        $mail->SMTPDebug  =2; 
+        $mail->SMTPDebug  =3; 
         $mail->SMTPAuth   = true; // enabled SMTP authentication
         $mail->SMTPSecure = "tls";  // prefix for secure protocol to connect to the server
         $mail->SMTPOptions = array(
@@ -50,8 +50,7 @@ class Email_model extends CI_Model {
         $mail->SetFrom('virtualmallecu@gmail.com', 'Servidor Correos VM');  //Who is sending the email
         //$mail->AddReplyTo("response@yourdomain.com","Firstname Lastname");  //email address that receives the response
         $mail->Subject    = "Prueba de email";
-        $mail->Body      = "HTML message
-        ";
+        $mail->Body      = "HTML message";
         $mail->AltBody    = "Plain text message";
         $destino = "juancarlos100pl@gmail.com"; // Who is addressed the email to
         $mail->AddAddress($destino, "Juan Pinargo");
