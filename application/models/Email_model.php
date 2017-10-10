@@ -62,7 +62,6 @@ class Email_model extends CI_Model {
       } else {
          echo "Message sent correctly!";  // $data["message"] = "Message sent correctly!";
      }
-        //$this->load->view('sent_mail',$data);
  }
 
 
