@@ -214,31 +214,33 @@ public function procesar_email_prov(){
         $mail->Username   = "virtualmallecu@gmail.com";  // user email address
         $mail->Password   = "code17bwbtj";            // password in GMail
         $mail->SetFrom('virtualmallecu@gmail.com', 'Servidor Correos VM');  //Who is sen
-        $mail->Subject    = "Prueba de email";
 
         $sql="SELECT * FROM `envio_email` WHERE `estado`='p' AND (`deque`='p' OR `deque` LIKE 'cp') ";
         $query=$this->db->query($sql);
         if($query->num_rows()>0){
           foreach ($query->result() as $fila) {
+            $mail->Subject    = $fila->asunto;
+            $mail->Body      = $fila->mensaje;
+            $mail->AltBody    = "VirtuallMall";
+            $usuario=datoDeTablaCampo("proveedores","prv_id","prv_usuario",$fila->usu_id);
+            $mail->AddAddress($destino, $usuario);
+            //$mail->AddAttachment(base_url()."img/logo.png");   
+            if(!$mail->Send()) {
+              echo "Error: " . $mail->ErrorInfo; 
+              log_message("error",$mail->ErrorInfo);
+            } else {
+             echo "Message sent correctly!";  
+           }
 
+           $mail->clearAddresses();
 
-   $mail->AddAddress($destino, "Juan Pinargo");
+           $this->db->where("id",$fila->id);
+           $this->db->update("envio_email",array("estado"=>'e',"fecha_envio"=>hoy('c')));    
+         }
 
-        $mail->AddAttachment(base_url()."img/logo.png");      // some attached files
-       // $mail->AddAttachment("images/phpmailer_mini.gif"); // as many as you want
-        if(!$mail->Send()) {
-          echo "Error: " . $mail->ErrorInfo; //  $data["message"] = "Error: " . $mail->ErrorInfo;
-      } else {
-         echo "Message sent correctly!";  // $data["message"] = "Message sent correctly!";
+       }
+
      }
-            
-            $this->db->where("id",$fila->id);
-            $this->db->update("envio_email",array("estado"=>'e'));    
-          }
-
-        }
-
-      }
 
 
 /*
