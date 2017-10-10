@@ -63,7 +63,7 @@ public function enviar_mensaje($bus_id, $act_id,$buscar){
         "usu_id"=>$fila->prv_id,
         "email_destinatario"=>$fila->prv_email,
         "asunto"=>"Solicitud Producto VirtuallMall",
-        "mensaje"=>"Enlace: ".$url,
+        "mensaje"=>"$buscar. Genere su propuesta ".$url,
         "fecha"=>hoy('c'),
         "deque"=>"p",
         );
