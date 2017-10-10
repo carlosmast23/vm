@@ -33,4 +33,8 @@ class Cronos extends MY_Controller {
 		$this->model->procesar_sms_clipendientes();	
 	}
 
+	public function procesar_email(){
+		$this->model->procesar_email_prov();
+	}
+
 }

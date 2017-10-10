@@ -66,6 +66,7 @@ class Propuestas_model extends CI_Model {
 
         $bus_celular=datoDeTablaCampo("busquedas","bus_id","bus_celular",$bus_id);
         $prv_celular=datoDeTablaCampo("proveedores","prv_id","prv_telefono",$prv_id);
+        $prv_email=datoDeTablaCampo("proveedores","prv_id","prv_email",$prv_id);
 
         if($bus_celular!=false){
             $data3= array(
@@ -78,6 +79,17 @@ class Propuestas_model extends CI_Model {
                 "deque"=>"cp",
                 );
             $this->db->insert("envio_sms",$data3);
+
+            $data3e= array(
+                "bus_id"=>$bus_id,
+                'ser_id' => 1, 
+                "usu_id"=>$prv_id,
+                "email_destinatario"=>$prv_email,
+                "mensaje"=>"Contacte pronto con $bus_celular, le interesa tu producto.",
+                "fecha"=>hoy('c'),
+                "deque"=>"cp",
+                );
+            $this->db->insert("envio_email",$data3e);
 
         }
     }
