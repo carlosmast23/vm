@@ -40,3 +40,5 @@ application/config/routes.php
 #archivo de configuracion inicial si produccion o pruebas
 index.php
 
+#excluido archivo upload donde se suben las imagenes
+uploads/
