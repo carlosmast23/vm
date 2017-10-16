@@ -50,7 +50,8 @@
 		});
 	});
 
-	$("button[rel='rechazar']").click(function () {
+	$("button[rel='rechazar']").click(function (e) {
+		e.preventDefault();
 		if (confirm("Esta seguro que desea eliminar esta propuesta?") == true){ 
 			var val=$(this).attr('val');
 			$.ajax({

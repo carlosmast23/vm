@@ -12,15 +12,13 @@ class Cronos_model extends CI_Model {
 
 //madar a correr cada segundo
   public function procesar_sms_pendientes(){
-   $sql0="SELECT * FROM `busquedas` WHERE `act_id` <> '0'  AND `bus_estado`='r'";
+   $sql0="SELECT * FROM `busquedas` WHERE `act_id` = '0'  AND `bus_estado`='r'";
    $query0=$this->db->query($sql0);
    if($query0->num_rows()>0){
     foreach ($query0->result() as $fila) {
       $this->enviar_mensaje($fila->bus_id,$fila->act_id,$fila->bus_texto);
     }
   }
-
-
 }
 
 public function procesar_sms_prov(){
@@ -47,40 +45,53 @@ public function procesar_sms_prov(){
 
 
 public function enviar_mensaje($bus_id, $act_id,$buscar){
+  $bandera=false;
   $this->load->model("GoogleURL_model","google");
   $url_cli= $this->google->codificar_parametro("propuestas/revisar/",$bus_id);
 
+  $sql0="SELECT * FROM `rel_bus_act` WHERE `bus_id` ='$bus_id' AND `estado`='p' ";
+  $query0=$this->db->query($sql0);
+  if($query0->num_rows()>0){
+    foreach ($query0->result() as $fila0) {   
+      $sql="SELECT * FROM `proveedores` WHERE `act_id` ='$fila0->act_id' AND `prv_estado`='a'";
+      $query=$this->db->query($sql);
+      if($query->num_rows()>0){
+        $bandera=true;
+        foreach ($query->result() as $fila) {
+          $url= $this->google->codificar_parametro("propuestas/recibir/",$bus_id."&".$fila->prv_id);
+          $data=array(
+            "bus_id"=>$bus_id,
+            "ser_id"=>1,
+            "usu_id"=>$fila->prv_id,
+            "email_destinatario"=>$fila->prv_email,
+            "asunto"=>"Solicitud Producto VirtuallMall",
+            "mensaje"=>"$buscar. Genere su propuesta ".$url,
+            "fecha"=>hoy('c'),
+            "deque"=>"p",
+            );
+          $this->db->insert("envio_email",$data);
 
-  $sql="SELECT * FROM `proveedores` WHERE `act_id` ='$act_id' AND `prv_estado`='a'";
-  $query=$this->db->query($sql);
+          $data2= array(
+            "bus_id"=>$bus_id,
+            'ser_id' => 1, 
+            "usu_id"=>$fila->prv_id,
+            "tel_destinatario"=>$fila->prv_telefono,
+            "mensaje"=>"$buscar. Genere su propuesta ".$url,
+            "fecha"=>hoy('c'),
+            "deque"=>"p",
+            );
+          $this->db->insert("envio_sms",$data2);
+        }
+      }
 
-  if($query->num_rows()>0){
-    foreach ($query->result() as $fila) {
-      $url= $this->google->codificar_parametro("propuestas/recibir/",$bus_id."&".$fila->prv_id);
-      $data=array(
-        "bus_id"=>$bus_id,
-        "ser_id"=>1,
-        "usu_id"=>$fila->prv_id,
-        "email_destinatario"=>$fila->prv_email,
-        "asunto"=>"Solicitud Producto VirtuallMall",
-        "mensaje"=>"$buscar. Genere su propuesta ".$url,
-        "fecha"=>hoy('c'),
-        "deque"=>"p",
-        );
-      $this->db->insert("envio_email",$data);
-
-      $data2= array(
-        "bus_id"=>$bus_id,
-        'ser_id' => 1, 
-        "usu_id"=>$fila->prv_id,
-        "tel_destinatario"=>$fila->prv_telefono,
-        "mensaje"=>"$buscar. Genere su propuesta ".$url,
-        "fecha"=>hoy('c'),
-        "deque"=>"p",
-        );
-      $this->db->insert("envio_sms",$data2);
+      $a= array('estado' =>  "r");
+    $this->db->where("id",$fila0->id);
+    $this->db->update("rel_bus_act",$a); 
     }
+  }
 
+
+  if($bandera==true){
     $bus_celular=datoDeTablaCampo("busquedas","bus_id","bus_celular",$bus_id);
     if($bus_celular!=false){
       $data3= array(
@@ -94,13 +105,10 @@ public function enviar_mensaje($bus_id, $act_id,$buscar){
         );
       $this->db->insert("envio_sms",$data3);
     }
-
     $a= array('bus_estado' =>  "e");
     $this->db->where("bus_id",$bus_id);
     $this->db->update("busquedas",$a);
-
   }
-
 
 
 }

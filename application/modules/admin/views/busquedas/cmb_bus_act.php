@@ -1,0 +1,1 @@
+<option value="{act_id}" {selected}>{act_nombre}</option>
