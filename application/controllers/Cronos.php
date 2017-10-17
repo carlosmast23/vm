@@ -17,7 +17,6 @@ class Cronos extends MY_Controller {
 		$this->model->procesar_sms_clipendientes();	
 	}
 
-
 	public function procesar(){
 		$this->model->procesar_sms_pendientes();
 	}
