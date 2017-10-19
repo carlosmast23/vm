@@ -1,0 +1,7 @@
+
+#CONFIGURACIONES PERSONALIZADAS
+
+logs/*.log
+
+config/configSocketSms.properties
+config/configWebService.properties
