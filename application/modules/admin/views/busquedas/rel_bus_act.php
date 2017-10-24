@@ -4,36 +4,30 @@
 
 <link href="<?= base_url(); ?>assets/multiselect/multi-select.css" media="screen" rel="stylesheet" type="text/css">
 
-<form  class="form-horizontal" action="<?= base_url() ?>admin/busquedas/alm_rel_bus_act" method="post">
+<form action="<?= base_url() ?>admin/busquedas/alm_rel_bus_act" method="post">
 
     <div class="form-group">
-        <label class="col-xs-2 control-label">Busqueda:</label>
-        <div class="col-xs-8">
-            <input type="text" class="form-control" name="usu_nombres" id="usu_nombres" value="<?= $bus_texto ?>" disabled="true"/>
-        </div>
+        <label>Busqueda:</label>
+        <input type="text" class="form-control" name="usu_nombres" id="usu_nombres" value="<?= $bus_texto ?>" disabled="true"/>
     </div>
 
     <div class="form-group">
-        <label class="col-xs-2 control-label">Tiempo:</label>
-        <div class="col-xs-8">
-            <?php if($bus_tiempo=='n'): ?> 
-                <select name="tiempo" id="tiempo" class="form-control">
-                    <option value="">Tiempo:</option>
-                    <option value="d">Moderada (1 semana)</option>
-                    <option value="m">Media (1 dia)</option>
-                    <option value="a">Alta (1 hora)</option>
-                    <option value="u">Urgente (30 minutos)</option>
-                </select>
-            <?php else:?>
-                <b>*Tiempo asignado</b>
-            <?php endif;?>
-        </div>
+        <label>Tiempo:</label>
+        <?php if($bus_tiempo=='n'): ?> 
+            <select name="tiempo" id="tiempo" class="form-control">
+                <option value="">Tiempo:</option>
+                <option value="d">Moderada (1 semana)</option>
+                <option value="m">Media (1 dia)</option>
+                <option value="a">Alta (1 hora)</option>
+                <option value="u">Urgente (30 minutos)</option>
+            </select>
+        <?php else:?>
+            <b>*Tiempo asignado</b>
+        <?php endif;?>
     </div>
     <div class="form-group">
-        <label class="col-xs-2 control-label">Categorias:</label>
-        <div class="col-xs-10">
-            <?= $combo ?>
-        </div>
+        <label>Categorias:</label>
+        <?= $combo ?>
     </div>
 
     <div class="box-footer">
