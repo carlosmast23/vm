@@ -9,12 +9,9 @@
 	<meta name="author" content="Codesfot">
 	<meta name=”robots” content="Index, NoFollow">
 	<!-- main css -->
-	<link href="<?=base_url()?>css/style.css" rel="stylesheet">
+	<link href="<?=base_url()?>assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-
-
-	<script src="<?=base_url()?>js/jquery-2.1.1.js"></script>
-	<script src="<?= base_url()?>assets/validate/jquery.validate.min.js"></script>
+<script type="text/javascript" src="<?=base_url()?>js/jquery.min.1.7.js"></script>
 
 
 </head>
