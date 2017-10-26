@@ -43,7 +43,7 @@
 </div>
 <br>
 <div class="alert alert-info">
-  <p><b>Ejemplo 1:</b> Zapatos deportivas marca nike de $50 en adelante.</p>
+  <p><b>Ejemplo 1:</b> Zapatos deportivos marca nike de $50 en adelante.</p>
   <p><b>Ejemplo 2:</b> Camisetas deportivas marca adidas para mujer.</p>
   <p><b>Ejemplo 3:</b> Sala de eventos para cumpleaños.</p>
 </div>
