@@ -142,7 +142,6 @@
 
 <!-- Agregado libreria de javascript para redimensionar las imagenes -->
 <script type="text/javascript" src="<?=base_url()?>js/ImageTools.js"></script>
-
 <script type="text/javascript" src="<?=base_url()?>js/propuestas.js"></script>
 
 
