@@ -10,4 +10,10 @@ class MY_Controller extends MX_Controller {
        $this->load->view("principal/footer");
     }
 
+    public function loadTemplateClear($view, $data = array()) {
+        $this->load->view("principal/header-simple");
+        $this->load->view($view, $data);
+       $this->load->view("principal/footer-simple");
+    }
+
 }

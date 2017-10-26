@@ -48,6 +48,12 @@ public function errorprov(){
 public function conocenos(){
     $this->loadTemplates("principal/conocenos");
 }
+
+//enlaces externos
+public function catalogo(){
+    $this->loadTemplateClear("principal/catalogo");
+}
+
 public function servicios(){
     $this->loadTemplates("principal/servicios");
 }
