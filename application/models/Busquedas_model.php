@@ -9,7 +9,6 @@ class Busquedas_model extends CI_Model {
 
 
   public function buscar_mdl($txt_celular="",$tx_buscar="") {
-
     if(strlen($txt_celular) >0 && strlen($tx_buscar) > 0){
       $ncel=$txt_celular;
       $buscar=$tx_buscar;
@@ -39,7 +38,6 @@ class Busquedas_model extends CI_Model {
     log_message('error', 'ERROR WEBSERVICE.'.$error);
   else
     $result = $cliente->call("enviarSMS",array("+593994725020","Busqueda registrada ".base_url()."admin/busquedas"));
-
 }
 
 

@@ -105,6 +105,113 @@ class Propuestas_model extends CI_Model {
     }
 
 
+//LISTADO DE PREGUNTAS
+    public function lista_preguntas($bus_id=0,$prv_id=0){
+     $html="";
+     $arr=array();
+     $sql="SELECT * FROM `preguntas_pro` WHERE `bus_id` ='$bus_id' AND `prv_id`='$prv_id'";
+     $query=$this->db->query($sql);
+     if ($query->num_rows() > 0) {
+        foreach ($query->result() as $fila) {
+            $html.= $this->parser->parse('propuestas/preguntas_tpl', $fila, true);
+        }
+    } else {
+        $html.="<tr><td colspan='2'>No existe preguntas registradas</td></tr>";
+    }
+    return $html;
+}
+
+
+public function registrar_pregunta_mdl(){
+    $bus_id=$this->input->post("bus_id");
+    $prv_id=$this->input->post("prv_id");
+    $pregunta=$this->input->post("prg_pregunta");
+
+    $data=array(
+        "bus_id"=>$bus_id,
+        "prv_id"=>$prv_id,
+        "prg_pregunta"=>$pregunta,
+        );
+    $this->db->insert("preguntas_pro",$data); 
+
+    $id = $this->db->insert_id();
+    $bus_celular=datoDeTablaCampo("busquedas","bus_id","bus_celular",$bus_id);
+    //$prv_usuario=datoDeTablaCampo("busquedas","prv_id","prv_usuario",$prv_id);
+
+    $this->load->model("GoogleURL_model","google");
+    $url_cli= $this->google->codificar_parametro("propuestas/revisar_pregunta/",$id);
+
+    if($bus_celular!=false){
+        $data3= array(
+            "bus_id"=>$bus_id,
+            'ser_id' => 1, 
+            "usu_id"=>0,
+            "tel_destinatario"=>$bus_celular,
+            "mensaje"=>"El proveedor genero una pregunta. Ver $url_cli",
+            "fecha"=>hoy('c'),
+            "deque"=>"c",
+            );
+        $this->db->insert("envio_sms",$data3);
+    }
+
+}
+
+public function ver_pregunta_mdl(){
+    $enc_username=$this->uri->segment(3);
+    $prg_id=str_replace(array('-', '_', '~'), array('+', '/', '='), $enc_username);
+    $prg_id=$this->encrypt->decode($prg_id);
+
+    $this->db->where("prg_id", $prg_id);
+    $query = $this->db->get("preguntas_pro");
+    if ($query->num_rows() > 0) {
+        return $query->row_array();
+    }
+}
+
+public function registrar_respuesta_mdl(){
+  $this->load->model("GoogleURL_model","google");
+
+  $prg_id=$this->input->post('prg_id');
+  $arr=array(
+    "prg_respuesta"=>$this->input->post('prg_respuesta')
+    );
+  $this->db->where("prg_id",$prg_id);
+  $this->db->update("preguntas_pro",$arr);
+  
+  $prv_id=datoDeTablaCampo("preguntas_pro","prg_id","prv_id",$prg_id);
+  $bus_id=datoDeTablaCampo("preguntas_pro","prg_id","bus_id",$prg_id);
+
+  $prv_celular=datoDeTablaCampo("proveedores","prv_id","prv_telefono",$prv_id);
+  $prv_email=datoDeTablaCampo("proveedores","prv_id","prv_email",$prv_id);
+
+
+  $url= $this->google->codificar_parametro("propuestas/recibir/",$bus_id."&".$prv_id);
+
+  $data=array(
+    "bus_id"=>$bus_id,
+    "ser_id"=>1,
+    "usu_id"=>$prv_id,
+    "email_destinatario"=>$prv_email,
+    "asunto"=>"Pregunta Cliente Producto VirtuallMall",
+    "mensaje"=>"Ha sido respondido su pregunta. Genere su propuesta ".$url,
+    "fecha"=>hoy('c'),
+    "deque"=>"p",
+    );
+  $this->db->insert("envio_email",$data);
+
+  $data2= array(
+    "bus_id"=>$bus_id,
+    'ser_id' => 1, 
+    "usu_id"=>$prv_id,
+    "tel_destinatario"=>$prv_celular,
+    "mensaje"=>"Ha sido respondido su pregunta. Genere su propuesta ".$url,
+    "fecha"=>hoy('c'),
+    "deque"=>"p",
+    );
+  $this->db->insert("envio_sms",$data2);
+
+}
+
 
 
 }

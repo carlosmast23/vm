@@ -36,4 +36,8 @@ class Cronos extends MY_Controller {
 		$this->model->procesar_email_prov();
 	}
 
+	public function prueba(){
+		$this->model->prueba();
+	}
+
 }

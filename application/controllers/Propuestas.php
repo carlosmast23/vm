@@ -11,30 +11,33 @@ class Propuestas extends MY_Controller {
     }
 
 
-public function registrar_propuesta(){
-    $this->model->registrar_propuesta_mdl();
-    redirect("propuestas/successp","refresh");
-}
+    public function registrar_propuesta(){
+        $this->model->registrar_propuesta_mdl();
+        redirect("propuestas/successp","refresh");
+    }
 
-public function successp(){
-    $this->loadTemplates("propuestas/successp");
-}
+    public function successp(){
+        $this->loadTemplates("propuestas/successp");
+    }  
+    public function successpregunta(){
+        $this->loadTemplates("propuestas/successpregunta");
+    }
 
-public function revisar(){
-    $data=$this->model->ver_propuestas_mdl();
-    $this->loadTemplates("propuestas/rev_propuestas",$data);
-}
+    public function revisar(){
+        $data=$this->model->ver_propuestas_mdl();
+        $this->loadTemplates("propuestas/rev_propuestas",$data);
+    }
 
-public function rechazar(){
-    $this->model->rechazar_mdl();
-}
+    public function rechazar(){
+        $this->model->rechazar_mdl();
+    }
 
-public function aprobar(){
-   $this->model->aprobar_mdl();
-}
+    public function aprobar(){
+       $this->model->aprobar_mdl();
+   }
 
 
-public function recibir(){
+   public function recibir(){
     $this->load->library('encrypt');
 
     $enc_username=$this->uri->segment(3);
@@ -54,11 +57,27 @@ public function recibir(){
         case 'd':$data['bus_tiempo_txt']="Moderada (1 semana)";break;
     }
     $data["prv_id"]=$prv_id;
+    $data["preguntas"]=$this->model->lista_preguntas($bus_id,$prv_id);
     $this->loadTemplates("propuestas/reg_propuestas",$data);
 }
 
+public function registrar_pregunta(){
+ $this->model->registrar_pregunta_mdl();
+  // redirect("propuestas/successp","refresh");
+}
 
-  
+public function revisar_pregunta(){
+  $data=$this->model->ver_pregunta_mdl();
+  $this->loadTemplates("propuestas/rev_pregunta",$data);
+}
+
+
+public function registrar_respuesta(){
+    $this->model->registrar_respuesta_mdl();
+    redirect("propuestas/successpregunta","refresh");
+}
+
+
 
 
 }

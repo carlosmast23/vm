@@ -85,8 +85,8 @@ public function enviar_mensaje($bus_id, $act_id,$buscar){
       }
 
       $a= array('estado' =>  "r");
-    $this->db->where("id",$fila0->id);
-    $this->db->update("rel_bus_act",$a); 
+      $this->db->where("id",$fila0->id);
+      $this->db->update("rel_bus_act",$a); 
     }
   }
 
@@ -207,7 +207,7 @@ public function procesar_email_prov(){
   $mail = new PHPMailer();
         $mail->IsSMTP(); // we are going to use SMTP
         $mail->CharSet = 'UTF-8';
-        $mail->SMTPDebug  =3; 
+        $mail->SMTPDebug  =2; 
         $mail->SMTPAuth   = true; // enabled SMTP authentication
         $mail->SMTPSecure = "tls";  // prefix for secure protocol to connect to the server
         $mail->SMTPOptions = array(
@@ -231,19 +231,20 @@ public function procesar_email_prov(){
             $mail->Body      = $fila->mensaje;
             $mail->AltBody    = "VirtuallMall";
             $usuario=datoDeTablaCampo("proveedores","prv_id","prv_usuario",$fila->usu_id);
-            $mail->AddAddress($destino, $usuario);
-            //$mail->AddAttachment(base_url()."img/logo.png");   
+            $mail->AddAddress($fila->email_destinatario, $usuario);
+            $mail->AddAttachment("img/logo.png");   
             if(!$mail->Send()) {
               echo "Error: " . $mail->ErrorInfo; 
               log_message("error",$mail->ErrorInfo);
             } else {
              echo "Message sent correctly!";  
+             $this->db->where("id",$fila->id);
+             $this->db->update("envio_email",array("estado"=>'e',"fecha_envio"=>hoy('c')));    
            }
 
            $mail->clearAddresses();
 
-           $this->db->where("id",$fila->id);
-           $this->db->update("envio_email",array("estado"=>'e',"fecha_envio"=>hoy('c')));    
+
          }
 
        }
@@ -251,94 +252,49 @@ public function procesar_email_prov(){
      }
 
 
-/*
-  public function procesar_sms_clipendientes(){
-    $sql="SELECT * FROM `envio_sms` WHERE `deque`='c' AND `bus_id` NOT IN(SELECT `bus_id` FROM propuestas WHERE `pro_estado`='p') ";
+     public function prueba(){
+      $this->load->library('My_PHPMailer');
 
-    $query=$this->db->query($sql);
-    if($query->num_rows()>0){
-      foreach ($query->result() as $fila) {
-        $bus_fecha=datoDeTablaCampo("busquedas","bus_id","bus_fecha",$fila->bus_id);
-        $bus_tiempo=datoDeTablaCampo("busquedas","bus_id","bus_tiempo",$fila->bus_id);
-        $bus_celular=datoDeTablaCampo("busquedas","bus_id","bus_celular",$fila->bus_id);
+      $mail = new PHPMailer();
+      $mail->IsSMTP(); // we are going to use SMTP
+      $mail->CharSet = 'UTF-8';
+      $mail->SMTPDebug  =3; 
+      $mail->SMTPAuth   = true; // enabled SMTP authentication
+      $mail->SMTPSecure = "tls";  // prefix for secure protocol to connect to the server
+      $mail->SMTPOptions = array(
+        'ssl' => array(
+          'verify_peer' => false,
+          'verify_peer_name' => false,
+          'allow_self_signed' => true
+          )
+        );
+      $mail->Host = "smtp.gmail.com";
+      $mail->Port       = 587;                   // SMTP port to connect to GMail
+      $mail->Username   = "virtualmallecu@gmail.com";  // user email address
+      $mail->Password   = "code17bwbtj";            // password in GMail
+      $mail->SetFrom('virtualmallecu@gmail.com', 'Servidor Correos VM');  //Who is sen
 
-        if(diamas($bus_fecha,$bus_tiempo) > hoy('c')){
+      $mail->Subject    = "Prueba";
+      $mail->Body      = "cuerpo";
+      $mail->AltBody    = "VirtuallMall";
+      $mail->AddAddress("juancarlos100pl@gmail.com", "Juan");
+        //$mail->AddAttachment("img/logo.png");   
+      if(!$mail->Send()) {
+        echo "Error: " . $mail->ErrorInfo; 
+        log_message("error",$mail->ErrorInfo);
+      } else {
+       echo "Message sent correctly!";  
+     }
 
-
-          $error = $cliente->getError();
-          if ($error) 
-            log_message('error', 'ERROR WEBSERVICE.'.$error);
-          else{
-            $sms="Su busqueda no obtuvo resultados, genere una nueva solictud (amplie su tiempo de respuesta)";
-            $result = $cliente->call("enviarSMS",array($fila->tel_destinatario,$sms));
-            //$this->db->where("id",$fila->id);
-            //$this->db->update("envio_sms",array("estado"=>'r'));
-
-            $d1=array(
-              "bus_id"=>$fila->bus_id,
-              'ser_id' => 1, 
-              "usu_id"=>0,
-              "tel_destinatario"=>$fila->tel_destinatario,
-              "mensaje"=>$sms,
-              "fecha"=>hoy('c'),
-              "deque"=>"cp",
-              "estado"=>"e",
-              );
-            $this->db->insert("envio_sms",$d1);
-
-          }
-        }
+     $mail->clearAddresses();
 
 
-      }
-    }
 
-  }
-
-  public function procesar_sms_cliterminados(){
-    $sql="SELECT * FROM `envio_sms` WHERE `deque`='c' AND `bus_id` IN(SELECT `bus_id` FROM propuestas WHERE `pro_estado`='p') ";
-
-    $query=$this->db->query($sql);
-    if($query->num_rows()>0){
-      foreach ($query->result() as $fila) {
-        $bus_fecha=datoDeTablaCampo("busquedas","bus_id","bus_fecha",$fila->bus_id);
-        $bus_tiempo=datoDeTablaCampo("busquedas","bus_id","bus_tiempo",$fila->bus_id);
-        $bus_celular=datoDeTablaCampo("busquedas","bus_id","bus_celular",$fila->bus_id);
-
-        if(diamas($bus_fecha,$bus_tiempo) == hoy('c')){
-
-          $error = $cliente->getError();
-          if ($error) 
-            log_message('error', 'ERROR WEBSERVICE.'.$error);
-          else{
-            $sms="Se ha finalizado la busqueda de resultados, esperamos que alguna propuesta haya sido de tu agrado";
-            $result = $cliente->call("enviarSMS",array($fila->tel_destinatario,$sms));
-
-            $d1=array(
-              "bus_id"=>$fila->bus_id,
-              'ser_id' => 1, 
-              "usu_id"=>0,
-              "tel_destinatario"=>$fila->tel_destinatario,
-              "mensaje"=>$sms,
-              "fecha"=>hoy('c'),
-              "deque"=>"ct",
-              "estado"=>"e",
-              );
-            $this->db->insert("envio_sms",$d1);
-
-
-          }
-        }
-
-
-      }
-    }
-
-  }
-  */
+   }
 
 
 
 
 
-}
+
+ }

@@ -1,57 +1,59 @@
 <!-- box-intro -->
-        <section class="box-intro">
-            <div class="table-cell">
-                <h1 class="box-headline letters rotate-2">
-                    <span class="box-words-wrapper">
-                        <b class="is-visible">QUE &nbsp; NECESITAS ?.</b>
-                        <b >&nbsp;VIRTUALL MALL .</b>
-                        <b>LO &nbsp; TIENE.</b>
-                    </span>
-            </h1>
-                <h5>
-                Forma parte de nuestra cadena de clientes, proveedores y negocios locales, <b class="numprov"> ya somos <?=$numprov?> </b> <a href="<?=base_url()?>general/registro">Registrate aqui</a></h5>
-            </div>
+<section class="box-intro">
+  <div class="table-cell">
+    <h1 class="box-headline letters rotate-2">
+      <span class="box-words-wrapper">
+        <b class="is-visible">QUE &nbsp; NECESITAS ?.</b>
+        <b >&nbsp;VIRTUALL MALL .</b>
+        <b>LO &nbsp; TIENE.</b>
+      </span>
+    </h1>
+    <h5>
+      Forma parte de nuestra cadena de clientes, proveedores y negocios locales, <b class="numprov"> ya somos <?=$numprov?> </b> <a href="<?=base_url()?>general/registro">Registrate aqui</a></h5>
+    </div>
 <!--
             <div class="mouse">
                 <div class="scroll"></div>
             </div>
-            -->
+          -->
         </section>
 
 
-<link href="<?= base_url(); ?>assets/bootstrap-chosen-master/bootstrap-chosen.css" media="screen" rel="stylesheet" type="text/css">
+        <link href="<?= base_url(); ?>assets/bootstrap-chosen-master/bootstrap-chosen.css" media="screen" rel="stylesheet" type="text/css">
 
 
-<div class="row">
+        <div class="row">
 
-  <form class="" action="#" id="form_buscar">
+          <form class="" action="#" id="form_buscar">
 
-    <div class="col-xs-12 col-xs-offset-0 col-sm-7 col-sm-offset-0 col-md-6 col-md-offset-1">
-      <input type="text" class="form-control" id="txt_buscar"  placeholder="Escribe aquí lo que que estas buscando ...">
-    </div>
+            <div class="col-xs-12 col-xs-offset-0 col-sm-7 col-sm-offset-0 col-md-6 col-md-offset-1">
+              <input type="text" class="form-control" id="txt_buscar"  placeholder="Escribe aquí lo que que estas buscando de manera detallada...">
+            </div>
     <!--
     <div class="col-xs-12 col-xs-offset-0 col-sm-3 col-sm-offset-0 col-md-4 col-md-offset-0 ">
       <?=$cmb_actividades?>
     </div>
-    -->
-    <div class="col-xs-12 col-xs-offset-0 col-sm-2 col-sm-offset-0 col-md-3 col-md-offset-0 ">
-      <button class="btn btn-primary btn-block" type="button" data-toggle="modal" data-target="#mbuscar">Buscar</button>
-    </div>
-  </form>
+  -->
+  <div class="col-xs-12 col-xs-offset-0 col-sm-2 col-sm-offset-0 col-md-3 col-md-offset-0 ">
+    <button class="btn btn-primary btn-block" type="button" data-toggle="modal" data-target="#mbuscar">Buscar</button>
+  </div>
+</form>
 
 
 </div>
 <br>
 <div class="alert alert-info">
-  <p><b>Ejemplo:</b> Arreglos florales, eventos, mariachis, animación, diseñadores ,etc</p>
+  <p><b>Ejemplo 1:</b> Zapatos deportivas marca nike de $50 en adelante.</p>
+  <p><b>Ejemplo 2:</b> Camisetas deportivas marca adidas para mujer.</p>
+  <p><b>Ejemplo 3:</b> Sala de eventos para cumpleaños.</p>
 </div>
 
 <div class="container-fluid text-center">    
   <div class="row">
    <img 
-     src="<?=base_url()?>img/banner-sd.png" alt="Instrucciones" width="100%" height="100%" srcset="<?=base_url()?>img/banner-hd.png 1024w , 
-     <?=base_url()?>img/banner-md.png 700w , 
-     <?=base_url()?>img/banner-sd.png 360w" 
+   src="<?=base_url()?>img/banner-sd.png" alt="Instrucciones" width="100%" height="100%" srcset="<?=base_url()?>img/banner-hd.png 1024w , 
+   <?=base_url()?>img/banner-md.png 700w , 
+   <?=base_url()?>img/banner-sd.png 360w" 
    />
  </div>
 </div>
