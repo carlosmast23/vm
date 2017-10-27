@@ -101,7 +101,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label>Precio:</label>
-								<input type="text" class="form-control" name="pro_precio" id="pro_precio" />
+								$<input type="text" class="form-control" name="pro_precio" id="pro_precio" />
 							</div>
 						</div>
 						<div class="col-md-6">

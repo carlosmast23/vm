@@ -3,8 +3,9 @@
         background:#ccc;
     }
     #magazine{
+        /*
         display: block;
-        margin: auto;
+        margin: auto;*/
         width:1152px;
         height:752px;
     }
@@ -20,7 +21,7 @@
 
 <!-- Main container -->
 
-    <div class="container" >
+    <!--<div class="container" >-->
     <div id="magazine">
         <div style="background-image:url(<?=base_url()?>/img/pages/pagina0.jpg)"></div>
         <div style="background-image:url(<?=base_url()?>/img/pages/pagina.jpg)"></div>
@@ -34,7 +35,7 @@
         <div style="background-image:url(<?=base_url()?>/img/pages/pagina.jpg)"></div>
         <div style="background-image:url(<?=base_url()?>/img/pages/pagina8.jpg)"></div>
     </div>
-    </div>
+    <!--</div>-->
 
 
 <script type="text/javascript">

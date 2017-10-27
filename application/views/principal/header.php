@@ -64,6 +64,7 @@
         <li><a href="<?=base_url()?>general/conocenos">Conócenos</a></li>
         <li><a href="<?=base_url()?>general/servicios">Servicios</a></li>
         <li><a href="<?=base_url()?>general/registro">Registro</a></li>
+        <li><a href="<?=base_url()?>general/catalogo">Catálogo Web</a></li>
 
 
 

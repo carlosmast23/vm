@@ -14,6 +14,7 @@ class General extends MY_Controller {
         $this->load->model("admin/actividades_model");
         $data['cmb_actividades']=$this->actividades_model->cmb_actividades();
         $data['numprov']=$this->model->nproveedores_mdl()*100;
+        $data['transacciones']=$this->model->transacciones_mdl();
         $this->loadTemplates("principal/index",$data);
     }
 

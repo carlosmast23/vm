@@ -23,9 +23,7 @@
 
 
         <div class="row">
-
           <form class="" action="#" id="form_buscar">
-
             <div class="col-xs-12 col-xs-offset-0 col-sm-7 col-sm-offset-0 col-md-6 col-md-offset-1">
               <input type="text" class="form-control" id="txt_buscar"  placeholder="Escribe aquí lo que que estas buscando de manera detallada...">
             </div>
@@ -37,24 +35,33 @@
   <div class="col-xs-12 col-xs-offset-0 col-sm-2 col-sm-offset-0 col-md-3 col-md-offset-0 ">
     <button class="btn btn-primary btn-block" type="button" data-toggle="modal" data-target="#mbuscar">Buscar</button>
   </div>
+
 </form>
-
-
+<div class="col-md-12 text-center">
+  <p><b>Ejemplo :</b> Zapatos deportivos marca nike de $50 en adelante.</p>
 </div>
-<br>
-<div class="alert alert-info">
-  <p><b>Ejemplo 1:</b> Zapatos deportivos marca nike de $50 en adelante.</p>
-  <p><b>Ejemplo 2:</b> Camisetas deportivas marca adidas para mujer.</p>
-  <p><b>Ejemplo 3:</b> Sala de eventos para cumpleaños.</p>
 </div>
 
-<div class="container-fluid text-center">    
+
+<div class="container-fluid">    
   <div class="row">
    <img 
    src="<?=base_url()?>img/banner-sd.png" alt="Instrucciones" width="100%" height="100%" srcset="<?=base_url()?>img/banner-hd.png 1024w , 
    <?=base_url()?>img/banner-md.png 700w , 
    <?=base_url()?>img/banner-sd.png 360w" 
    />
+ </div>
+
+
+</div>
+
+<div class="row">
+ <div class="col-md-12">
+
+   <table class="table table-striped">
+     <?=$transacciones?>
+   </table>
+
  </div>
 </div>
 

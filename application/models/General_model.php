@@ -24,31 +24,31 @@ class General_model extends CI_Model {
     }
 
     public function registrar_proveedor_mdl(){
-     $ncel="+593".substr($this->input->post("prv_telefono"), 1);
-     $email=$this->input->post("prv_email");
+       $ncel="+593".substr($this->input->post("prv_telefono"), 1);
+       $email=$this->input->post("prv_email");
 
-     if($this->existe_proveedor($ncel,$email)==0){
-         $data=array(
+       if($this->existe_proveedor($ncel,$email)==0){
+           $data=array(
             "prv_usuario"=>$this->input->post("prv_usuario"),
             "prv_telefono"=>$ncel,
             "prv_email"=>$email,
             "act_id"=>$this->input->post("act_id"),
             "prv_fecharegistro"=>hoy('c'),
             );
-         $this->db->insert("proveedores",$data);
+           $this->db->insert("proveedores",$data);
 
 
-         require_once('./nusoap.php');
-         $cliente = new nusoap_client(base_url()."server.php");
-         $error = $cliente->getError();
-         if ($error) 
-          log_message('error', 'ERROR WEBSERVICE.'.$error);
-      else
-        $result = $cliente->call("enviarSMS",array($ncel,"Gracias por registrarte en Virtuall Mall, visita nuestra pagina y mantente informado de nuestra ofertas. ".base_url()));
+           require_once('./nusoap.php');
+           $cliente = new nusoap_client(base_url()."server.php");
+           $error = $cliente->getError();
+           if ($error) 
+              log_message('error', 'ERROR WEBSERVICE.'.$error);
+          else
+            $result = $cliente->call("enviarSMS",array($ncel,"Gracias por registrarte en Virtuall Mall, visita nuestra pagina y mantente informado de nuestra ofertas. ".base_url()));
 
-}else{
-    redirect("general/errorprov","refresh");
-}
+    }else{
+        redirect("general/errorprov","refresh");
+    }
 
 }
 
@@ -59,9 +59,37 @@ public function existe_proveedor($telefono,$email){
 }
 
 public function nproveedores_mdl(){
-   $sql="SELECT COUNT(`prv_id`) as total FROM `proveedores`";
-   $query=$this->db->query($sql);
-   return $query->row()->total;   
+ $sql="SELECT COUNT(`prv_id`) as total FROM `proveedores`";
+ $query=$this->db->query($sql);
+ return $query->row()->total;   
+}
+
+public function transacciones_mdl(){
+
+
+    $html="";
+    //$bus_id=$this->uri->segment(3);
+    $arr=array();
+    $sql="SELECT * FROM `envio_sms` WHERE  `estado`='e' ORDER BY `fecha` ASC LIMIT 0,100";
+    $query=$this->db->query($sql);
+    if ($query->num_rows() > 0) {
+        foreach ($query->result() as $fila) {
+            $busqueda=datoDeTablaCampo("busquedas","bus_id","bus_texto",$fila->bus_id);
+
+            if($fila->usu_id>0){
+                $proveedor=datoDeTablaCampo("proveedores","prv_id","prv_usuario",$fila->usu_id);
+                $fila->texto="El proveedor <b>'$proveedor'</b> ha generado una propuesta para <b>'$busqueda'</b>";
+            }
+            else{
+                $fila->texto="Alguien esta buscando <b>$busqueda</b>";
+            }
+            $html.= $this->parser->parse('principal/transacciones_tpl', $fila, true);
+        }
+    } else {
+        $html.="<b>No hay transacciones</b>";
+    }
+    return $html;
+
 }
 
 

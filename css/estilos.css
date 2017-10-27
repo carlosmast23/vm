@@ -118,4 +118,15 @@
       font-weight: bold;
       font-size: 18px;
     }
+    .img-thumbnail{
+      -webkit-filter: grayscale(100%);
+      filter: grayscale(100%);
+    }
+    .img-thumbnail:hover{
+      -webkit-filter: grayscale(0%);
+      filter: grayscale(0%);
+    }
 
+    .badge{
+      width: 135px;
+    }
