@@ -16,7 +16,7 @@ class Busquedas_model extends CI_Model {
 		$html="";
 		$w_buscar = $this->input->post('buscar');
 
-		$sql = "SELECT * FROM `busquedas` WHERE `bus_estado`='p' ORDER BY `bus_fechafin` ASC";
+		$sql = "SELECT * FROM `busquedas` WHERE `bus_estado`='p' ORDER BY `bus_fechafin` DESC";
 
 		$query = $this->db->query($sql);
 
