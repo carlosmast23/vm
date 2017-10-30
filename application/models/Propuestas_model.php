@@ -212,6 +212,11 @@ public function registrar_respuesta_mdl(){
 
 }
 
+public function tiene_propuestas_mdl($bus_id=0,$prv_id=0){
+    $sql="SELECT COUNT(`pro_id`) as numero FROM `propuestas` WHERE `bus_id`='$bus_id' AND `prv_id` ='$prv_id'";
+    $query=$this->db->query($sql);
+    return $query->row()->numero+0;
+}
 
 
 }

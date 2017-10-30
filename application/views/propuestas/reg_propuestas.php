@@ -6,9 +6,7 @@
 				<h4 class="panel-title">
 					<a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Solicitud del cliente</a>
 				</h4>
-
 			</div>
-
 			<div id="collapse1" class="panel-collapse collapse in">
 				<div class="panel-body">
 					<table class="table">
@@ -29,8 +27,6 @@
 							<td><?=$bus_fechafin?></td>
 						</tr>
 					</table>
-
-
 				</div>
 			</div>
 		</div>
@@ -40,12 +36,11 @@
 				<h4 class="panel-title">
 					<a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Solicitar más información</a>
 				</h4>
-
 			</div>
 
 			<div id="collapse3" class="panel-collapse collapse in">
 				<div class="panel-body">
-					<form action="<?=base_url()?>propuestas/registrar_pregunta" method="POST" id="form_almacenarp" enctype="multipart/form-data">
+					<form action="#" method="POST" id="form_almacenarp" >
 						<div class="col-md-12">
 							<label>Ingrese pregunta a realizar al cliente:</label>
 							<p><strong>*</strong>Si necesitas mas información antes de generar la propuesta </p>
@@ -54,7 +49,7 @@
 						<div class="col-md-3">
 							<input type="hidden" name="bus_id" id="bus_id" value="<?=$bus_id?>">
 							<input type="hidden" name="prv_id" id="prv_id" value="<?=$prv_id?>">
-							<button type="submit" class="btn btn-success btn-block" id="almacenarp">ENVIAR</button>
+							<button type="button" class="btn btn-success btn-block" id="almacenarp">ENVIAR</button>
 						</div>
 
 					</form>

@@ -4,7 +4,7 @@
 		<div class="row">
 
 			<div class="col-xs-12 col-md-6">
-				<b>Descripción: </b>{prg_nombre} 
+				<b>Descripción: </b>{prg_pregunta} 
 				<br>
 				<textarea name="" id="" cols="30" rows="10"></textarea>
 				<br>

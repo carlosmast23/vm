@@ -1,11 +1,24 @@
-$( document ).ready(function() {
-
+$(document).ready(function() {
 //Vaiable global que va a contener el archivo file comprimido 
 blobFile=null;
 
-$("#almacenarp").click(function () {
-		$("#form_almacenarp").submit(); //esta linea se comento porque generaba problemas implementando el metodo submit
-	});
+$("#almacenarp").click(function (e) {
+	e.preventDefault();
+	var tamanio=$("#prg_pregunta").val().length;
+	if (tamanio>0){ 
+		var data=$("#form_almacenarp").serialize();
+		$.ajax({
+			type: "POST",
+			url: $("#base_url").val() + "propuestas/registrar_pregunta",
+			data: data,
+			success: function () {
+				location.reload();
+			}
+		});
+	}else{
+		alert("Porfavor ingrese una pregunta");
+	}
+});
 
 $("#form_almacenar").validate({
 	rules: {
@@ -19,6 +32,7 @@ $("#form_almacenar").validate({
 		pro_precio: "* Campo requerido, ingrese número válido",
 	}
 });
+
 
 $("#form_almacenarp").validate({
 	rules: {
@@ -68,7 +82,7 @@ if ($('#pro_entrega_s').prop('checked')) {
 		    request.addEventListener("load", function(event) 
 		    {
 		    	console.log('carga terminada');
-		    	window.location.href = "<?=base_url()?>propuestas/successp";
+		    	window.location.href = $("#base_url").val()+"propuestas/successp";
 		    });
 
 		 	// Metodo que direcciona a la pagina de error si el proceso es incorrecto
@@ -95,7 +109,7 @@ if ($('#pro_entrega_s').prop('checked')) {
 	    	formData.append("userfile",blobFile);
 
 	    	//Configurando metodo de envio y direccion
-	    	request.open("POST", "<?=base_url()?>propuestas/registrar_propuesta");
+	    	request.open("POST", $("#base_url").val()+"propuestas/registrar_propuesta");
 	    	request.send(formData);
 
 			//Cancelar el evento por defecto de la funcion

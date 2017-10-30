@@ -139,7 +139,7 @@ public function procesar_sms_cli(){
 
 
 public function procesar_sms_clipendientes(){
-  $sql="SELECT * FROM `envio_sms` WHERE `deque`='c' AND `estado`='p' ";
+  $sql="SELECT DISTINCT(`bus_id`) as bus_id FROM `envio_sms` WHERE `deque`='c' AND `estado`='p' ";
 
   $query=$this->db->query($sql);
   if($query->num_rows()>0){
@@ -156,16 +156,14 @@ public function procesar_sms_clipendientes(){
         $sms="Su busqueda no obtuvo resultados, genere una nueva solictud (amplie su tiempo de respuesta)";
         $this->insertar_sms($fila->bus_id,$bus_celular,$sms,"cn");
 
-        $this->db->where("id",$fila->id);
-        $this->db->update("envio_sms",array("estado"=>'e'));
+
 
 
       }else if($pro_id > 0 &&  hoy('c') >= $bus_fechafin){
         $sms="Se ha finalizado la busqueda de resultados, esperamos que alguna propuesta haya sido de tu agrado";
         $this->insertar_sms($fila->bus_id,$bus_celular,$sms,"cf");
 
-        $this->db->where("id",$fila->id);
-        $this->db->update("envio_sms",array("estado"=>'e'));
+
       }
 
 

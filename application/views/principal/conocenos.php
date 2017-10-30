@@ -1,7 +1,7 @@
   <!-- Main container -->
   <div class="container main-container clearfix">
     <div class="col-md-6">
-      <div class="col-md-12">
+      <div class="col-md-12" id="conocenos_img">
        <img src="<?=base_url()?>img/c1.png" class="img-thumbnail" alt="" />
        <img src="<?=base_url()?>img/c2.png" class="img-thumbnail" alt="" />
 
