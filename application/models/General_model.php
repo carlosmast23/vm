@@ -72,7 +72,7 @@ public function transacciones_mdl(){
     $html="";
     //$bus_id=$this->uri->segment(3);
     $arr=array();
-    $sql="SELECT * FROM `envio_sms` WHERE  `estado`='e' ORDER BY `fecha` DESC LIMIT 0,100";
+    $sql="SELECT * FROM `envio_sms` WHERE  `estado`='e' ORDER BY `fecha` DESC LIMIT 0,8";
     $query=$this->db->query($sql);
     if ($query->num_rows() > 0) {
         foreach ($query->result() as $fila) {
@@ -85,6 +85,7 @@ public function transacciones_mdl(){
             else{
                 $fila->texto="Alguien esta buscando <b>$busqueda</b>";
             }
+            $fila->fecha=fecha_texto($fila->fecha,'c');
             $html.= $this->parser->parse('principal/transacciones_tpl', $fila, true);
         }
     } else {

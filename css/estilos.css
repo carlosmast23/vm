@@ -128,6 +128,21 @@
       filter: grayscale(0%);
     }
 
-    .badge{
-      width: 135px;
+
+    #transacciones{
+      font-size: 10px;
+      background-color: #FFF;
+    }
+    #transacciones .texto{
+      float: right;
+    }
+
+    #txtnovedad{
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+    .alert-success{
+      background-color: #2F4F4F;
+      color: white;
+      margin-bottom: 0; 
     }

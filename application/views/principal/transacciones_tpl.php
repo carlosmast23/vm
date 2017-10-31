@@ -1,3 +1,3 @@
    	<tr>
-   	<td><span class="badge">{fecha}</span> {texto}</td>
+   	<td>{texto}<span class="texto"> ({fecha})</span> </td>
    	</tr>

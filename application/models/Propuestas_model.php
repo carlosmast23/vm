@@ -84,6 +84,7 @@ class Propuestas_model extends CI_Model {
                 "bus_id"=>$bus_id,
                 'ser_id' => 1, 
                 "usu_id"=>$prv_id,
+                "asunto"=>"Contacto VirtuallMall",
                 "email_destinatario"=>$prv_email,
                 "mensaje"=>"Contacte pronto con $bus_celular, le interesa tu producto.",
                 "fecha"=>hoy('c'),

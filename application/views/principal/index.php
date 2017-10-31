@@ -53,17 +53,30 @@
  </div>
 
 
-</div>
+ <br>
+ <div class="row">
+   
+   <div class="col-md-3">
+     <img src="<?=base_url()?>img/demo.png" class="img-thumbnail img-rounded">
+   </div>
 
-<div class="row">
- <div class="col-md-12">
-
-   <table class="table table-striped">
+   <div class="col-md-6">
+    <div class="alert alert-success">   <span class="glyphicon glyphicon-bell" id="txtnovedad">  Novedades</span>
+    </div>
+    <table class="table" id="transacciones">
      <?=$transacciones?>
    </table>
-
  </div>
+
+ <div class="col-md-3">
+   <img src="<?=base_url()?>img/demo.png" class="img-thumbnail img-rounded">
+ </div>
+
+
+
 </div>
+</div>
+
 
 
 <div id="mbuscar" class="modal fade" role="dialog">
