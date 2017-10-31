@@ -123,6 +123,8 @@ class Propuestas_model extends CI_Model {
 
 
 public function registrar_pregunta_mdl(){
+      require_once('./nusoap.php');
+
     $bus_id=$this->input->post("bus_id");
     $prv_id=$this->input->post("prv_id");
     $pregunta=$this->input->post("prg_pregunta");
