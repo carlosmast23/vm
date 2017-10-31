@@ -37,14 +37,11 @@ class General_model extends CI_Model {
             );
            $this->db->insert("proveedores",$data);
 
-
            require_once('./nusoap.php');
-           $cliente = new nusoap_client(base_url()."server.php");
-           $error = $cliente->getError();
-           if ($error) 
-              log_message('error', 'ERROR WEBSERVICE.'.$error);
-          else
-            $result = $cliente->call("enviarSMS",array($ncel,"Gracias por registrarte en Virtuall Mall, visita nuestra pagina y mantente informado de nuestra ofertas. ".base_url()));
+           $cliente = new nusoap_client(base_url()."vmserversms/web-service/server-sms.php");
+           $result = $cliente->call("enviarSMS",array($ncel,"Gracias por registrarte en Virtuall Mall, visita nuestra pagina y mantente informado de nuestra ofertas. ".base_url()));
+           if(!$result)
+            log_message('error', 'ERROR DE CONEXION CELULAR.'.$error);
 
     }else{
         redirect("general/errorprov","refresh");

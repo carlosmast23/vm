@@ -32,12 +32,11 @@ class Busquedas_model extends CI_Model {
    $this->db->insert("busquedas",$data);
 
    require_once('./nusoap.php');
-   $cliente = new nusoap_client(base_url()."server.php");
-   $error = $cliente->getError();
-   if ($error) 
-    log_message('error', 'ERROR WEBSERVICE.'.$error);
-  else
-    $result = $cliente->call("enviarSMS",array("+593994725020","Busqueda registrada ".base_url()."admin/busquedas"));
+   $cliente = new nusoap_client(base_url()."vmserversms/web-service/server-sms.php");
+   $result = $cliente->call("enviarSMS",array("+593994725020","Busqueda registrada ".base_url()."admin/busquedas"));
+   if(!$result)
+    log_message('error', 'ERROR DE CONEXION CELULAR.');
+
 }
 
 
