@@ -226,7 +226,7 @@ public function procesar_email_prov(){
             $mail->AltBody    = "VirtuallMall";
             $usuario=datoDeTablaCampo("proveedores","prv_id","prv_usuario",$fila->usu_id);
             $mail->AddAddress($fila->email_destinatario, $usuario);
-            $mail->AddAttachment("img/logo.png");   
+            //$mail->AddAttachment("img/logo.png");   
             if(!$mail->Send()) {
               echo "Error: " . $mail->ErrorInfo; 
               log_message("error",$mail->ErrorInfo);
