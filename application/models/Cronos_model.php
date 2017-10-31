@@ -24,8 +24,11 @@ class Cronos_model extends CI_Model {
 public function procesar_sms_prov(){
   require_once('./nusoap.php');
 
-  $cliente = new nusoap_client(base_url()."vmserversms/web-service/server-sms.php");
-
+  $cliente = new nusoap_client(base_url()."resources/vmserversms/web-service/server-sms.php");
+  $error = $cliente->getError();
+  if ($error){
+    log_message('error', 'ERROR WEBSERVICE.');
+  }
   $sql="SELECT * FROM `envio_sms` WHERE `estado`='p' AND (`deque`='p' OR `deque` LIKE 'cp') ";
   $query=$this->db->query($sql);
   if($query->num_rows()>0){
@@ -115,7 +118,11 @@ public function enviar_mensaje($bus_id, $act_id,$buscar){
 public function procesar_sms_cli(){
   require_once('./nusoap.php');
 
-   $cliente = new nusoap_client(base_url()."vmserversms/web-service/server-sms.php");
+  $cliente = new nusoap_client(base_url()."resources/vmserversms/web-service/server-sms.php");
+  $error = $cliente->getError();
+  if ($error){
+    log_message('error', 'ERROR WEBSERVICE.');
+  }
 
   $sql="SELECT * FROM `envio_sms` WHERE `estado`='p' AND `deque`='c' AND `bus_id` IN(SELECT `bus_id` FROM propuestas WHERE `pro_estado`='p') ";
 
@@ -166,7 +173,11 @@ public function procesar_sms_clipendientes(){
 public function insertar_sms($bus_id,$tel_destinatario,$sms,$deque){
   require_once('./nusoap.php');
 
-   $cliente = new nusoap_client(base_url()."vmserversms/web-service/server-sms.php");
+  $cliente = new nusoap_client(base_url()."resources/vmserversms/web-service/server-sms.php");
+  $error = $cliente->getError();
+  if ($error){
+    log_message('error', 'ERROR WEBSERVICE.');
+  }
 
   $d1=array(
     "bus_id"=>$bus_id,

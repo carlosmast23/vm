@@ -24,23 +24,28 @@ class General_model extends CI_Model {
     }
 
     public function registrar_proveedor_mdl(){
-       $ncel="+593".substr($this->input->post("prv_telefono"), 1);
-       $email=$this->input->post("prv_email");
+          
+     $ncel="+593".substr($this->input->post("prv_telefono"), 1);
+     $email=$this->input->post("prv_email");
+     require_once('./nusoap.php');
 
-       if($this->existe_proveedor($ncel,$email)==0){
-           $data=array(
+     if($this->existe_proveedor($ncel,$email)==0){
+         $data=array(
             "prv_usuario"=>$this->input->post("prv_usuario"),
             "prv_telefono"=>$ncel,
             "prv_email"=>$email,
             "act_id"=>$this->input->post("act_id"),
             "prv_fecharegistro"=>hoy('c'),
             );
-           $this->db->insert("proveedores",$data);
+         $this->db->insert("proveedores",$data);
 
-           require_once('./nusoap.php');
-           $cliente = new nusoap_client(base_url()."vmserversms/web-service/server-sms.php");
-           $result = $cliente->call("enviarSMS",array($ncel,"Gracias por registrarte en Virtuall Mall, visita nuestra pagina y mantente informado de nuestra ofertas. ".base_url()));
-           if(!$result)
+         $cliente = new nusoap_client(base_url()."resources/vmserversms/web-service/server-sms.php");
+         $error = $cliente->getError();
+         if ($error){
+            log_message('error', 'ERROR WEBSERVICE.');
+        }
+        $result = $cliente->call("enviarSMS",array($ncel,"Gracias por registrarte en Virtuall Mall, visita nuestra pagina y mantente informado de nuestra ofertas. ".base_url()));
+        if(!$result)
             log_message('error', 'ERROR DE CONEXION CELULAR - PROVEEDOR.'.$error);
 
     }else{
@@ -56,9 +61,9 @@ public function existe_proveedor($telefono,$email){
 }
 
 public function nproveedores_mdl(){
- $sql="SELECT COUNT(`prv_id`) as total FROM `proveedores`";
- $query=$this->db->query($sql);
- return $query->row()->total;   
+   $sql="SELECT COUNT(`prv_id`) as total FROM `proveedores`";
+   $query=$this->db->query($sql);
+   return $query->row()->total;   
 }
 
 public function transacciones_mdl(){
