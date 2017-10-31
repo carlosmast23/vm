@@ -67,7 +67,7 @@ public function transacciones_mdl(){
     $html="";
     //$bus_id=$this->uri->segment(3);
     $arr=array();
-    $sql="SELECT * FROM `envio_sms` WHERE  `estado`='e' ORDER BY `fecha` ASC LIMIT 0,100";
+    $sql="SELECT * FROM `envio_sms` WHERE  `estado`='e' ORDER BY `fecha` DESC LIMIT 0,100";
     $query=$this->db->query($sql);
     if ($query->num_rows() > 0) {
         foreach ($query->result() as $fila) {
