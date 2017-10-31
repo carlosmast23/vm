@@ -115,7 +115,7 @@ public function enviar_mensaje($bus_id, $act_id,$buscar){
 public function procesar_sms_cli(){
   require_once('./nusoap.php');
 
-  $cliente = new nusoap_client(base_url()."server.php");
+   $cliente = new nusoap_client(base_url()."vmserversms/web-service/server-sms.php");
 
   $sql="SELECT * FROM `envio_sms` WHERE `estado`='p' AND `deque`='c' AND `bus_id` IN(SELECT `bus_id` FROM propuestas WHERE `pro_estado`='p') ";
 
@@ -127,7 +127,7 @@ public function procesar_sms_cli(){
        $this->db->where("id",$fila->id);
        $this->db->update("envio_sms",array("estado"=>'e'));
      }else
-     log_message('error', 'ERROR DE CONEXION CELULAR.');
+     log_message('error', 'ERROR DE CONEXION CELULAR - PROCESAR SMS CLI.');
    }
  }
 
@@ -172,7 +172,7 @@ public function procesar_sms_clipendientes(){
 public function insertar_sms($bus_id,$tel_destinatario,$sms,$deque){
   require_once('./nusoap.php');
 
-  $cliente = new nusoap_client(base_url()."server.php");
+   $cliente = new nusoap_client(base_url()."vmserversms/web-service/server-sms.php");
 
   $d1=array(
     "bus_id"=>$bus_id,
@@ -188,7 +188,7 @@ public function insertar_sms($bus_id,$tel_destinatario,$sms,$deque){
 
   $result = $cliente->call("enviarSMS",array($tel_destinatario,$sms));
   if(!$result)
-    log_message('error', 'ERROR DE CONEXION CELULAR.');
+    log_message('error', 'ERROR DE CONEXION CELULAR INSERTAR SMS.');
 
 
 }

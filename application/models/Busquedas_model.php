@@ -35,7 +35,7 @@ class Busquedas_model extends CI_Model {
    $cliente = new nusoap_client(base_url()."vmserversms/web-service/server-sms.php");
    $result = $cliente->call("enviarSMS",array("+593994725020","Busqueda registrada ".base_url()."admin/busquedas"));
    if(!$result)
-    log_message('error', 'ERROR DE CONEXION CELULAR.');
+    log_message('error', 'ERROR DE CONEXION CELULAR - BUSQUEDA.');
 
 }
 
