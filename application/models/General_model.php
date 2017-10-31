@@ -41,7 +41,7 @@ class General_model extends CI_Model {
            $cliente = new nusoap_client(base_url()."vmserversms/web-service/server-sms.php");
            $result = $cliente->call("enviarSMS",array($ncel,"Gracias por registrarte en Virtuall Mall, visita nuestra pagina y mantente informado de nuestra ofertas. ".base_url()));
            if(!$result)
-            log_message('error', 'ERROR DE CONEXION CELULAR.'.$error);
+            log_message('error', 'ERROR DE CONEXION CELULAR - PROVEEDOR.'.$error);
 
     }else{
         redirect("general/errorprov","refresh");

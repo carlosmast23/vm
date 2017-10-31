@@ -35,7 +35,7 @@ public function procesar_sms_prov(){
         $this->db->where("id",$fila->id);
         $this->db->update("envio_sms",array("estado"=>'e'));
       }else
-      log_message('error', 'ERROR DE CONEXION CELULAR.');    
+      log_message('error', 'ERROR DE CONEXION CELULAR - PROVEEDOR .');    
     }
   }
 
@@ -147,19 +147,13 @@ public function procesar_sms_clipendientes(){
 
       $pro_id=datoDeTablaCampo("propuestas","bus_id","pro_id",$fila->bus_id);
 
-
       if($pro_id == false  &&  hoy('c') > $bus_fechafin ){
         $sms="Su busqueda no obtuvo resultados, genere una nueva solictud (amplie su tiempo de respuesta)";
         $this->insertar_sms($fila->bus_id,$bus_celular,$sms,"cn");
 
-
-
-
       }else if($pro_id > 0 &&  hoy('c') >= $bus_fechafin){
         $sms="Se ha finalizado la busqueda de resultados, esperamos que alguna propuesta haya sido de tu agrado";
         $this->insertar_sms($fila->bus_id,$bus_celular,$sms,"cf");
-
-
       }
 
 
