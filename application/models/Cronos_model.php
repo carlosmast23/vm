@@ -38,7 +38,7 @@ public function procesar_sms_prov(){
         $this->db->where("id",$fila->id);
         $this->db->update("envio_sms",array("estado"=>'e'));
       }else
-      log_message('error', 'ERROR DE CONEXION CELULAR - PROVEEDOR .');    
+      log_message('error', 'ERROR DE CONEXION CELULAR - PROVEEDOR .ID:'.$fila->id);    
     }
   }
 
@@ -134,7 +134,7 @@ public function procesar_sms_cli(){
        $this->db->where("id",$fila->id);
        $this->db->update("envio_sms",array("estado"=>'e'));
      }else
-     log_message('error', 'ERROR DE CONEXION CELULAR - PROCESAR SMS CLI.');
+     log_message('error', 'ERROR DE CONEXION CELULAR - PROCESAR SMS CLI. ID:'.$fila->id);
    }
  }
 
@@ -193,7 +193,7 @@ public function insertar_sms($bus_id,$tel_destinatario,$sms,$deque){
 
   $result = $cliente->call("enviarSMS",array($tel_destinatario,$sms));
   if(!$result)
-    log_message('error', 'ERROR DE CONEXION CELULAR INSERTAR SMS.');
+    log_message('error', 'ERROR DE CONEXION CELULAR INSERTAR SMS.'.$tel_destinatario);
 
 
 }

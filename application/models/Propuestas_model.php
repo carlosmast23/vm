@@ -141,18 +141,30 @@ public function registrar_pregunta_mdl(){
     $this->load->model("GoogleURL_model","google");
     $url_cli= $this->google->codificar_parametro("propuestas/revisar_pregunta/",$id);
 
-    if($bus_celular!=false){
-        $data3= array(
-            "bus_id"=>$bus_id,
-            'ser_id' => 1, 
-            "usu_id"=>0,
-            "tel_destinatario"=>$bus_celular,
-            "mensaje"=>"El proveedor genero una pregunta. Ver $url_cli",
-            "fecha"=>hoy('c'),
-            "deque"=>"c",
-            );
-        $this->db->insert("envio_sms",$data3);
+    $cliente = new nusoap_client(base_url()."resources/vmserversms/web-service/server-sms.php");
+    $error = $cliente->getError();
+    if ($error){
+        log_message('error', 'ERROR WEBSERVICE.');
     }
+
+    $result = $cliente->call("enviarSMS",array($bus_celular,"El proveedor genero una pregunta. Ver $url_cli"));
+    if($result){
+        if($bus_celular!=false){
+            $data3= array(
+                "bus_id"=>$bus_id,
+                'ser_id' => 1, 
+                "usu_id"=>0,
+                "tel_destinatario"=>$bus_celular,
+                "mensaje"=>"El proveedor genero una pregunta. Ver $url_cli",
+                "fecha"=>hoy('c'),
+                "deque"=>"c",
+                "estado"=>"e",
+                );
+            $this->db->insert("envio_sms",$data3);
+        }
+    }else
+    log_message('error', "ERROR DE CONEXION CELULAR - REGISTRAR PREGUNTA. $bus_celular");
+
 
 }
 

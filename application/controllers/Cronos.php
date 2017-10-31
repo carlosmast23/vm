@@ -16,26 +16,29 @@ class Cronos extends MY_Controller {
 		$this->model->procesar_sms_cli();
 		$this->model->procesar_sms_clipendientes();	
 	}
-
+//casa minuto - mensajes enviados a proveddores para generar proppuestas y el enlace que tienen que revisar los clientes estado=p
 	public function procesar(){
 		$this->model->procesar_sms_pendientes();
 	}
-
+//cada minuto, envio de mensaje a proveedores -estado=e
 	public function procesar1(){
 		$this->model->procesar_sms_prov();
 	}
 
+//cada 5 minutos - envio de mensaje a cliente, enlace para revisar propuestas estado=e
 	public function procesar2(){
 		$this->model->procesar_sms_cli();
 	}
+	//cada 10 minutos - envio de mensajes de acuerdo a intervalo de tiempo, obtuno o no resultados en el tiempo especificado
 	public function procesar3(){
 		$this->model->procesar_sms_clipendientes();	
 	}
 
+//cada 5 minutos - envio de emails a proveedores
 	public function procesar_email(){
 		$this->model->procesar_email_prov();
 	}
-
+//verificacion de funcionalidad de envio de email
 	public function prueba(){
 		$this->model->prueba();
 	}
