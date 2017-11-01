@@ -45,7 +45,7 @@ class General_model extends CI_Model {
             'ser_id' => 1, 
             "usu_id"=>0,
             "tel_destinatario"=>$ncel,
-            "mensaje"=>"Gracias por registrarte en Virtuall Mall, visita nuestra pagina y mantente informado de nuestra ofertas. "base_url(),
+            "mensaje"=>"Gracias por registrarte en Virtuall Mall, visita nuestra pagina y mantente informado de nuestra ofertas. ".base_url(),
             "fecha"=>hoy('c'),
             "deque"=>"pr",
             );
