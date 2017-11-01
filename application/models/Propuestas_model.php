@@ -152,6 +152,7 @@ public function registrar_pregunta_mdl(){
 
     $result = $cliente->call("enviarSMS",array($bus_celular,"El proveedor genero una pregunta. Ver $url_cli"));
     if($result){
+    log_message('error', "VARIABLE RESULT:".$result);
         if($bus_celular!=false){
             $data3= array(
                 "bus_id"=>$bus_id,
