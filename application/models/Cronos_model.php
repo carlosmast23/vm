@@ -28,7 +28,7 @@ class Cronos_model extends CI_Model {
     log_message('error', 'ERROR WEBSERVICE.');
   }
 
-  $sql="SELECT * FROM `envio_sms` WHERE `estado`='p' AND (`deque`='pr' OR `deque`='cn' OR `deque`='cf')";
+  $sql="SELECT * FROM `envio_sms` WHERE `estado`='p' AND (`deque`='pr' OR `deque`='cn' OR `deque`='cf' OR `deque`='cg')";
   $query=$this->db->query($sql);
   if($query->num_rows()>0){
     foreach ($query->result() as $fila) {
