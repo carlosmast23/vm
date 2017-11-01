@@ -142,25 +142,28 @@ public function procesar_sms_cli(){
 
 
 public function procesar_sms_clipendientes(){
-  $sql="SELECT DISTINCT(`bus_id`) as bus_id FROM `envio_sms` WHERE `deque`='c' AND `estado`='p' ";
+  $sql="SELECT * FROM `busquedas` WHERE `bus_estado`='p' AND `bus_estado`='r' ";
 
   $query=$this->db->query($sql);
   if($query->num_rows()>0){
     foreach ($query->result() as $fila) {
-      $bus_fecha=datoDeTablaCampo("busquedas","bus_id","bus_fecha",$fila->bus_id);
-      $bus_fechafin=datoDeTablaCampo("busquedas","bus_id","bus_fechafin",$fila->bus_id);
-      $bus_tiempo=datoDeTablaCampo("busquedas","bus_id","bus_tiempo",$fila->bus_id);
-      $bus_celular=datoDeTablaCampo("busquedas","bus_id","bus_celular",$fila->bus_id);
-
       $pro_id=datoDeTablaCampo("propuestas","bus_id","pro_id",$fila->bus_id);
 
-      if($pro_id == false  &&  hoy('c') > $bus_fechafin ){
+      if($pro_id == false  &&  hoy('c') > $fila->bus_fechafin ){
         $sms="Su busqueda no obtuvo resultados, genere una nueva solictud (amplie su tiempo de respuesta)";
-        $this->insertar_sms($fila->bus_id,$bus_celular,$sms,"cn");
+        $this->insertar_sms($fila->bus_id,$fila->bus_celular,$sms,"cn");
 
-      }else if($pro_id > 0 &&  hoy('c') >= $bus_fechafin){
+        $arr= array('bus_estado' => 'a');
+        $this->db->where("bus_id",$fila->bus_id);
+        $this->db->update("busquedas",$arr);
+
+      }else if($pro_id > 0 &&  hoy('c') >= $fila->bus_fechafin){
         $sms="Se ha finalizado la busqueda de resultados, esperamos que alguna propuesta haya sido de tu agrado";
         $this->insertar_sms($fila->bus_id,$bus_celular,$sms,"cf");
+
+        $arr= array('bus_estado' => 'e');
+        $this->db->where("bus_id",$fila->bus_id);
+        $this->db->update("busquedas",$arr);
       }
 
 
