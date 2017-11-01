@@ -57,7 +57,7 @@ public function procesar_sms_prov(){
   if($query->num_rows()>0){
     foreach ($query->result() as $fila) {
       $result = $cliente->call("enviarSMS",array($fila->tel_destinatario,$fila->mensaje));
-      if($result){
+      if($result=="success"){
         $this->db->where("id",$fila->id);
         $this->db->update("envio_sms",array("estado"=>'e'));
       }else
