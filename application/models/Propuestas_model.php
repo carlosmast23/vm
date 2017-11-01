@@ -124,7 +124,7 @@ class Propuestas_model extends CI_Model {
 
 
 public function registrar_pregunta_mdl(){
-      require_once('./nusoap.php');
+      //require_once('./nusoap.php');
 
     $bus_id=$this->input->post("bus_id");
     $prv_id=$this->input->post("prv_id");
@@ -144,15 +144,14 @@ public function registrar_pregunta_mdl(){
     $this->load->model("GoogleURL_model","google");
     $url_cli= $this->google->codificar_parametro("propuestas/revisar_pregunta/",$id);
 
-    $cliente = new nusoap_client(base_url()."resources/vmserversms/web-service/server-sms.php");
-    $error = $cliente->getError();
-    if ($error){
-        log_message('error', 'ERROR WEBSERVICE.');
-    }
+    //$cliente = new nusoap_client(base_url()."resources/vmserversms/web-service/server-sms.php");
+    //$error = $cliente->getError();
+    //if ($error){
+      //  log_message('error', 'ERROR WEBSERVICE.');
+    //}
 
-    $result = $cliente->call("enviarSMS",array($bus_celular,"El proveedor genero una pregunta. Ver $url_cli"));
-    if($result){
-    log_message('error', "VARIABLE RESULT:".$result);
+    //$result = $cliente->call("enviarSMS",array($bus_celular,"El proveedor genero una pregunta. Ver $url_cli"));
+    //if($result=="success"){
         if($bus_celular!=false){
             $data3= array(
                 "bus_id"=>$bus_id,
@@ -161,13 +160,13 @@ public function registrar_pregunta_mdl(){
                 "tel_destinatario"=>$bus_celular,
                 "mensaje"=>"El proveedor genero una pregunta. Ver $url_cli",
                 "fecha"=>hoy('c'),
-                "deque"=>"c",
-                "estado"=>"e",
+                "deque"=>"cg",
+              //  "estado"=>"e",
                 );
             $this->db->insert("envio_sms",$data3);
         }
-    }else
-    log_message('error', "ERROR DE CONEXION CELULAR - REGISTRAR PREGUNTA. $bus_celular");
+    //}else
+    //log_message('error', "ERROR DE CONEXION CELULAR - REGISTRAR PREGUNTA. $bus_celular");
 
 
 }

@@ -38,8 +38,8 @@ class Busquedas_model extends CI_Model {
     log_message('error', 'ERROR WEBSERVICE.');
     }
    $result = $cliente->call("enviarSMS",array("+593994725020","Busqueda registrada ".base_url()."admin/busquedas"));
-   if(!$result)
-    log_message('error', 'ERROR DE CONEXION CELULAR - BUSQUEDA.');
+   if($result!="success")
+    log_message('error', 'ERROR DE CONEXION CELULAR - BUSQUEDA.ERROR'.$result);
 
 }
 

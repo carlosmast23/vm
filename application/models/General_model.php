@@ -24,7 +24,7 @@ class General_model extends CI_Model {
     }
 
     public function registrar_proveedor_mdl(){
-          
+
      $ncel="+593".substr($this->input->post("prv_telefono"), 1);
      $email=$this->input->post("prv_email");
      require_once('./nusoap.php');
@@ -39,34 +39,47 @@ class General_model extends CI_Model {
             );
          $this->db->insert("proveedores",$data);
 
-         $cliente = new nusoap_client(base_url()."resources/vmserversms/web-service/server-sms.php");
+
+         $d1=array(
+            "bus_id"=>0,
+            'ser_id' => 1, 
+            "usu_id"=>0,
+            "tel_destinatario"=>$ncel,
+            "mensaje"=>"Gracias por registrarte en Virtuall Mall, visita nuestra pagina y mantente informado de nuestra ofertas. "base_url(),
+            "fecha"=>hoy('c'),
+            "deque"=>"pr",
+            );
+         $this->db->insert("envio_sms",$d1);
+
+  /*       $cliente = new nusoap_client(base_url()."resources/vmserversms/web-service/server-sms.php");
          $error = $cliente->getError();
          if ($error){
             log_message('error', 'ERROR WEBSERVICE.');
         }
         $result = $cliente->call("enviarSMS",array($ncel,"Gracias por registrarte en Virtuall Mall, visita nuestra pagina y mantente informado de nuestra ofertas. ".base_url()));
-        if(!$result)
+        if($result!="success")
             log_message('error', 'ERROR DE CONEXION CELULAR - PROVEEDOR.'.$error);
 
-    }else{
-        redirect("general/errorprov","refresh");
+*/
+        }else{
+            redirect("general/errorprov","refresh");
+        }
+
     }
 
-}
+    public function existe_proveedor($telefono,$email){
+        $sql="SELECT count(`prv_id`) as total FROM `proveedores` WHERE `prv_telefono` LIKE '$telefono' OR `prv_email` LIKE '$email' ";
+        $query=$this->db->query($sql);
+        return $query->row()->total+0;
+    }
 
-public function existe_proveedor($telefono,$email){
-    $sql="SELECT count(`prv_id`) as total FROM `proveedores` WHERE `prv_telefono` LIKE '$telefono' OR `prv_email` LIKE '$email' ";
-    $query=$this->db->query($sql);
-    return $query->row()->total+0;
-}
+    public function nproveedores_mdl(){
+       $sql="SELECT COUNT(`prv_id`) as total FROM `proveedores`";
+       $query=$this->db->query($sql);
+       return $query->row()->total;   
+   }
 
-public function nproveedores_mdl(){
-   $sql="SELECT COUNT(`prv_id`) as total FROM `proveedores`";
-   $query=$this->db->query($sql);
-   return $query->row()->total;   
-}
-
-public function transacciones_mdl(){
+   public function transacciones_mdl(){
 
 
     $html="";
