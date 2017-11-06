@@ -197,14 +197,6 @@ public function procesar_sms_clipendientes(){
 
 
 public function insertar_sms($bus_id,$tel_destinatario,$sms,$deque){
-  /*require_once('./nusoap.php');
-
-  $cliente = new nusoap_client(base_url()."resources/vmserversms/web-service/server-sms.php");
-  $error = $cliente->getError();
-  if ($error){
-    log_message('error', 'ERROR WEBSERVICE.');
-  }*/
-
   $d1=array(
     "bus_id"=>$bus_id,
     'ser_id' => 1, 
@@ -213,14 +205,10 @@ public function insertar_sms($bus_id,$tel_destinatario,$sms,$deque){
     "mensaje"=>$sms,
     "fecha"=>hoy('c'),
     "deque"=>$deque,
-    //"estado"=>"e",
     );
   $this->db->insert("envio_sms",$d1);
 
-  /*$result = $cliente->call("enviarSMS",array($tel_destinatario,$sms));
-  if($result!="success")
-    log_message('error', 'ERROR DE CONEXION CELULAR INSERTAR SMS. ERROR'.$result);
-*/
+
 
 }
 

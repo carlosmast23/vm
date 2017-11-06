@@ -146,3 +146,13 @@
       color: white;
       margin-bottom: 0; 
     }
+
+    footer{
+      background-color: black;
+      padding-top: 10px;
+      font-size: 1em;
+    }
+
+    footer b{
+      color: white;
+    }

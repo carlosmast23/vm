@@ -9,21 +9,21 @@ function conectado() {
 
 // aumentar una cantidad de dias 
 function diamas($fecha,$deque) {
-   $partes = explode(" ", $fecha);
-   $parte1=$partes[0];
-   $f = explode("-", $parte1);
-   $ano = $f[0] + 0;
-   $mes = $f[1] + 0;
-   $dia = $f[2] + 0;
+ $partes = explode(" ", $fecha);
+ $parte1=$partes[0];
+ $f = explode("-", $parte1);
+ $ano = $f[0] + 0;
+ $mes = $f[1] + 0;
+ $dia = $f[2] + 0;
 
-   $parte2=$partes[1];
-   $t = explode(":", $parte2);
-   $hor = $t[0] + 0;
-   $min = $t[1] + 0;
-   $seg = $t[2] + 0;
+ $parte2=$partes[1];
+ $t = explode(":", $parte2);
+ $hor = $t[0] + 0;
+ $min = $t[1] + 0;
+ $seg = $t[2] + 0;
 
 
-   switch ($deque) {
+ switch ($deque) {
     case 'u': 
     $aumentada = mktime(date($hor), date($min)+30, date($seg), date($mes), date($dia), date($ano));
     break;
@@ -115,6 +115,35 @@ function cortar_texto($texto, $n = 75) {
         return substr($texto, 0, $n) . "...";
     else
         return $texto;
+}
+
+function getRealIP(){
+
+    if (isset($_SERVER["HTTP_CLIENT_IP"]))
+    {
+        return $_SERVER["HTTP_CLIENT_IP"];
+    }
+    elseif (isset($_SERVER["HTTP_X_FORWARDED_FOR"]))
+    {
+        return $_SERVER["HTTP_X_FORWARDED_FOR"];
+    }
+    elseif (isset($_SERVER["HTTP_X_FORWARDED"]))
+    {
+        return $_SERVER["HTTP_X_FORWARDED"];
+    }
+    elseif (isset($_SERVER["HTTP_FORWARDED_FOR"]))
+    {
+        return $_SERVER["HTTP_FORWARDED_FOR"];
+    }
+    elseif (isset($_SERVER["HTTP_FORWARDED"]))
+    {
+        return $_SERVER["HTTP_FORWARDED"];
+    }
+    else
+    {
+        return $_SERVER["REMOTE_ADDR"];
+    }
+
 }
 
 ?>

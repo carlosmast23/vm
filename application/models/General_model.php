@@ -25,22 +25,21 @@ class General_model extends CI_Model {
 
     public function registrar_proveedor_mdl(){
 
-     $ncel="+593".substr($this->input->post("prv_telefono"), 1);
-     $email=$this->input->post("prv_email");
-     require_once('./nusoap.php');
+       $ncel="+593".substr($this->input->post("prv_telefono"), 1);
+       $email=$this->input->post("prv_email");
+       require_once('./nusoap.php');
 
-     if($this->existe_proveedor($ncel,$email)==0){
-         $data=array(
+       if($this->existe_proveedor($ncel,$email)==0){
+           $data=array(
             "prv_usuario"=>$this->input->post("prv_usuario"),
             "prv_telefono"=>$ncel,
             "prv_email"=>$email,
             "act_id"=>$this->input->post("act_id"),
             "prv_fecharegistro"=>hoy('c'),
             );
-         $this->db->insert("proveedores",$data);
+           $this->db->insert("proveedores",$data);
 
-
-         $d1=array(
+           $d1=array(
             "bus_id"=>0,
             'ser_id' => 1, 
             "usu_id"=>0,
@@ -49,37 +48,27 @@ class General_model extends CI_Model {
             "fecha"=>hoy('c'),
             "deque"=>"pr",
             );
-         $this->db->insert("envio_sms",$d1);
+           $this->db->insert("envio_sms",$d1);
 
-  /*       $cliente = new nusoap_client(base_url()."resources/vmserversms/web-service/server-sms.php");
-         $error = $cliente->getError();
-         if ($error){
-            log_message('error', 'ERROR WEBSERVICE.');
-        }
-        $result = $cliente->call("enviarSMS",array($ncel,"Gracias por registrarte en Virtuall Mall, visita nuestra pagina y mantente informado de nuestra ofertas. ".base_url()));
-        if($result!="success")
-            log_message('error', 'ERROR DE CONEXION CELULAR - PROVEEDOR.'.$error);
-
-*/
-        }else{
-            redirect("general/errorprov","refresh");
-        }
-
+       }else{
+        redirect("general/errorprov","refresh");
     }
 
-    public function existe_proveedor($telefono,$email){
-        $sql="SELECT count(`prv_id`) as total FROM `proveedores` WHERE `prv_telefono` LIKE '$telefono' OR `prv_email` LIKE '$email' ";
-        $query=$this->db->query($sql);
-        return $query->row()->total+0;
-    }
+}
 
-    public function nproveedores_mdl(){
-       $sql="SELECT COUNT(`prv_id`) as total FROM `proveedores`";
-       $query=$this->db->query($sql);
-       return $query->row()->total;   
-   }
+public function existe_proveedor($telefono,$email){
+    $sql="SELECT count(`prv_id`) as total FROM `proveedores` WHERE `prv_telefono` LIKE '$telefono' OR `prv_email` LIKE '$email' ";
+    $query=$this->db->query($sql);
+    return $query->row()->total+0;
+}
 
-   public function transacciones_mdl(){
+public function nproveedores_mdl(){
+ $sql="SELECT COUNT(`prv_id`) as total FROM `proveedores`";
+ $query=$this->db->query($sql);
+ return $query->row()->total;   
+}
+
+public function transacciones_mdl(){
 
 
     $html="";
@@ -89,7 +78,7 @@ class General_model extends CI_Model {
     $query=$this->db->query($sql);
     if ($query->num_rows() > 0) {
         foreach ($query->result() as $fila) {
-            $busqueda=datoDeTablaCampo("busquedas","bus_id","bus_texto",$fila->bus_id);
+            $busqueda=cortar_texto(datoDeTablaCampo("busquedas","bus_id","bus_texto",$fila->bus_id));
 
             if($fila->usu_id>0){
                 $proveedor=datoDeTablaCampo("proveedores","prv_id","prv_usuario",$fila->usu_id);
@@ -106,6 +95,31 @@ class General_model extends CI_Model {
     }
     return $html;
 
+}
+
+
+
+public function contador_mdl(){
+    $this->load->helper('cookie');
+    $hoy=hoy();
+    $ip=getRealIP();
+
+    if (!isset($_COOKIE['contador'])) {
+        $query=$this->db->query("SELECT * FROM `visitas` WHERE `fecha`='$hoy' AND `ip`='$ip' ");
+        if($query->num_rows()==0){
+            $arr=array(
+                "ip"=>$ip,
+                "fecha"=>$hoy,
+                "num"=>1,
+                );
+            $this->db->insert("visitas",$arr);
+        }
+    }
+
+    set_cookie('contador', 1, time()+3700);
+
+    $query=$this->db->query("SELECT count(`id`) as total FROM `visitas` ");
+    return $query->row()->total;
 }
 
 

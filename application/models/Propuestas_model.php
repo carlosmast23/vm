@@ -108,11 +108,11 @@ class Propuestas_model extends CI_Model {
 
 //LISTADO DE PREGUNTAS
     public function lista_preguntas($bus_id=0,$prv_id=0){
-     $html="";
-     $arr=array();
-     $sql="SELECT * FROM `preguntas_pro` WHERE `bus_id` ='$bus_id' AND `prv_id`='$prv_id'";
-     $query=$this->db->query($sql);
-     if ($query->num_rows() > 0) {
+       $html="";
+       $arr=array();
+       $sql="SELECT * FROM `preguntas_pro` WHERE `bus_id` ='$bus_id' AND `prv_id`='$prv_id'";
+       $query=$this->db->query($sql);
+       if ($query->num_rows() > 0) {
         foreach ($query->result() as $fila) {
             $html.= $this->parser->parse('propuestas/preguntas_tpl', $fila, true);
         }
@@ -144,29 +144,18 @@ public function registrar_pregunta_mdl(){
     $this->load->model("GoogleURL_model","google");
     $url_cli= $this->google->codificar_parametro("propuestas/revisar_pregunta/",$id);
 
-    //$cliente = new nusoap_client(base_url()."resources/vmserversms/web-service/server-sms.php");
-    //$error = $cliente->getError();
-    //if ($error){
-      //  log_message('error', 'ERROR WEBSERVICE.');
-    //}
-
-    //$result = $cliente->call("enviarSMS",array($bus_celular,"El proveedor genero una pregunta. Ver $url_cli"));
-    //if($result=="success"){
-        if($bus_celular!=false){
-            $data3= array(
-                "bus_id"=>$bus_id,
-                'ser_id' => 1, 
-                "usu_id"=>0,
-                "tel_destinatario"=>$bus_celular,
-                "mensaje"=>"El proveedor genero una pregunta. Ver $url_cli",
-                "fecha"=>hoy('c'),
-                "deque"=>"cg",
-              //  "estado"=>"e",
-                );
-            $this->db->insert("envio_sms",$data3);
-        }
-    //}else
-    //log_message('error', "ERROR DE CONEXION CELULAR - REGISTRAR PREGUNTA. $bus_celular");
+    if($bus_celular!=false){
+        $data3= array(
+            "bus_id"=>$bus_id,
+            'ser_id' => 1, 
+            "usu_id"=>0,
+            "tel_destinatario"=>$bus_celular,
+            "mensaje"=>"El proveedor genero una pregunta. Ver $url_cli",
+            "fecha"=>hoy('c'),
+            "deque"=>"cg",
+            );
+        $this->db->insert("envio_sms",$data3);
+    }
 
 
 }
