@@ -153,7 +153,6 @@ function aleatorio($tipo="a"){
         $query= $ci->db->query("SELECT COUNT(`arc_id`) as total FROM `archivos` ");
         $num=$query->row()->total;
 
-
         if($num>0){
             $num=rand(1,$num);
             if(file_exists(base_url()."uploads/".$num))

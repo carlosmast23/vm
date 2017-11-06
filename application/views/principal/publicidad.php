@@ -24,7 +24,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <img src="<?=aleatorio('a')?>" alt="Imagenes" class="img-thumbnail">
+        <img src="<?=aleatorio('a')?>" alt="Imagenes" class="img-thumbnail" width="100%" heigth="100%">
       </div>
     </div>
   </div>
