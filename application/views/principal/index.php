@@ -33,7 +33,7 @@
     </div>
   -->
   <div class="col-xs-12 col-xs-offset-0 col-sm-2 col-sm-offset-0 col-md-3 col-md-offset-0 ">
-    <button class="btn btn-primary btn-block" type="button" data-toggle="modal" data-target="#mbuscar">Buscar</button>
+    <button class="btn btn-success btn-block" type="button" data-toggle="modal" data-target="#mbuscar">Buscar</button>
   </div>
 
 </form>
