@@ -15,7 +15,8 @@ class General extends MY_Controller {
         $data['cmb_actividades']=$this->actividades_model->cmb_actividades();
         $data['numprov']=$this->model->nproveedores_mdl()*100;
         $data['transacciones']=$this->model->transacciones_mdl();
-        $data['visitas']=$this->model->contador_mdl();
+        $visitas=$this->model->contador_mdl();
+        $this->session->set_userdata(array('visitas'=>$visitas));
         $this->loadTemplates("principal/index",$data);
     }
 
@@ -51,7 +52,6 @@ public function conocenos(){
     $this->loadTemplates("principal/conocenos");
 }
 
-//enlaces externos
 public function catalogo(){
     $this->loadTemplateClear("principal/catalogo");
 }
@@ -59,6 +59,9 @@ public function catalogo(){
 public function servicios(){
     $this->loadTemplates("principal/servicios");
 }
+ public function politica(){
+        $this->loadTemplates("principal/politica");
+    }
 
 
 

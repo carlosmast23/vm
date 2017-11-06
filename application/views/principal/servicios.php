@@ -1,6 +1,6 @@
  <br><br>
  <div class="container-fluid">
-  <div class="col-md-12">
+  <div class="col-md-12 text-center">
       <h3 class="uppercase">Servicios</h3>
       <img src="<?=base_url()?>img/01.jpg" class="img-thumbnail" alt="" width="50%"/>
   </div>

@@ -10,7 +10,7 @@
 
 
    </div>
-   <div class="col-md-6">
+   <div class="col-md-6 text-justify">
     <h3 class="uppercase">Conócenos</h3>
     <h5>Promociona tu negocio con nosotros</h5>
     <div class="h-30"></div>
