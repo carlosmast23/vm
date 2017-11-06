@@ -24,7 +24,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <img src="<?=base_url()?>uploads/<?=aleatorio('a')?>" alt="Imagenes" class="img-thumbnail">
+        <img src="<?=aleatorio('a')?>" alt="Imagenes" class="img-thumbnail">
       </div>
     </div>
   </div>

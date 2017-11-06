@@ -9,21 +9,21 @@ function conectado() {
 
 // aumentar una cantidad de dias 
 function diamas($fecha,$deque) {
- $partes = explode(" ", $fecha);
- $parte1=$partes[0];
- $f = explode("-", $parte1);
- $ano = $f[0] + 0;
- $mes = $f[1] + 0;
- $dia = $f[2] + 0;
+   $partes = explode(" ", $fecha);
+   $parte1=$partes[0];
+   $f = explode("-", $parte1);
+   $ano = $f[0] + 0;
+   $mes = $f[1] + 0;
+   $dia = $f[2] + 0;
 
- $parte2=$partes[1];
- $t = explode(":", $parte2);
- $hor = $t[0] + 0;
- $min = $t[1] + 0;
- $seg = $t[2] + 0;
+   $parte2=$partes[1];
+   $t = explode(":", $parte2);
+   $hor = $t[0] + 0;
+   $min = $t[1] + 0;
+   $seg = $t[2] + 0;
 
 
- switch ($deque) {
+   switch ($deque) {
     case 'u': 
     $aumentada = mktime(date($hor), date($min)+30, date($seg), date($mes), date($dia), date($ano));
     break;
@@ -157,13 +157,13 @@ function aleatorio($tipo="a"){
         if($num>0){
             $num=rand(1,$num);
             if(file_exists(base_url()."uploads/".$num))
-                return $num;
+                return base_url()."uploads/".$num;
             else
-               return "demo.png";
-       }else
-       return "demo.png";
-   }
-   return false;
+                return base_url()."img/demo.png";
+        }else
+        return base_url()."img/demo.png";
+    }
+    return false;
 }
 
 ?>
