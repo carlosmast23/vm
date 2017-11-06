@@ -60,14 +60,14 @@
 
 
 			</form>
-			-->
-			<p class="text-center">
-				© Elaborado por Codesoft | <a href="<?=base_url()?>general/politica">Política de Privacidad</a>
-			</p>
-		</div>
-
-
+		-->
+		<p class="text-center">
+			© Elaborado por Codesoft | <a href="<?=base_url()?>general/politica">Política de Privacidad</a>
+		</p>
 	</div>
+
+
+</div>
 
 
 </footer>

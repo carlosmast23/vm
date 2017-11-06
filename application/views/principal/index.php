@@ -18,9 +18,7 @@
           -->
         </section>
 
-
         <link href="<?= base_url(); ?>assets/bootstrap-chosen-master/bootstrap-chosen.css" media="screen" rel="stylesheet" type="text/css">
-
 
         <div class="row">
           <form class="" action="#" id="form_buscar">

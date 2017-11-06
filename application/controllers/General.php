@@ -20,10 +20,10 @@ class General extends MY_Controller {
         $this->loadTemplates("principal/index",$data);
     }
 
-
     public function cliente(){
         $this->loadTemplates("principal/registrar_cliente");
     }
+
     public function registro(){
       $this->load->model("admin/actividades_model");
       $data['cmb_actividades']=$this->actividades_model->cmb_actividades();
@@ -59,10 +59,14 @@ public function catalogo(){
 public function servicios(){
     $this->loadTemplates("principal/servicios");
 }
- public function politica(){
-        $this->loadTemplates("principal/politica");
-    }
 
+public function politica(){
+    $this->loadTemplates("principal/politica");
+}
+
+public function publicidad(){
+    $this->loadTemplateClear("principal/publicidad");
+}
 
 
 }
