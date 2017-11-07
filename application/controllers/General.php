@@ -70,6 +70,7 @@ public function publicidad(){
         $data["columnas"]="col-xs-8 col-xs-offset-2";
     else if($tipo=="b")
         $data["columnas"]="col-xs-12";
+    $data["tipo"]=$tipo;
     $this->load->view("principal/publicidad",$data);
 }
 
