@@ -28,6 +28,7 @@
     -webkit-background-size: contain;
     -moz-background-size: contain;
     -o-background-size: contain;
+    background-size: contain;
     background-position: center;
     height: 99%;
     width: 99% ;
