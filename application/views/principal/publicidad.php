@@ -20,7 +20,7 @@
 
   <style>
   .container-fluid{
-    background-color: black;
+    background-color: #3E5DA2;
   }
     /* Makes images fully responsive */
     .img-responsive,
