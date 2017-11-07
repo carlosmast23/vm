@@ -155,7 +155,7 @@ function aleatorio($tipo="a"){
 
         if($num>0){
             $num=rand(1,$num);
-            if(file_exists(base_url()."uploads/".$num))
+            if(file_exists("./uploads/".$num))
                 return base_url()."uploads/".$num;
             else
                 return base_url()."img/demo.png";

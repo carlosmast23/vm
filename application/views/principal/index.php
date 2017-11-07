@@ -55,7 +55,7 @@
  <div class="row">
    
    <div class="col-md-3">
-     <img src="<?=base_url()?>img/demo.png" class="img-thumbnail img-rounded">
+     <img src="<?=aleatorio('a')?>" class="img-thumbnail img-rounded">
    </div>
 
    <div class="col-md-6">
@@ -67,7 +67,7 @@
  </div>
 
  <div class="col-md-3">
-   <img src="<?=base_url()?>img/demo.png" class="img-thumbnail img-rounded">
+   <img src="<?=aleatorio('a')?>" class="img-thumbnail img-rounded">
  </div>
 
 

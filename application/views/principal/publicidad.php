@@ -19,9 +19,9 @@
   <script src="<?= base_url() ?>assets/bootstrap/js/bootstrap.min.js"></script>
 
   <style>
-  .container-fluid{
-    background-color: #3E5DA2;
-  }
+    .container-fluid{
+      background-color: #000;
+    }
     /* Makes images fully responsive */
     .img-responsive,
     .thumbnail > img,
@@ -69,49 +69,54 @@
           <div class="carousel-inner">
             <?php if($tipo=='c'):?>
               <div class="item active">
-                <img src="<?=base_url()?>img/demo1.jpg" alt="...">
-
+                <img src="<?=aleatorio('a')?>" alt="...">
               </div>
               <div class="item">
-                <img src="<?=base_url()?>img/demo2.jpg" alt="...">
-
+                <img src="<?=aleatorio('a')?>" alt="...">
               </div>
               <div class="item">
-                <img src="<?=base_url()?>img/demo3.jpg" alt="...">
-
+                <img src="<?=aleatorio('a')?>" alt="...">
+              </div> 
+              <div class="item">
+                <img src="<?=aleatorio('a')?>" alt="...">
+              </div>     
+              <div class="item">
+                <img src="<?=aleatorio('a')?>" alt="...">
               </div>
             <?php else:?>
-                <div class="item active">
-                <img src="<?=base_url()?>img/demo1.jpg" alt="...">
-
+              <div class="item active">
+                <img src="<?=aleatorio('a')?>" alt="...">
               </div>
               <div class="item">
-                <img src="<?=base_url()?>img/demo2.jpg" alt="...">
-
+                <img src="<?=aleatorio('a')?>" alt="...">
               </div>
               <div class="item">
-                <img src="<?=base_url()?>img/demo3.jpg" alt="...">
-
+                <img src="<?=aleatorio('a')?>" alt="...">
+              </div> 
+              <div class="item">
+                <img src="<?=aleatorio('a')?>" alt="...">
+              </div> 
+              <div class="item">
+                <img src="<?=aleatorio('a')?>" alt="...">
               </div>
-
-          <?php endif;?>
-
+            <?php endif;?>
 
 
+
+          </div>
+
+
+          <!-- Controls -->
+          <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+          </a>
+          <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+          </a>
         </div>
-
-
-        <!-- Controls -->
-        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-          <span class="glyphicon glyphicon-chevron-left"></span>
-        </a>
-        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-          <span class="glyphicon glyphicon-chevron-right"></span>
-        </a>
       </div>
     </div>
   </div>
-</div>
 
 </body>
 </html>
