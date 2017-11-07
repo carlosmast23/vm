@@ -69,28 +69,30 @@
           <div class="carousel-inner">
             <?php if($tipo=='c'):?>
               <div class="item active">
-                <img src="<?=aleatorio('a')?>" alt="...">
+                <img src="<?=base_url()?>img/demo1.jpg" alt="...">
 
               </div>
               <div class="item">
-                <img src="<?=aleatorio('a')?>" alt="...">
+                <img src="<?=base_url()?>img/demo2.jpg" alt="...">
 
               </div>
               <div class="item">
-                <img src="<?=aleatorio('a')?>" alt="...">
+                <img src="<?=base_url()?>img/demo3.jpg" alt="...">
 
               </div>
             <?php else:?>
-             <div class="item active">
-              <img src="<?=base_url()?>img/demo2.png" alt="...">
+                <div class="item active">
+                <img src="<?=base_url()?>img/demo1.jpg" alt="...">
 
-            </div>  
-            <div class="item">
-              <img src="<?=base_url()?>img/demo2.png" alt="...">
-            </div>
-            <div class="item">
-              <img src="<?=base_url()?>img/demo2.png" alt="...">
-            </div>
+              </div>
+              <div class="item">
+                <img src="<?=base_url()?>img/demo2.jpg" alt="...">
+
+              </div>
+              <div class="item">
+                <img src="<?=base_url()?>img/demo3.jpg" alt="...">
+
+              </div>
 
           <?php endif;?>
 
