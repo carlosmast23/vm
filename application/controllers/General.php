@@ -65,7 +65,7 @@ public function politica(){
 }
 
 public function publicidad(){
-    $this->loadTemplateClear("principal/publicidad");
+    $this->load->view("principal/publicidad");
 }
 
 
