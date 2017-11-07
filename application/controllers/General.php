@@ -65,8 +65,16 @@ public function politica(){
 }
 
 public function publicidad(){
-    $this->load->view("principal/publicidad");
+    $tipo=$this->uri->segment(3);
+    if($tipo=="c")
+        $data["columnas"]="col-xs-8 col-xs-offset-2";
+    else if($tipo=="b")
+        $data["columnas"]="col-xs-12";
+    $this->load->view("principal/publicidad",$data);
 }
+
+
+
 
 
 }

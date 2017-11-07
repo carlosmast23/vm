@@ -35,18 +35,6 @@
       border-radius: 15px;
     }
 
-    .carousel-caption {
-      background-color: rgba(0,0,0,.5);
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 10;
-      padding: 0 0 10px 25px;
-      color: #fff;
-      text-align: left;
-    }
-
     .carousel-indicators {
       position: absolute;
       bottom: 0;
@@ -59,41 +47,13 @@
       text-align: right;
     }
 
-    .carousel-control.left,
-    .carousel-control.right {
-      background-image: none;
-    }
-
-
-    /* ------------------- Section Styling - Not needed for carousel styling ------------------- */
-    .section-white {
-     padding: 10px 0;
-   }
-
-   .section-white {
-    background-color: #fff;
-    color: #555;
-  }
-
-  @media screen and (min-width: 768px) {
-    .section-white {
-     padding: 1.5em 0;
-   }
- }
-
- @media screen and (min-width: 992px) {
-  .container {
-    max-width: 930px;
-  }
-}
-
 </style>
 
 </head>
 <body>
-
-
-  <div class="container">
+  <div class="container-fluid">
+  <div class="row">
+  <div class="<?=$columnas?>">
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
       <ol class="carousel-indicators">
@@ -106,21 +66,15 @@
       <div class="carousel-inner">
         <div class="item active">
           <img src="<?=aleatorio('a')?>" alt="...">
-          <div class="carousel-caption">
-            <h2>Heading</h2>
-          </div>
+      
         </div>
         <div class="item">
           <img src="<?=aleatorio('a')?>" alt="...">
-          <div class="carousel-caption">
-            <h2>Heading</h2>
-          </div>
+     
         </div>
         <div class="item">
           <img src="<?=aleatorio('a')?>" alt="...">
-          <div class="carousel-caption">
-            <h2>Heading</h2>
-          </div>
+     
         </div>
       </div>
 
@@ -131,6 +85,8 @@
       <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
         <span class="glyphicon glyphicon-chevron-right"></span>
       </a>
+    </div>
+    </div>
     </div>
   </div>
 
