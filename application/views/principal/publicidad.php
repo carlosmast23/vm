@@ -12,22 +12,38 @@
   <meta name=”robots” content="Index, NoFollow">
 
   <link rel="icon" href="<?=base_url()?>img/fav.png" type="image/x-icon">
-  <!-- css -->
-  <link href="<?=base_url()?>assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-  <script src="<?=base_url()?>js/jquery-2.1.1.js"></script>
-  <script src="<?= base_url() ?>assets/bootstrap/js/bootstrap.min.js"></script>
+  <style>
+   html,body{
+    color:white;
+    height:100%;
+    width:100%;
+    margin: 0px;
+  }
 
 
+  .portada{
+    border: 1px solid blue;
+    background: url("<?=aleatorio('a')?>") no-repeat center;
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-position: center;
+    height: 99%;
+    width: 99% ;
+    text-align: center;
+
+  }
+
+</style>
 </head>
 <body>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <img src="<?=aleatorio('a')?>" alt="Imagenes" class="img-thumbnail" width="100%" heigth="100%">
-      </div>
-    </div>
+
+  <div class="portada">
+
   </div>
+
+
 
 </body>
 </html>
