@@ -64,7 +64,7 @@ class Proveedores_model extends CI_Model {
 
     public function lista_proveedores(){
         $this->load->model("GoogleURL_model","google");
-        $sql = "SELECT * FROM `proveedores` WHERE 1 ";
+        $sql = "SELECT * FROM `proveedores` WHERE `prv_estado`='a'";
         $query = $this->db->query($sql);
 
         if ($query->num_rows() > 0) {
