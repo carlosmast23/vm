@@ -25,9 +25,8 @@ class General_model extends CI_Model {
 
     public function registrar_proveedor_mdl(){
 
-       $ncel="+593".substr($this->input->post("prv_telefono"), 1);
+       $ncel=format_celular($this->input->post("prv_telefono"));
        $email=$this->input->post("prv_email");
-       require_once('./nusoap.php');
 
        if($this->existe_proveedor($ncel,$email)==0){
            $data=array(
@@ -52,6 +51,28 @@ class General_model extends CI_Model {
 
        }else{
         redirect("general/errorprov","refresh");
+    }
+
+}
+
+
+public function actualizar_proveedor_mdl(){
+    $prv_id=$this->input->post("prv_id");
+    
+    $ncel=format_celular($this->input->post("prv_telefono"));
+    $email=$this->input->post("prv_email");
+
+    if($this->existe_proveedor($ncel,$email)==0){
+        $arr=array(
+            'prv_usuario' => $this->input->post('prv_usuario'), 
+            'prv_telefono' => $ncel, 
+            "prv_email"=>$email,
+            "act_id"=>$this->input->post("act_id"),
+            );
+        $this->db->where("prv_id",$prv_id);
+        $this->db->update("proveedores",$arr);
+    }else{
+        redirect("general/errorprov/p","refresh");
     }
 
 }
@@ -119,8 +140,67 @@ public function contador_mdl(){
     set_cookie('contador', 1, time()+3700);
 
     $query=$this->db->query("SELECT count(`id`) as total FROM `visitas` ");
-    return $query->row()->total;
+    return $query->row()->total*1000;
 }
+
+
+public function datos_proveedor_mdl() {
+    $id=$this->uri->segment(3);
+    $this->db->where("prv_id", $id);
+    $query = $this->db->get("proveedores");
+    if ($query->num_rows() > 0) {
+        return $query->row_array();
+    }
+    else
+        die("No existe informacion");
+}
+
+
+//VALIDACIONES
+public function buscar_dato($prv_id,$campo,$deque) {
+
+    if($campo=="prv_telefono"){
+        $valor=format_celular($this->input->get($campo, TRUE));
+    }else
+    $valor = $this->input->get('$campo', TRUE);
+
+    if($deque=="c"){
+       if ($valor != '') {
+        $this->db->where('$campo', $valor);
+        $query = $this->db->get('proveedores');
+        $cantidad = $query->num_rows();
+        if ($cantidad != 0) {
+            return "false";
+        } else
+        return "true";
+    } else
+    return "true";
+}else if($deque=='m'){
+    if ($valor != '') {
+        $sql = "SELECT * FROM `proveedores` WHERE `$campo` like '%$valor%' AND `prv_id` = '$prv_id'";
+        $query = $this->db->query($sql);
+        $cantidad = $query->num_rows();
+        if ($cantidad != 0) {
+            $var = "true";
+        } else {
+            $sql2 = "SELECT * FROM `proveedores` WHERE `$campo` like '%$valor%' ";
+            log_message("error",$sql2);
+
+            $query2 = $this->db->query($sql2);
+            $cantidad2 = $query2->num_rows();
+            if ($cantidad2 != 0)
+                $var = "false";
+            else
+                $var = "true";
+        }
+    } else
+    $var = "true";
+    return $var;
+}
+
+}
+
+
 
 
 }

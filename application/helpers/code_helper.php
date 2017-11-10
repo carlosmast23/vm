@@ -165,4 +165,15 @@ function aleatorio($tipo="a"){
     return false;
 }
 
+
+function format_celular($numero,$tipo='d'){
+    if($tipo=="d")
+       return "+593".substr($numero, 1);
+   else{
+    $texto=str_replace("+593", "0", $numero);
+    return $texto;
+}
+
+}
+
 ?>

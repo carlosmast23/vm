@@ -40,40 +40,35 @@
   </div>
   <!-- end Preloader -->
 
-  <div class="container-fluid">
-
-    <!-- box header -->
-    <header class="box-header">
-      <div class="box-logo">
-        <a href="<?=base_url()?>"><img src="<?=base_url()?>img/logo.png" width="80" alt="Logo"></a>
-      </div>
-      <!-- box-nav -->
-      <a class="box-primary-nav-trigger" href="#0">
-        <span class="box-menu-text">Menu</span><span class="box-menu-icon"></span>
-      </a>
-      <!-- box-primary-nav-trigger -->
-    </header>
-    <!-- end box header -->
-
-    <!-- nav -->
-    <nav>
-      <ul class="box-primary-nav">
-        <li class="box-label">Sobre mi:</li>
-
-        <li><a href="<?=base_url()?>">Inicio</a> <i class="glyphicon glyphicon-screenshot""></i></li>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      
+      <a href="<?=base_url()?>"><img src="<?=base_url()?>img/logo.png" width="80" alt="Logo"></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="<?=base_url()?>">Inicio</a> </li>
         <li><a href="<?=base_url()?>general/conocenos">Conócenos</a></li>
         <li><a href="<?=base_url()?>general/servicios">Servicios</a></li>
         <li><a href="<?=base_url()?>general/registro">Registro</a></li>
         <li><a href="<?=base_url()?>general/catalogo">Catálogo Web</a></li>
 
-
-
-        <li class="box-label">Comparte</li>
-        <li class="box-social"><a href="https://www.facebook.com/vmquito/"><i class="glyphicon glyphicon-share-alt"></i></a></li>
-
       </ul>
-    </nav>
-    <!-- end nav -->
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container-fluid">
+
 
 
 

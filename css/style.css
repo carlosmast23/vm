@@ -428,7 +428,7 @@ h5 {
 .box-intro {
     text-align: center;
     display: table;
-    height: 30vh;
+    height: 20vh;
     width: 100%;
 }
 
@@ -1153,9 +1153,7 @@ textarea:focus {
 }
 
 @media only screen and (max-width: 520px) {
-    .box-intro{
-        padding-top:50px;
-    }
+
     .box-headline {
         font-size: 50px;
     }
