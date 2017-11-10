@@ -25,20 +25,20 @@ class General_model extends CI_Model {
 
     public function registrar_proveedor_mdl(){
 
-       $ncel=format_celular($this->input->post("prv_telefono"));
-       $email=$this->input->post("prv_email");
+     $ncel=format_celular($this->input->post("prv_telefono"));
+     $email=$this->input->post("prv_email");
 
-       if($this->existe_proveedor($ncel,$email)==0){
-           $data=array(
+     if($this->existe_proveedor($ncel,$email)==0){
+         $data=array(
             "prv_usuario"=>$this->input->post("prv_usuario"),
             "prv_telefono"=>$ncel,
             "prv_email"=>$email,
             "act_id"=>$this->input->post("act_id"),
             "prv_fecharegistro"=>hoy('c'),
             );
-           $this->db->insert("proveedores",$data);
+         $this->db->insert("proveedores",$data);
 
-           $d1=array(
+         $d1=array(
             "bus_id"=>0,
             'ser_id' => 1, 
             "usu_id"=>0,
@@ -47,9 +47,9 @@ class General_model extends CI_Model {
             "fecha"=>hoy('c'),
             "deque"=>"pr",
             );
-           $this->db->insert("envio_sms",$d1);
+         $this->db->insert("envio_sms",$d1);
 
-       }else{
+     }else{
         redirect("general/errorprov","refresh");
     }
 
@@ -62,18 +62,21 @@ public function actualizar_proveedor_mdl(){
     $ncel=format_celular($this->input->post("prv_telefono"));
     $email=$this->input->post("prv_email");
 
-    if($this->existe_proveedor($ncel,$email)==0){
-        $arr=array(
-            'prv_usuario' => $this->input->post('prv_usuario'), 
-            'prv_telefono' => $ncel, 
-            "prv_email"=>$email,
-            "act_id"=>$this->input->post("act_id"),
-            );
-        $this->db->where("prv_id",$prv_id);
-        $this->db->update("proveedores",$arr);
-    }else{
-        redirect("general/errorprov/p","refresh");
-    }
+    $arr=array(
+        "act_id"=>$this->input->post("act_id"),
+        'prv_usuario' => $this->input->post('prv_usuario'), 
+        'prv_telefono' => $ncel, 
+        "prv_email"=>$email,
+        "prv_ruc" => $this->input->post('prv_ruc'), 
+        "prv_razonsocial" => $this->input->post('prv_razonsocial'), 
+        "prv_representante" => $this->input->post('prv_representante'), 
+        "prv_direccion" => $this->input->post('prv_direccion'), 
+        "prv_latitud" => $this->input->post('loc_latitud'), 
+        "prv_longitud" => $this->input->post('loc_longitud'), 
+        );
+    $this->db->where("prv_id",$prv_id);
+    $this->db->update("proveedores",$arr);
+
 
 }
 
@@ -84,9 +87,9 @@ public function existe_proveedor($telefono,$email){
 }
 
 public function nproveedores_mdl(){
- $sql="SELECT COUNT(`prv_id`) as total FROM `proveedores`";
- $query=$this->db->query($sql);
- return $query->row()->total;   
+   $sql="SELECT COUNT(`prv_id`) as total FROM `proveedores`";
+   $query=$this->db->query($sql);
+   return $query->row()->total;   
 }
 
 public function transacciones_mdl(){
@@ -144,8 +147,7 @@ public function contador_mdl(){
 }
 
 
-public function datos_proveedor_mdl() {
-    $id=$this->uri->segment(3);
+public function datos_proveedor_mdl($id=0) {
     $this->db->where("prv_id", $id);
     $query = $this->db->get("proveedores");
     if ($query->num_rows() > 0) {
@@ -165,7 +167,7 @@ public function buscar_dato($prv_id,$campo,$deque) {
     $valor = $this->input->get('$campo', TRUE);
 
     if($deque=="c"){
-       if ($valor != '') {
+     if ($valor != '') {
         $this->db->where('$campo', $valor);
         $query = $this->db->get('proveedores');
         $cantidad = $query->num_rows();

@@ -59,6 +59,7 @@ class Propuestas extends MY_Controller {
         }
         $data["prv_id"]=$prv_id;
         $data["preguntas"]=$this->model->lista_preguntas($bus_id,$prv_id);
+        $data["data"]=$this->model->datos_mapa_mdl($bus_id);
         $this->loadTemplates("propuestas/reg_propuestas",$data);
     }else{
         $this->loadTemplates("propuestas/error_propuesta");

@@ -1,4 +1,3 @@
-<br><br><br>
 <div class="panel panel-primary">
 	<div class="panel-heading">Propuestas para  <b>'<?=datoDeTablaCampo("busquedas","bus_id","bus_texto",$bus_id)?>' </b>  (*Escoja una propuesta) </div>
 	<div class="panel-body">

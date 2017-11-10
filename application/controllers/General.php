@@ -40,8 +40,14 @@ class General extends MY_Controller {
   }
 
   public function modificar_proveedor(){
+   $this->load->library('encrypt');
+
+    $enc_username=$this->uri->segment(3);
+    $dec_username=str_replace(array('-', '_', '~'), array('+', '/', '='), $enc_username);
+    $dec_username=$this->encrypt->decode($dec_username);
+
     $this->load->model("admin/actividades_model");
-    $data=$this->model->datos_proveedor_mdl();
+    $data=$this->model->datos_proveedor_mdl($dec_username);
     $data['cmb_actividades']=$this->actividades_model->cmb_actividades($data['act_id']);
     $data['prv_telefono']=format_celular($data['prv_telefono'],"i");
     $this->loadTemplates("principal/actualizar_proveedor",$data);

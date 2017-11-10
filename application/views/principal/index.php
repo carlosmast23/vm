@@ -11,62 +11,54 @@
     <h5>
       Forma parte de nuestra cadena de clientes, proveedores y negocios locales, <b class="numprov"> ya somos <?=$numprov?> </b> <a href="<?=base_url()?>general/registro">Registrate aqui</a></h5>
     </div>
-<!--
-            <div class="mouse">
-                <div class="scroll"></div>
-            </div>
-          -->
-        </section>
 
-        <link href="<?= base_url(); ?>assets/bootstrap-chosen-master/bootstrap-chosen.css" media="screen" rel="stylesheet" type="text/css">
+  </section>
 
-        <div class="row">
-          <form class="" action="#" id="form_buscar">
-            <div class="col-xs-12 col-xs-offset-0 col-sm-7 col-sm-offset-0 col-md-6 col-md-offset-1">
-              <input type="text" class="form-control" id="txt_buscar"  placeholder="Escribe aquí lo que que estas buscando de manera detallada...">
-            </div>
-    <!--
-    <div class="col-xs-12 col-xs-offset-0 col-sm-3 col-sm-offset-0 col-md-4 col-md-offset-0 ">
-      <?=$cmb_actividades?>
+  <link href="<?= base_url(); ?>assets/bootstrap-chosen-master/bootstrap-chosen.css" media="screen" rel="stylesheet" type="text/css">
+
+  <div class="row" id="cont_busqueda">
+    <form class="" action="#" id="form_buscar">
+      <div class="col-xs-12 col-xs-offset-0 col-sm-7 col-sm-offset-0 col-md-6 col-md-offset-1">
+        <input type="text" class="form-control" id="txt_buscar"  placeholder="Escribe aquí lo que que estas buscando de manera detallada...">
+      </div>
+
+      <div class="col-xs-12 col-xs-offset-0 col-sm-2 col-sm-offset-0 col-md-3 col-md-offset-0 ">
+        <button class="btn btn-success btn-block" type="button" data-toggle="modal" data-target="#mbuscar">Buscar</button>
+      </div>
+
+    </form>
+    <div class="col-md-12 text-center">
+      <p><b>Ejemplo :</b> Zapatos deportivos marca nike de $50 en adelante.</p>
     </div>
-  -->
-  <div class="col-xs-12 col-xs-offset-0 col-sm-2 col-sm-offset-0 col-md-3 col-md-offset-0 ">
-    <button class="btn btn-success btn-block" type="button" data-toggle="modal" data-target="#mbuscar">Buscar</button>
   </div>
 
-</form>
-<div class="col-md-12 text-center">
-  <p><b>Ejemplo :</b> Zapatos deportivos marca nike de $50 en adelante.</p>
-</div>
-</div>
+
+  <div class="container-fluid">    
+    <div class="row">
+     <img 
+     src="<?=base_url()?>img/banner-sd.png" alt="Instrucciones" width="100%" height="100%" srcset="<?=base_url()?>img/banner-hd.png 1024w , 
+     <?=base_url()?>img/banner-md.png 700w , 
+     <?=base_url()?>img/banner-sd.png 360w" 
+     />
+   </div>
 
 
-<div class="container-fluid">    
-  <div class="row">
-   <img 
-   src="<?=base_url()?>img/banner-sd.png" alt="Instrucciones" width="100%" height="100%" srcset="<?=base_url()?>img/banner-hd.png 1024w , 
-   <?=base_url()?>img/banner-md.png 700w , 
-   <?=base_url()?>img/banner-sd.png 360w" 
-   />
+   <br>
+   <div class="row">
+    <div class="col-md-3">
+     <img src="<?=base_url()?>img/demo.png" class="img-thumbnail img-rounded">
+   </div>
+   <div class="col-md-6">
+    <div class="alert alert-success">   <span class="glyphicon glyphicon-bell" id="txtnovedad">  Novedades</span>
+    </div>
+    <table class="table" id="transacciones">
+     <?=$transacciones?>
+   </table>
  </div>
 
-
- <br>
- <div class="row">
-  <div class="col-md-3">
-   <img src="<?=base_url()?>img/demo.png" class="img-thumbnail img-rounded">
+ <div class="col-md-3">
+   <img src="<?=base_url()?>img/demo2.jpg" class="img-thumbnail img-rounded">
  </div>
- <div class="col-md-6">
-  <div class="alert alert-success">   <span class="glyphicon glyphicon-bell" id="txtnovedad">  Novedades</span>
-  </div>
-  <table class="table" id="transacciones">
-   <?=$transacciones?>
- </table>
-</div>
-
-<div class="col-md-3">
- <img src="<?=base_url()?>img/demo2.jpg" class="img-thumbnail img-rounded">
-</div>
 
 
 

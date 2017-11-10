@@ -222,5 +222,17 @@ public function tiene_propuestas_mdl($bus_id=0,$prv_id=0){
     return $query->row()->numero+0;
 }
 
+public function datos_mapa_mdl($bus_id){
+    $txt="";
+    $sql="SELECT * FROM `proveedores` WHERE `prv_id` IN (SELECT `prv_id` FROM `propuestas` WHERE `bus_id`='$bus_id')";
+    $query=$this->db->query($sql);
+    if($query->num_rows()>0){
+        foreach ($query->result() as $fila) {
+            $txt.="['".$fila->prv_usuario."',".$fila->prv_latitud.", ".$fila->prv_longitud."],";
+        }
+    }
+    return $txt;
+}
+
 
 }

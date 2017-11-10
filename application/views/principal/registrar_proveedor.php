@@ -1,8 +1,6 @@
 <link href="<?= base_url(); ?>assets/bootstrap-chosen-master/bootstrap-chosen.css" media="screen" rel="stylesheet" type="text/css">
 
-<br>	
-<br>	
-<br>	
+	
 <div class="container-fluid">
 
  <div class="panel panel-primary">

@@ -28,7 +28,7 @@ class Cronos_model extends CI_Model {
     log_message('error', 'ERROR WEBSERVICE.');
   }
 
-  $sql="SELECT * FROM `envio_sms` WHERE `estado`='p' AND (`deque`='pr' OR `deque`='cn' OR `deque`='cf' OR `deque`='cg')";
+  $sql="SELECT * FROM `envio_sms` WHERE `estado`='p' AND (`deque`='pr' OR `deque`='cn' OR `deque`='cf' OR `deque`='cg' OR `deque`='pm')";
   $query=$this->db->query($sql);
   if($query->num_rows()>0){
     foreach ($query->result() as $fila) {
@@ -236,7 +236,7 @@ public function procesar_email_prov(){
         $mail->Password   = "code17bwbtj";            // password in GMail
         $mail->SetFrom('virtualmallecu@gmail.com', 'Servidor Correos VM');  //Who is sen
 
-        $sql="SELECT * FROM `envio_email` WHERE `estado`='p' AND (`deque`='p' OR `deque` LIKE 'cp') ";
+        $sql="SELECT * FROM `envio_email` WHERE `estado`='p' AND (`deque`='p' OR `deque` = 'cp' OR `deque` = 'pm') ";
         $query=$this->db->query($sql);
         if($query->num_rows()>0){
           foreach ($query->result() as $fila) {

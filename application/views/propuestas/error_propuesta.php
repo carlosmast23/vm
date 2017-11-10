@@ -1,6 +1,3 @@
-<br>
-<br>
-<br>
 <div class="alert alert-danger">
 	<h2>No se pudo generar la propuesta</h2>
 	<p>* Solo puede enviar una propuesta por cliente</p>

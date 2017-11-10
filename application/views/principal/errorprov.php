@@ -1,6 +1,3 @@
-<br>
-<br>
-<br>
 <div class="alert alert-danger">
 	<h2>No se pudo registrar</h2>
 	<p>* EL usuario, correo, o numero telefonico ya se encuentra registrado con anterioridad</p>

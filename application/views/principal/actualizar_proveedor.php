@@ -1,7 +1,3 @@
-<br>
-<br>
-<br>
-
 <link href="<?= base_url(); ?>assets/bootstrap-chosen-master/bootstrap-chosen.css" media="screen" rel="stylesheet" type="text/css">
 
 <div class="container-fluid">
@@ -60,7 +56,7 @@
       <div class="form-group">
         <label class="col-md-2 control-label">Direccion</label>
         <div class="col-md-6">
-          <input type="text" class="form-control" name="loc_nombre" id="loc_nombre" placeholder="Ingrese direccion y seleccionar ubicación"/>
+          <input type="text" class="form-control" name="prv_direccion" id="prv_direccion" placeholder="Ingrese direccion y seleccionar ubicación"/>
         </div>
         <div class="col-md-3">
           <label>Mapa <span class="glyphicon glyphicon-screenshot"></span> </label>
