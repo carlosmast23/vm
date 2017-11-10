@@ -224,7 +224,7 @@ public function tiene_propuestas_mdl($bus_id=0,$prv_id=0){
 
 public function datos_mapa_mdl($bus_id){
     $txt="";
-    $sql="SELECT * FROM `proveedores` WHERE `prv_id` IN (SELECT `prv_id` FROM `propuestas` WHERE `bus_id`='$bus_id')";
+    $sql="SELECT * FROM `proveedores` WHERE `prv_estado`='a' AND `prv_id` IN (SELECT `prv_id` FROM `propuestas` WHERE `bus_id`='$bus_id')";
     $query=$this->db->query($sql);
     if($query->num_rows()>0){
         foreach ($query->result() as $fila) {
