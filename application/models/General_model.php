@@ -28,35 +28,32 @@ class General_model extends CI_Model {
      $ncel=format_celular($this->input->post("prv_telefono"));
      $email=$this->input->post("prv_email");
 
-     if($this->existe_proveedor($ncel,$email)==0){
-         $data=array(
-            "prv_usuario"=>$this->input->post("prv_usuario"),
-            "prv_telefono"=>$ncel,
-            "prv_email"=>$email,
-            "act_id"=>$this->input->post("act_id"),
-            "prv_fecharegistro"=>hoy('c'),
-            );
-         $this->db->insert("proveedores",$data);
+     $data=array(
+        "prv_usuario"=>$this->input->post("prv_usuario"),
+        "prv_telefono"=>$ncel,
+        "prv_email"=>$email,
+        "act_id"=>$this->input->post("act_id"),
+        "prv_fecharegistro"=>hoy('c'),
+        );
+     $this->db->insert("proveedores",$data);
 
-         $d1=array(
-            "bus_id"=>0,
-            'ser_id' => 1, 
-            "usu_id"=>0,
-            "tel_destinatario"=>$ncel,
-            "mensaje"=>"Gracias por registrarte en Virtuall Mall, visita nuestra pagina y mantente informado de nuestra ofertas. ".base_url(),
-            "fecha"=>hoy('c'),
-            "deque"=>"pr",
-            );
-         $this->db->insert("envio_sms",$d1);
-
-     }else{
-        redirect("general/errorprov","refresh");
-    }
-
-}
+     $d1=array(
+        "bus_id"=>0,
+        'ser_id' => 1, 
+        "usu_id"=>0,
+        "tel_destinatario"=>$ncel,
+        "mensaje"=>"Gracias por registrarte en Virtuall Mall, visita nuestra pagina y mantente informado de nuestra ofertas. ".base_url(),
+        "fecha"=>hoy('c'),
+        "deque"=>"pr",
+        );
+     $this->db->insert("envio_sms",$d1);
 
 
-public function actualizar_proveedor_mdl(){
+
+ }
+
+
+ public function actualizar_proveedor_mdl(){
     $prv_id=$this->input->post("prv_id");
     
     $ncel=format_celular($this->input->post("prv_telefono"));
@@ -168,15 +165,15 @@ public function buscar_dato($prv_id,$campo,$deque) {
 
     if($deque=="c"){
      if ($valor != '') {
-        $this->db->where('$campo', $valor);
-        $query = $this->db->get('proveedores');
-        $cantidad = $query->num_rows();
-        if ($cantidad != 0) {
-            return "false";
-        } else
-        return "true";
+      $sql = "SELECT * FROM `proveedores` WHERE `$campo` like '%$valor%'";
+      $query = $this->db->query($sql);
+      $cantidad = $query->num_rows();
+      if ($cantidad != 0) {
+        return "false";
     } else
     return "true";
+} else
+return "true";
 }else if($deque=='m'){
     if ($valor != '') {
         $sql = "SELECT * FROM `proveedores` WHERE `$campo` like '%$valor%' AND `prv_id` = '$prv_id'";

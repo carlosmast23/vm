@@ -6,10 +6,10 @@
 <!--<script src="<?=base_url()?>js/menu.js"></script>-->
 
 <script src="<?=base_url()?>js/animated-headline.js"></script>
-<!--
+
 <script src="<?=base_url()?>js/isotope.pkgd.min.js"></script>
 
--->
+
 <script src="<?=base_url()?>js/custom.js"></script>
 
 

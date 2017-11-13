@@ -25,6 +25,7 @@
    </div>
 
    <button type="button" class="btn btn-primary" id="almacenar">ENVIAR</button>
+   <input type="hidden" name="prv_id" id="prv_id" value="0" />
    <input type="hidden" name="deque" id="deque" value="c" />
 
  </form>
