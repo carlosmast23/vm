@@ -45,7 +45,7 @@ class Cronos extends MY_Controller {
 
 	public function recibir_alert(){
 		$mensaje=$this->input->get("mensaje",TRUE);
-		
+		log_message("error","MENSAJE:".$mensaje);
 	}
 
 }
