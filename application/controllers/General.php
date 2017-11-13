@@ -72,7 +72,7 @@ class General extends MY_Controller {
   }
 
   public function catalogo(){
-    $this->loadTemplateClear("principal/catalogo");
+    $this->load->view("principal/catalogo");
   }
 
   public function servicios(){
