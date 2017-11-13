@@ -165,3 +165,8 @@
     #cont_busqueda{
       padding-bottom: 30px;
     }
+     label.error{
+      font-style: italic;
+      color: red;
+      font-weight: normal;
+    }
