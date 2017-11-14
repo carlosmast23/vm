@@ -12,9 +12,9 @@ class Validaciones extends MY_Controller {
 
 
   public function prov(){
-    $id=$this->uri->segment(3);
-    $tipo=$this->uri->segment(4);
-    $deque=$this->uri->segment(5);
+    $id=$this->uri->segment(3); //id
+    $tipo=$this->uri->segment(4); //campo
+    $deque=$this->uri->segment(5); //registrar o actualizar
     if($tipo=="e")
       $campo="prv_email";
     else if($tipo=='t'){

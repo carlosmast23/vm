@@ -6,6 +6,7 @@ $("#almacenarp").click(function (e) {
 	e.preventDefault();
 	var tamanio=$("#prg_pregunta").val().length;
 	if (tamanio>0){ 
+		$(this).prop( "disabled", true );
 		var data=$("#form_almacenarp").serialize();
 		$.ajax({
 			type: "POST",
@@ -69,11 +70,11 @@ if ($('#pro_entrega_s').prop('checked')) {
 }
 
 	//Implementar el metodo submit del formulario para agregar manualmente los datos   
-	$( "#form_almacenar" ).submit(
-		function( event ) 
-		{
-			var form = $( "#form_almacenar" );
-			if(!form.valid())
+	$("#form_almacenar").submit(function(event)	{
+		$("#almacenar").prop( "disabled", true );
+
+		var form = $( "#form_almacenar" );
+		if(!form.valid())
 				return false; // Evita que si el formulario no esta validado no continuar con el envio de datos
 
 			var request = new XMLHttpRequest();
