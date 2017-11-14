@@ -1,4 +1,3 @@
-<br><br><br>
 <table class="table">
 	<tr>
 		<th>Fecha limite</th>
