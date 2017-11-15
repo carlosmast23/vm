@@ -171,52 +171,52 @@ public function ver_pregunta_mdl(){
     else
         die("Usted ya respondio a esta pregunta <a href='".base_url()."'>Regresar página principal</a>" );
 
-public function registrar_respuesta_mdl(){}
+    public function registrar_respuesta_mdl(){
 
-  $this->load->model("GoogleURL_model","google");
+      $this->load->model("GoogleURL_model","google");
 
-  $prg_id=$this->input->post('prg_id');
-  $arr=array(
-    "prg_respuesta"=>$this->input->post('prg_respuesta')
-    );
-  $this->db->where("prg_id",$prg_id);
-  $this->db->update("preguntas_pro",$arr);
-  
-  $prv_id=datoDeTablaCampo("preguntas_pro","prg_id","prv_id",$prg_id);
-  $bus_id=datoDeTablaCampo("preguntas_pro","prg_id","bus_id",$prg_id);
+      $prg_id=$this->input->post('prg_id');
+      $arr=array(
+        "prg_respuesta"=>$this->input->post('prg_respuesta')
+        );
+      $this->db->where("prg_id",$prg_id);
+      $this->db->update("preguntas_pro",$arr);
+      
+      $prv_id=datoDeTablaCampo("preguntas_pro","prg_id","prv_id",$prg_id);
+      $bus_id=datoDeTablaCampo("preguntas_pro","prg_id","bus_id",$prg_id);
 
-  $prv_celular=datoDeTablaCampo("proveedores","prv_id","prv_telefono",$prv_id);
-  $prv_email=datoDeTablaCampo("proveedores","prv_id","prv_email",$prv_id);
+      $prv_celular=datoDeTablaCampo("proveedores","prv_id","prv_telefono",$prv_id);
+      $prv_email=datoDeTablaCampo("proveedores","prv_id","prv_email",$prv_id);
 
 
-  $url= $this->google->codificar_parametro("propuestas/recibir/",$bus_id."&".$prv_id);
+      $url= $this->google->codificar_parametro("propuestas/recibir/",$bus_id."&".$prv_id);
 
-  $data=array(
-    "bus_id"=>$bus_id,
-    "ser_id"=>1,
-    "usu_id"=>$prv_id,
-    "email_destinatario"=>$prv_email,
-    "asunto"=>"Pregunta Cliente Producto VirtuallMall",
-    "mensaje"=>"Ha sido respondido su pregunta. Genere su propuesta ".$url,
-    "fecha"=>hoy('c'),
-    "deque"=>"p",
-    );
-  $this->db->insert("envio_email",$data);
+      $data=array(
+        "bus_id"=>$bus_id,
+        "ser_id"=>1,
+        "usu_id"=>$prv_id,
+        "email_destinatario"=>$prv_email,
+        "asunto"=>"Pregunta Cliente Producto VirtuallMall",
+        "mensaje"=>"Ha sido respondido su pregunta. Genere su propuesta ".$url,
+        "fecha"=>hoy('c'),
+        "deque"=>"p",
+        );
+      $this->db->insert("envio_email",$data);
 
-  $data2= array(
-    "bus_id"=>$bus_id,
-    'ser_id' => 1, 
-    "usu_id"=>$prv_id,
-    "tel_destinatario"=>$prv_celular,
-    "mensaje"=>"Ha sido respondido su pregunta. Genere su propuesta ".$url,
-    "fecha"=>hoy('c'),
-    "deque"=>"p",
-    );
-  $this->db->insert("envio_sms",$data2);
+      $data2= array(
+        "bus_id"=>$bus_id,
+        'ser_id' => 1, 
+        "usu_id"=>$prv_id,
+        "tel_destinatario"=>$prv_celular,
+        "mensaje"=>"Ha sido respondido su pregunta. Genere su propuesta ".$url,
+        "fecha"=>hoy('c'),
+        "deque"=>"p",
+        );
+      $this->db->insert("envio_sms",$data2);
 
-}
+  }
 
-public function tiene_propuestas_mdl($bus_id=0,$prv_id=0){
+  public function tiene_propuestas_mdl($bus_id=0,$prv_id=0){
     $sql="SELECT COUNT(`pro_id`) as numero FROM `propuestas` WHERE `bus_id`='$bus_id' AND `prv_id` ='$prv_id'";
     $query=$this->db->query($sql);
     return $query->row()->numero+0;
