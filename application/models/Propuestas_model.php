@@ -172,22 +172,19 @@ public function ver_pregunta_mdl(){
         die("Usted ya respondio a esta pregunta <a href='".base_url()."'>Regresar página principal</a>" );
 
     public function registrar_respuesta_mdl(){
-
       $this->load->model("GoogleURL_model","google");
-
       $prg_id=$this->input->post('prg_id');
       $arr=array(
         "prg_respuesta"=>$this->input->post('prg_respuesta')
         );
       $this->db->where("prg_id",$prg_id);
       $this->db->update("preguntas_pro",$arr);
-      
+
       $prv_id=datoDeTablaCampo("preguntas_pro","prg_id","prv_id",$prg_id);
       $bus_id=datoDeTablaCampo("preguntas_pro","prg_id","bus_id",$prg_id);
 
       $prv_celular=datoDeTablaCampo("proveedores","prv_id","prv_telefono",$prv_id);
       $prv_email=datoDeTablaCampo("proveedores","prv_id","prv_email",$prv_id);
-
 
       $url= $this->google->codificar_parametro("propuestas/recibir/",$bus_id."&".$prv_id);
 
