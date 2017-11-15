@@ -108,11 +108,11 @@ class Propuestas_model extends CI_Model {
 
 //LISTADO DE PREGUNTAS
     public function lista_preguntas($bus_id=0,$prv_id=0){
-     $html="";
-     $arr=array();
-     $sql="SELECT * FROM `preguntas_pro` WHERE `bus_id` ='$bus_id' AND `prv_id`='$prv_id'";
-     $query=$this->db->query($sql);
-     if ($query->num_rows() > 0) {
+       $html="";
+       $arr=array();
+       $sql="SELECT * FROM `preguntas_pro` WHERE `bus_id` ='$bus_id' AND `prv_id`='$prv_id'";
+       $query=$this->db->query($sql);
+       if ($query->num_rows() > 0) {
         foreach ($query->result() as $fila) {
             $html.= $this->parser->parse('propuestas/preguntas_tpl', $fila, true);
         }
@@ -170,9 +170,9 @@ public function ver_pregunta_mdl(){
     }
     else
         die("Usted ya respondio a esta pregunta <a href='".base_url()."'>Regresar página principal</a>" );
-}
 
-public function registrar_respuesta_mdl(){
+public function registrar_respuesta_mdl(){}
+
   $this->load->model("GoogleURL_model","google");
 
   $prg_id=$this->input->post('prg_id');
