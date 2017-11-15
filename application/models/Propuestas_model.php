@@ -68,13 +68,14 @@ class Propuestas_model extends CI_Model {
         $prv_celular=datoDeTablaCampo("proveedores","prv_id","prv_telefono",$prv_id);
         $prv_email=datoDeTablaCampo("proveedores","prv_id","prv_email",$prv_id);
 
+        $propuesta=cortar_texto(datoDeTablaCampo("propuestas","pro_id","pro_desc",$pro_id),50);
         if($bus_celular!=false){
             $data3= array(
                 "bus_id"=>$bus_id,
                 'ser_id' => 1, 
                 "usu_id"=>$prv_id,
                 "tel_destinatario"=>$prv_celular,
-                "mensaje"=>"Contacte pronto con $bus_celular, le interesa tu producto.",
+                "mensaje"=>"Contacte pronto con $bus_celular, le interesa tu producto $propuesta.",
                 "fecha"=>hoy('c'),
                 "deque"=>"cp",
                 );
@@ -86,7 +87,7 @@ class Propuestas_model extends CI_Model {
                 "usu_id"=>$prv_id,
                 "asunto"=>"Contacto VirtuallMall",
                 "email_destinatario"=>$prv_email,
-                "mensaje"=>"Contacte pronto con $bus_celular, le interesa tu producto.",
+                "mensaje"=>"Contacte pronto con $bus_celular, le interesa tu producto $propuesta.",
                 "fecha"=>hoy('c'),
                 "deque"=>"cp",
                 );
@@ -130,6 +131,7 @@ public function registrar_pregunta_mdl(){
     $prv_id=$this->input->post("prv_id");
     $pregunta=$this->input->post("prg_pregunta");
 
+    $pregunta_corta=cortar_texto($pregunta,50);
     $data=array(
         "bus_id"=>$bus_id,
         "prv_id"=>$prv_id,
@@ -150,7 +152,7 @@ public function registrar_pregunta_mdl(){
             'ser_id' => 1, 
             "usu_id"=>0,
             "tel_destinatario"=>$bus_celular,
-            "mensaje"=>"El proveedor genero una pregunta. Ver $url_cli",
+            "mensaje"=>"Un proveedor a preguntado '$pregunta_corta'. Ver $url_cli",
             "fecha"=>hoy('c'),
             "deque"=>"cg",
             );
@@ -165,11 +167,10 @@ public function ver_pregunta_mdl(){
     $prg_id=str_replace(array('-', '_', '~'), array('+', '/', '='), $enc_username);
     $prg_id=$this->encrypt->decode($prg_id);
     $query=$this->db->query("SELECT * FROM `preguntas_pro` WHERE `prg_id`='$prg_id' AND `prg_respuesta` IS NULL");
-    if ($query->num_rows() > 0) {
+    if ($query->num_rows() > 0) 
         return $query->row_array();
-    }
     else
-        die("Usted ya respondio a esta pregunta <a href='".base_url()."'>Regresar página principal</a>" );
+        return false;
 }
 
 public function registrar_respuesta_mdl(){
@@ -180,6 +181,8 @@ public function registrar_respuesta_mdl(){
     );
   $this->db->where("prg_id",$prg_id);
   $this->db->update("preguntas_pro",$arr);
+
+  $pregunta_corta=cortar_texto(datoDeTablaCampo("preguntas_pro","prg_id","prg_pregunta",$prg_id),50);
 
   $prv_id=datoDeTablaCampo("preguntas_pro","prg_id","prv_id",$prg_id);
   $bus_id=datoDeTablaCampo("preguntas_pro","prg_id","bus_id",$prg_id);
@@ -195,7 +198,7 @@ public function registrar_respuesta_mdl(){
     "usu_id"=>$prv_id,
     "email_destinatario"=>$prv_email,
     "asunto"=>"Pregunta Cliente Producto VirtuallMall",
-    "mensaje"=>"Ha sido respondido su pregunta. Genere su propuesta ".$url,
+    "mensaje"=>"Pregunta respondida '$pregunta_corta' . Genere su propuesta ".$url,
     "fecha"=>hoy('c'),
     "deque"=>"p",
     );
@@ -206,7 +209,7 @@ public function registrar_respuesta_mdl(){
     'ser_id' => 1, 
     "usu_id"=>$prv_id,
     "tel_destinatario"=>$prv_celular,
-    "mensaje"=>"Ha sido respondido su pregunta. Genere su propuesta ".$url,
+    "mensaje"=>"Pregunta respondida '$pregunta_corta'. Genere su propuesta ".$url,
     "fecha"=>hoy('c'),
     "deque"=>"p",
     );

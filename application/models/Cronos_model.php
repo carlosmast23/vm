@@ -117,13 +117,14 @@ public function enviar_mensaje($bus_id, $act_id,$buscar){
 
   if($bandera==true){
     $bus_celular=datoDeTablaCampo("busquedas","bus_id","bus_celular",$bus_id);
+    $busqueda=cortar_texto(datoDeTablaCampo("busquedas","bus_id","bus_texto",$bus_id),50);
     if($bus_celular!=false){
       $data3= array(
         "bus_id"=>$bus_id,
         'ser_id' => 1, 
         "usu_id"=>0,
         "tel_destinatario"=>$bus_celular,
-        "mensaje"=>"Revise sus resultados. Link ".$url_cli,
+        "mensaje"=>"Revise sus resultados para '$busqueda'. Enlace ".$url_cli,
         "fecha"=>hoy('c'),
         "deque"=>"c",
         );
@@ -171,9 +172,10 @@ public function procesar_sms_clipendientes(){
   if($query->num_rows()>0){
     foreach ($query->result() as $fila) {
       $pro_id=datoDeTablaCampo("propuestas","bus_id","pro_id",$fila->bus_id);
+      $texto=cortar_texto($fila->bus_texto,45);
 
       if($pro_id == false  &&  hoy('c') > $fila->bus_fechafin ){
-        $sms="Su busqueda no obtuvo resultados, genere una nueva solictud (amplie su tiempo de respuesta)";
+        $sms="Su busqueda '$texto' no obtuvo resultados, genere una nueva solictud (amplie su tiempo de respuesta)";
         $this->insertar_sms($fila->bus_id,$fila->bus_celular,$sms,"cn");
 
         $arr= array('bus_estado' => 'a');
@@ -181,7 +183,7 @@ public function procesar_sms_clipendientes(){
         $this->db->update("busquedas",$arr);
 
       }else if($pro_id > 0 &&  hoy('c') >= $fila->bus_fechafin){
-        $sms="Se ha finalizado la busqueda de resultados, esperamos que alguna propuesta haya sido de tu agrado";
+        $sms="Busqueda de resultados finalizada'$texto', esperamos que alguna propuesta haya sido de tu agrado";
         $this->insertar_sms($fila->bus_id,$bus_celular,$sms,"cf");
 
         $arr= array('bus_estado' => 'e');

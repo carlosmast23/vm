@@ -64,6 +64,7 @@ class General_model extends CI_Model {
         'prv_usuario' => $this->input->post('prv_usuario'), 
         'prv_telefono' => $ncel, 
         "prv_email"=>$email,
+        "prv_convencional" => $this->input->post('prv_convencional'), 
         "prv_ruc" => $this->input->post('prv_ruc'), 
         "prv_razonsocial" => $this->input->post('prv_razonsocial'), 
         "prv_representante" => $this->input->post('prv_representante'), 

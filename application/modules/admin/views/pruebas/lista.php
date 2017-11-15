@@ -1,6 +1,3 @@
-<br>
-<br>
-<br>
 <table class="table">
 	<tr>
 		<th>Email</th>

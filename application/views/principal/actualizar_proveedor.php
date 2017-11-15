@@ -24,6 +24,12 @@
          <div class="col-md-8">
            <input type="text" class="form-control" name="prv_telefono" id="prv_telefono" value="<?=$prv_telefono?>" placeholder="0983528439"/><span id="alert"></span> <input type="hidden" value="false" name="bandera" id="bandera" />
          </div> 
+       </div>
+       <div class="form-group">
+       <label class="col-md-2 control-label">Teléfono:</label>
+         <div class="col-md-8">
+           <input type="text" class="form-control" name="prv_convencional" id="prv_convencional" value="<?=$prv_convencional?>" />
+         </div>
        </div> 
        <div class="form-group">
          <label class="col-md-2 control-label">RUC:</label>

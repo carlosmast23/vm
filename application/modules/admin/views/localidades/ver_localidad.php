@@ -1,6 +1,3 @@
-<br>
-<br>
-<br>
 <link href="<?= base_url(); ?>assets/choseen/chosen.css" media="screen" rel="stylesheet" type="text/css">
 <div class="container-fluid">
 

@@ -1,53 +1,49 @@
-<br>
-<br>
-<br>                
-
-<div class="container-fluid">
-    <div class="panel panel-primary">
-        <div class="panel-heading">Nueva localidad</div>
-        <div class="panel-body">
-            <form class="form-horizontal" action="<?= base_url() ?>admin/localidades/almacenar" method="post" id="form_almacenar">
-                <div class="form-group">
-                    <label class="col-xs-2 control-label">Nombre</label>
-                    <div class="col-xs-8">
-                        <input type="text" class="form-control" name="loc_nombre" id="loc_nombre" placeholder="Ingrese nombre"/>
+     <div class="container-fluid">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Nueva localidad</div>
+            <div class="panel-body">
+                <form class="form-horizontal" action="<?= base_url() ?>admin/localidades/almacenar" method="post" id="form_almacenar">
+                    <div class="form-group">
+                        <label class="col-xs-2 control-label">Nombre</label>
+                        <div class="col-xs-8">
+                            <input type="text" class="form-control" name="loc_nombre" id="loc_nombre" placeholder="Ingrese nombre"/>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-xs-2 control-label">Latitud</label>
-                    <div class="col-xs-8">
-                        <input type="text" class="form-control" name="loc_latitud" id="loc_latitud" placeholder="Ingrese latitud" readonly="false"/>
+                    <div class="form-group">
+                        <label class="col-xs-2 control-label">Latitud</label>
+                        <div class="col-xs-8">
+                            <input type="text" class="form-control" name="loc_latitud" id="loc_latitud" placeholder="Ingrese latitud" readonly="false"/>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-xs-2 control-label">Longitud</label>
-                    <div class="col-xs-8">
-                        <input type="text" class="form-control" name="loc_longitud" id="loc_longitud" placeholder="Ingrese longitud" readonly="false"/>
+                    <div class="form-group">
+                        <label class="col-xs-2 control-label">Longitud</label>
+                        <div class="col-xs-8">
+                            <input type="text" class="form-control" name="loc_longitud" id="loc_longitud" placeholder="Ingrese longitud" readonly="false"/>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-xs-2 control-label"><a href="#" rel="mapa">Mapa</a></label>
-                </div>
-                <input type="hidden" name="pid" id="pid" value="<?= $pid ?>"/>
-                <input type="hidden" name="coordenadas" id="coordenadas"/>
-            </form>
-        </div>
-        <div class="panel-footer">
-            <input id="almacenar" class="btn btn-primary pull-right" type="submit" value="Almacenar"/>
+                    <div class="form-group">
+                        <label class="col-xs-2 control-label"><a href="#" rel="mapa">Mapa</a></label>
+                    </div>
+                    <input type="hidden" name="pid" id="pid" value="<?= $pid ?>"/>
+                    <input type="hidden" name="coordenadas" id="coordenadas"/>
+                </form>
+            </div>
+            <div class="panel-footer">
+                <input id="almacenar" class="btn btn-primary pull-right" type="submit" value="Almacenar"/>
+            </div>
         </div>
     </div>
-</div>
 
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 
-</div>
+    </div>
 
 
 
-<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAwdsPBllE9wJ2qY2A-denqXjhCnrkyFjs&libraries=places"></script>
-<script src="<?= base_url() ?>js/admin/localidades.js"></script>
-<script src="<?= base_url() ?>js/admin/mapa.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAwdsPBllE9wJ2qY2A-denqXjhCnrkyFjs&libraries=places"></script>
+    <script src="<?= base_url() ?>js/admin/localidades.js"></script>
+    <script src="<?= base_url() ?>js/admin/mapa.js"></script>
 <!-- <input id="pac-input" class="controls" type="text" placeholder=""Localidad a Buscar>
             <div id="map"></div>
 <script src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>

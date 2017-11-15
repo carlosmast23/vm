@@ -10,6 +10,9 @@
 - 9. El cliente recibe las propuestas (aprobar/rechazar)
 - 10. Si es aprobada la propuesta se enlaza cliente con proveedor
 
+## Modulo de pruebas
+- Enlace: base_url() admin/pruebas
+
 # Configuraciones
 - Configuracion de config/config.php
 - Configuracion de config/autoload.php

@@ -1,7 +1,4 @@
-<br>
-<br>
-<br>        
-<div class="container-fluid">
+    <div class="container-fluid">
  <div class="panel panel-primary">
     <div class="panel-heading">Actualizar localidad</div>
     <div class="panel-body">

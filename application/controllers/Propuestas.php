@@ -33,11 +33,11 @@ class Propuestas extends MY_Controller {
     }
 
     public function aprobar(){
-       $this->model->aprobar_mdl();
-   }
+     $this->model->aprobar_mdl();
+ }
 
 
-   public function recibir(){
+ public function recibir(){
     $this->load->library('encrypt');
 
     $enc_username=$this->uri->segment(3);
@@ -64,18 +64,19 @@ class Propuestas extends MY_Controller {
     }else{
         $this->loadTemplates("propuestas/error_propuesta");
     }
-
-
 }
 
 public function registrar_pregunta(){
- $this->model->registrar_pregunta_mdl();
+   $this->model->registrar_pregunta_mdl();
 //redirect("propuestas/successp","refresh");
 }
 
 public function revisar_pregunta(){
   $data=$this->model->ver_pregunta_mdl();
-  $this->loadTemplates("propuestas/rev_pregunta",$data);
+  if($data==false)
+    $this->loadTemplates("propuestas/error_revpregunta",$data);
+  else
+      $this->loadTemplates("propuestas/rev_pregunta",$data);
 }
 
 
