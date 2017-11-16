@@ -10,25 +10,14 @@
   <meta name="keywords" content="gratis, publicidad, internet, negocios, proveedores, emprendedores, sistemas, tecnologia, ropa, calzado, eventos, restaurantes, comida,hoteles, turismo, deportes,quito">
   <meta name="author" content="Codesfot">
   <meta name=”robots” content="Index, NoFollow">
-
   <link rel="icon" href="<?=base_url()?>img/fav.png" type="image/x-icon">
-  <!-- css -->
   <link href="<?=base_url()?>assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- main css -->
   <link href="<?=base_url()?>css/estilos.css" rel="stylesheet">
   <link href="<?=base_url()?>css/style.css" rel="stylesheet">
-
-
-
   <script src="<?=base_url()?>js/jquery-2.1.1.js"></script>
   <script src="<?= base_url()?>assets/validate/jquery.validate.min.js"></script>
-
-
 </head>
 <body>
-
-
   <!-- Preloader -->
   <div id="preloader">
     <div class="pre-container">
@@ -39,8 +28,7 @@
     </div>
   </div>
   <!-- end Preloader -->
-
-  <nav class="navbar navbar-inverse">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -67,6 +55,7 @@
     </div>
   </div>
 </nav>
+<br><br>
 <div class="container-fluid">
 
 

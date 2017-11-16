@@ -1,13 +1,11 @@
   <!-- Main container -->
-  <div class="container main-container clearfix">
+  <div class="container-fluid">
     <div class="col-md-6">
       <div class="col-md-12" id="conocenos_img">
        <img src="<?=base_url()?>img/c1.png" class="img-thumbnail" alt="" />
        <img src="<?=base_url()?>img/c2.png" class="img-thumbnail" alt="" />
 
      </div>
-
-
 
    </div>
    <div class="col-md-6 text-justify">

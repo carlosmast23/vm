@@ -71,9 +71,6 @@ class General extends MY_Controller {
     $this->loadTemplates("principal/conocenos");
   }
 
-  public function catalogo(){
-    $this->load->view("principal/catalogo");
-  }
 
   public function servicios(){
     $this->loadTemplates("principal/servicios");
