@@ -139,12 +139,6 @@
 <br>
 <div class="row">
 	<div class="col-md-12">
-		<style>
-			#map {
-				height: 400px;
-				width: 100%;
-			}
-		</style>
 		<div id="map"></div>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFvGA-_lV83Zp6DPbbXMbtPVaMimUiOek"></script>
 

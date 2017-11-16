@@ -47,3 +47,7 @@ base_url( ) - Ruta del proyecto
 - Port: 587
 - Username: virtualmallecu@gmail.com
 - Password: code17bwbtj
+
+## Servidor de Socket
+- Servidor: ( /var/www/vm/public_html/) resources/vmserversms/socket-service/servidor_socket.php
+- Web: base_url() resources/vmserversms/socket-service/servidor_socket.php

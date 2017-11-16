@@ -48,8 +48,6 @@ class General_model extends CI_Model {
         );
      $this->db->insert("envio_sms",$d1);
 
-
-
  }
 
 
@@ -66,8 +64,8 @@ class General_model extends CI_Model {
         "prv_email"=>$email,
         "prv_convencional" => $this->input->post('prv_convencional'), 
         "prv_ruc" => $this->input->post('prv_ruc'), 
-        "prv_razonsocial" => $this->input->post('prv_razonsocial'), 
-        "prv_representante" => $this->input->post('prv_representante'), 
+        "prv_razonsocial" => strtoupper($this->input->post('prv_razonsocial')), 
+        "prv_representante" => strtoupper($this->input->post('prv_representante')), 
         "prv_direccion" => $this->input->post('prv_direccion'), 
         "prv_latitud" => $this->input->post('loc_latitud'), 
         "prv_longitud" => $this->input->post('loc_longitud'), 

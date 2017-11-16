@@ -49,6 +49,7 @@ class Propuestas_model extends CI_Model {
         }
         $arr['html']=$html;
         $arr['bus_id']=$bus_id;
+        $arr["data"]=$this->datos_mapa_mdl($bus_id);
         return $arr;
     }
 
@@ -109,11 +110,11 @@ class Propuestas_model extends CI_Model {
 
 //LISTADO DE PREGUNTAS
     public function lista_preguntas($bus_id=0,$prv_id=0){
-     $html="";
-     $arr=array();
-     $sql="SELECT * FROM `preguntas_pro` WHERE `bus_id` ='$bus_id' AND `prv_id`='$prv_id'";
-     $query=$this->db->query($sql);
-     if ($query->num_rows() > 0) {
+       $html="";
+       $arr=array();
+       $sql="SELECT * FROM `preguntas_pro` WHERE `bus_id` ='$bus_id' AND `prv_id`='$prv_id'";
+       $query=$this->db->query($sql);
+       if ($query->num_rows() > 0) {
         foreach ($query->result() as $fila) {
             $html.= $this->parser->parse('propuestas/preguntas_tpl', $fila, true);
         }
