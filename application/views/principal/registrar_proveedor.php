@@ -8,16 +8,16 @@
   <div class="panel-body">
    <form action="<?=base_url()?>general/registrar_proveedor" method="POST" id="form_almacenar">
     <div class="form-group">
-     <label>Usuario o nick:</label>
+     <label title="Usuario o nick" data-toggle="popover" data-trigger="hover" data-content="Ejemplo: alcodejc / sin espacios" data-placement="bottom">Usuario o nick:</label>
      <input type="text" class="form-control" name="prv_usuario" id="prv_usuario" />
    </div>
    <div class="form-group">
      <label>Email:</label>
-     <input type="text" class="form-control" name="prv_email" id="prv_email" placeholder="demo@dominio.com" />
+     <input type="email" class="form-control" name="prv_email" id="prv_email" placeholder="demo@dominio.com" />
    </div>
    <div class="form-group">
      <label>Celular:</label>
-     <input type="text" class="form-control" name="prv_telefono" id="prv_telefono" placeholder="0983528439" />
+     <input type="number" class="form-control" name="prv_telefono" id="prv_telefono" placeholder="0983528439" />
    </div>	
    <div class="form-group">
      <label>Actividad:</label>

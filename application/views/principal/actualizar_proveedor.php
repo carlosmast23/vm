@@ -8,7 +8,7 @@
     <form class="form-horizontal" action="<?=base_url()?>general/actualizar_prov" method="POST" id="form_almacenar">
      <div class="col-md-6">
        <div class="form-group">
-         <label class="col-md-2 control-label">Usuario:</label>
+         <label class="col-md-2 control-label" title="Usuario o nick" data-toggle="popover" data-trigger="hover" data-content="Ejemplo: alcodejc / sin espacios" data-placement="bottom">Usuario:</label>
          <div class="col-md-8">
            <input type="text" class="form-control" name="prv_usuario" id="prv_usuario" value="<?=$prv_usuario?>" />
          </div>
@@ -16,25 +16,25 @@
        <div class="form-group">
          <label class="col-md-2 control-label">*Email:</label>
          <div class="col-md-8">
-           <input type="text" class="form-control" name="prv_email" id="prv_email" value="<?=$prv_email?>" placeholder="demo@dominio.com"/>
+           <input type="email" class="form-control" name="prv_email" id="prv_email" value="<?=$prv_email?>" placeholder="demo@dominio.com"/>
          </div>
        </div>
        <div class="form-group">
          <label class="col-md-2 control-label" title="Celular" data-toggle="popover" data-trigger="hover" data-content="Ejemplo: 0983528439" data-placement="bottom">*Celular:</label>
          <div class="col-md-8">
-           <input type="text" class="form-control" name="prv_telefono" id="prv_telefono" value="<?=$prv_telefono?>" placeholder="0983528439"/><span id="alert"></span> <input type="hidden" value="false" name="bandera" id="bandera" />
+           <input type="number" class="form-control" name="prv_telefono" id="prv_telefono" value="<?=$prv_telefono?>" placeholder="0983528439"/><span id="alert"></span> <input type="hidden" value="false" name="bandera" id="bandera" />
          </div> 
        </div>
        <div class="form-group">
-       <label class="col-md-2 control-label">Teléfono:</label>
+         <label class="col-md-2 control-label">Teléfono:</label>
          <div class="col-md-8">
-           <input type="text" class="form-control" name="prv_convencional" id="prv_convencional" value="<?=$prv_convencional?>" />
+           <input type="number" class="form-control" name="prv_convencional" id="prv_convencional" value="<?=$prv_convencional?>" />
          </div>
        </div> 
        <div class="form-group">
          <label class="col-md-2 control-label">RUC:</label>
          <div class="col-md-8">
-           <input type="text" class="form-control" name="prv_ruc" id="prv_ruc" value="<?=$prv_ruc?>" />
+           <input type="number" class="form-control" name="prv_ruc" id="prv_ruc" value="<?=$prv_ruc?>" />
          </div>
        </div>
      </div>
