@@ -91,6 +91,9 @@ class General extends MY_Controller {
   }
 
 
+ public function liteinfo(){
+    $this->loadTemplates("principal/liteinfo");
+  }
 
 
 

@@ -25,7 +25,7 @@ class Cronos_model extends CI_Model {
   $cliente = new nusoap_client(base_url()."resources/vmserversms/web-service/server-sms.php");
   $error = $cliente->getError();
   if ($error){
-    log_message('error', 'ERROR WEBSERVICE.');
+    log_message('error', 'ERROR WEBSERVICE.'.$error);
   }
 
   $sql="SELECT * FROM `envio_sms` WHERE `estado`='p' AND (`deque`='pr' OR `deque`='cn' OR `deque`='cf' OR `deque`='cg' OR `deque`='pm')";
@@ -34,6 +34,7 @@ class Cronos_model extends CI_Model {
     foreach ($query->result() as $fila) {
       $result = $cliente->call("enviarSMS",array($fila->tel_destinatario,$fila->mensaje));
       if($result=="success"){
+        log_message('error','ENVIO SMS ERROR:'.$result);
        $this->db->where("id",$fila->id);
        $this->db->update("envio_sms",array("estado"=>'e'));
      }else
