@@ -12,161 +12,163 @@ class Cronos_model extends CI_Model {
 
 //madar a correr cada segundo
   public function procesar_sms_pendientes(){
-   $sql0="SELECT * FROM `busquedas` WHERE `act_id` = '0'  AND `bus_estado`='r'";
-   $query0=$this->db->query($sql0);
-   if($query0->num_rows()>0){
-    foreach ($query0->result() as $fila) {
-      $this->enviar_mensaje($fila->bus_id,$fila->act_id,$fila->bus_texto);
-    }
-  }
+    log_message('error','pasa por pendientes');
 
-
-  require_once('./nusoap.php');
-  $cliente = new nusoap_client(base_url()."resources/vmserversms/web-service/server-sms.php");
-  $error = $cliente->getError();
-  if ($error){
-    log_message('error', 'ERROR WEBSERVICE.'.$error);
-  }
-
-  $sql="SELECT * FROM `envio_sms` WHERE `estado`='p' AND (`deque`='pr' OR `deque`='cn' OR `deque`='cf' OR `deque`='cg' OR `deque`='pm')";
-  $query=$this->db->query($sql);
-  if($query->num_rows()>0){
-    foreach ($query->result() as $fila) {
-      $result = $cliente->call("enviarSMS",array($fila->tel_destinatario,$fila->mensaje));
-      if($result=="success"){
-        log_message('error','ENVIO SMS ERROR:'.$result);
-       $this->db->where("id",$fila->id);
-       $this->db->update("envio_sms",array("estado"=>'e'));
-     }else
-     log_message('error', 'ERROR DE CONEXION CELULAR - PROCESAR SMS CLI. ERROR'.$result);
-   }
- }
-
-
-}
-
-public function procesar_sms_prov(){
-  require_once('./nusoap.php');
-
-  $cliente = new nusoap_client(base_url()."resources/vmserversms/web-service/server-sms.php");
-  $error = $cliente->getError();
-  if ($error){
-    log_message('error', 'ERROR WEBSERVICE.');
-  }
-  $sql="SELECT * FROM `envio_sms` WHERE `estado`='p' AND (`deque`='p' OR `deque` LIKE 'cp') ";
-  $query=$this->db->query($sql);
-  if($query->num_rows()>0){
-    foreach ($query->result() as $fila) {
-      $result = $cliente->call("enviarSMS",array($fila->tel_destinatario,$fila->mensaje));
-      if($result=="success"){
-        $this->db->where("id",$fila->id);
-        $this->db->update("envio_sms",array("estado"=>'e'));
-      }else
-      log_message('error', 'ERROR DE CONEXION CELULAR - PROVEEDOR.ERROR'.$result);    
-    }
-  }
-
-}
-
-
-public function enviar_mensaje($bus_id, $act_id,$buscar){
-  $bandera=false;
-  $this->load->model("GoogleURL_model","google");
-  $url_cli= $this->google->codificar_parametro("propuestas/revisar/",$bus_id);
-
-  $sql0="SELECT * FROM `rel_bus_act` WHERE `bus_id` ='$bus_id' AND `estado`='p' ";
-  $query0=$this->db->query($sql0);
-  if($query0->num_rows()>0){
-    foreach ($query0->result() as $fila0) {   
-      $sql="SELECT * FROM `proveedores` WHERE `act_id` ='$fila0->act_id' AND `prv_estado`='a'";
-      $query=$this->db->query($sql);
-      if($query->num_rows()>0){
-        $bandera=true;
-        foreach ($query->result() as $fila) {
-          $url= $this->google->codificar_parametro("propuestas/recibir/",$bus_id."&".$fila->prv_id);
-          $data=array(
-            "bus_id"=>$bus_id,
-            "ser_id"=>1,
-            "usu_id"=>$fila->prv_id,
-            "email_destinatario"=>$fila->prv_email,
-            "asunto"=>"Solicitud Producto VirtuallMall",
-            "mensaje"=>"$buscar. Genere su propuesta ".$url,
-            "fecha"=>hoy('c'),
-            "deque"=>"p",
-            );
-          $this->db->insert("envio_email",$data);
-
-          $data2= array(
-            "bus_id"=>$bus_id,
-            'ser_id' => 1, 
-            "usu_id"=>$fila->prv_id,
-            "tel_destinatario"=>$fila->prv_telefono,
-            "mensaje"=>"$buscar. Genere su propuesta ".$url,
-            "fecha"=>hoy('c'),
-            "deque"=>"p",
-            );
-          $this->db->insert("envio_sms",$data2);
-        }
+    $sql0="SELECT * FROM `busquedas` WHERE `act_id` = '0'  AND `bus_estado`='r'";
+    $query0=$this->db->query($sql0);
+    if($query0->num_rows()>0){
+      foreach ($query0->result() as $fila) {
+        $this->enviar_mensaje($fila->bus_id,$fila->act_id,$fila->bus_texto);
       }
-
-      $a= array('estado' =>  "r");
-      $this->db->where("id",$fila0->id);
-      $this->db->update("rel_bus_act",$a); 
     }
-  }
 
 
-  if($bandera==true){
-    $bus_celular=datoDeTablaCampo("busquedas","bus_id","bus_celular",$bus_id);
-    $busqueda=cortar_texto(datoDeTablaCampo("busquedas","bus_id","bus_texto",$bus_id),50);
-    if($bus_celular!=false){
-      $data3= array(
-        "bus_id"=>$bus_id,
-        'ser_id' => 1, 
-        "usu_id"=>0,
-        "tel_destinatario"=>$bus_celular,
-        "mensaje"=>"Revise sus resultados para '$busqueda'. Enlace ".$url_cli,
-        "fecha"=>hoy('c'),
-        "deque"=>"c",
-        );
-      $this->db->insert("envio_sms",$data3);
+    require_once('./nusoap.php');
+    $cliente = new nusoap_client(base_url()."resources/vmserversms/web-service/server-sms.php");
+    $error = $cliente->getError();
+    if ($error){
+      log_message('error', 'ERROR WEBSERVICE.'.$error);
     }
-    $a= array('bus_estado' =>  "e");
-    $this->db->where("bus_id",$bus_id);
-    $this->db->update("busquedas",$a);
+
+    $sql="SELECT * FROM `envio_sms` WHERE `estado`='p' AND (`deque`='pr' OR `deque`='cn' OR `deque`='cf' OR `deque`='cg' OR `deque`='pm')";
+    $query=$this->db->query($sql);
+    if($query->num_rows()>0){
+      foreach ($query->result() as $fila) {
+        $result = $cliente->call("enviarSMS",array($fila->tel_destinatario,$fila->mensaje));
+        if($result=="success"){
+          log_message('error','ENVIO SMS ERROR:'.$result);
+          $this->db->where("id",$fila->id);
+          $this->db->update("envio_sms",array("estado"=>'e'));
+        }else
+        log_message('error', 'ERROR DE CONEXION CELULAR - PROCESAR SMS CLI. ERROR'.$result);
+      }
+    }
+
+
+  }
+
+  public function procesar_sms_prov(){
+    require_once('./nusoap.php');
+
+    $cliente = new nusoap_client(base_url()."resources/vmserversms/web-service/server-sms.php");
+    $error = $cliente->getError();
+    if ($error){
+      log_message('error', 'ERROR WEBSERVICE.');
+    }
+    $sql="SELECT * FROM `envio_sms` WHERE `estado`='p' AND (`deque`='p' OR `deque` LIKE 'cp') ";
+    $query=$this->db->query($sql);
+    if($query->num_rows()>0){
+      foreach ($query->result() as $fila) {
+        $result = $cliente->call("enviarSMS",array($fila->tel_destinatario,$fila->mensaje));
+        if($result=="success"){
+          $this->db->where("id",$fila->id);
+          $this->db->update("envio_sms",array("estado"=>'e'));
+        }else
+        log_message('error', 'ERROR DE CONEXION CELULAR - PROVEEDOR.ERROR'.$result);    
+      }
+    }
+
   }
 
 
-}
+  public function enviar_mensaje($bus_id, $act_id,$buscar){
+    $bandera=false;
+    $this->load->model("GoogleURL_model","google");
+    $url_cli= $this->google->codificar_parametro("propuestas/revisar/",$bus_id);
+
+    $sql0="SELECT * FROM `rel_bus_act` WHERE `bus_id` ='$bus_id' AND `estado`='p' ";
+    $query0=$this->db->query($sql0);
+    if($query0->num_rows()>0){
+      foreach ($query0->result() as $fila0) {   
+        $sql="SELECT * FROM `proveedores` WHERE `act_id` ='$fila0->act_id' AND `prv_estado`='a'";
+        $query=$this->db->query($sql);
+        if($query->num_rows()>0){
+          $bandera=true;
+          foreach ($query->result() as $fila) {
+            $url= $this->google->codificar_parametro("propuestas/recibir/",$bus_id."&".$fila->prv_id);
+            $data=array(
+              "bus_id"=>$bus_id,
+              "ser_id"=>1,
+              "usu_id"=>$fila->prv_id,
+              "email_destinatario"=>$fila->prv_email,
+              "asunto"=>"Solicitud Producto VirtuallMall",
+              "mensaje"=>"$buscar. Genere su propuesta ".$url,
+              "fecha"=>hoy('c'),
+              "deque"=>"p",
+              );
+            $this->db->insert("envio_email",$data);
+
+            $data2= array(
+              "bus_id"=>$bus_id,
+              'ser_id' => 1, 
+              "usu_id"=>$fila->prv_id,
+              "tel_destinatario"=>$fila->prv_telefono,
+              "mensaje"=>"$buscar. Genere su propuesta ".$url,
+              "fecha"=>hoy('c'),
+              "deque"=>"p",
+              );
+            $this->db->insert("envio_sms",$data2);
+          }
+        }
+
+        $a= array('estado' =>  "r");
+        $this->db->where("id",$fila0->id);
+        $this->db->update("rel_bus_act",$a); 
+      }
+    }
 
 
-public function procesar_sms_cli(){
-  require_once('./nusoap.php');
+    if($bandera==true){
+      $bus_celular=datoDeTablaCampo("busquedas","bus_id","bus_celular",$bus_id);
+      $busqueda=cortar_texto(datoDeTablaCampo("busquedas","bus_id","bus_texto",$bus_id),50);
+      if($bus_celular!=false){
+        $data3= array(
+          "bus_id"=>$bus_id,
+          'ser_id' => 1, 
+          "usu_id"=>0,
+          "tel_destinatario"=>$bus_celular,
+          "mensaje"=>"Revise sus resultados para '$busqueda'. Enlace ".$url_cli,
+          "fecha"=>hoy('c'),
+          "deque"=>"c",
+          );
+        $this->db->insert("envio_sms",$data3);
+      }
+      $a= array('bus_estado' =>  "e");
+      $this->db->where("bus_id",$bus_id);
+      $this->db->update("busquedas",$a);
+    }
 
-  $cliente = new nusoap_client(base_url()."resources/vmserversms/web-service/server-sms.php");
-  $error = $cliente->getError();
-  if ($error){
-    log_message('error', 'ERROR WEBSERVICE.');
+
   }
 
-  $sql="SELECT * FROM `envio_sms` WHERE `estado`='p' AND `deque`='c' AND `bus_id` IN(SELECT `bus_id` FROM propuestas WHERE `pro_estado`='p') ";
 
-  $query=$this->db->query($sql);
-  if($query->num_rows()>0){
-    foreach ($query->result() as $fila) {
-      $result = $cliente->call("enviarSMS",array($fila->tel_destinatario,$fila->mensaje));
-      if($result=="success"){
-       $this->db->where("id",$fila->id);
-       $this->db->update("envio_sms",array("estado"=>'e'));
-     }else
-     log_message('error', 'ERROR DE CONEXION CELULAR - PROCESAR SMS CLI. ERROR'.$result);
+  public function procesar_sms_cli(){
+    require_once('./nusoap.php');
+
+    $cliente = new nusoap_client(base_url()."resources/vmserversms/web-service/server-sms.php");
+    $error = $cliente->getError();
+    if ($error){
+      log_message('error', 'ERROR WEBSERVICE.');
+    }
+
+    $sql="SELECT * FROM `envio_sms` WHERE `estado`='p' AND `deque`='c' AND `bus_id` IN(SELECT `bus_id` FROM propuestas WHERE `pro_estado`='p') ";
+
+    $query=$this->db->query($sql);
+    if($query->num_rows()>0){
+      foreach ($query->result() as $fila) {
+        $result = $cliente->call("enviarSMS",array($fila->tel_destinatario,$fila->mensaje));
+        if($result=="success"){
+         $this->db->where("id",$fila->id);
+         $this->db->update("envio_sms",array("estado"=>'e'));
+       }else
+       log_message('error', 'ERROR DE CONEXION CELULAR - PROCESAR SMS CLI. ERROR'.$result);
+     }
    }
+
  }
 
-}
 
-
-public function procesar_sms_clipendientes(){
+ public function procesar_sms_clipendientes(){
   $sql="SELECT * FROM `busquedas` WHERE `bus_estado`='p' AND `bus_estado`='r' ";
 
   $query=$this->db->query($sql);
