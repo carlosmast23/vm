@@ -33,7 +33,6 @@ class Cronos_model extends CI_Model {
       foreach ($query->result() as $fila) {
         $result = $cliente->call("enviarSMS",array($fila->tel_destinatario,$fila->mensaje));
         if($result=="success"){
-          log_message('error','ENVIO SMS ERROR:'.$result);
           $this->db->where("id",$fila->id);
           $this->db->update("envio_sms",array("estado"=>'e'));
         }else
@@ -57,7 +56,6 @@ class Cronos_model extends CI_Model {
     if($query->num_rows()>0){
       foreach ($query->result() as $fila) {
         $result = $cliente->call("enviarSMS",array($fila->tel_destinatario,$fila->mensaje));
-        log_message('error', 'ERROR DE CONEXION CELULAR - PROVEEDOR.ERROR-ANTERIOR'.$result);    
         if($result=="success"){
           $this->db->where("id",$fila->id);
           $this->db->update("envio_sms",array("estado"=>'e'));
