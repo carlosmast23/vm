@@ -12,8 +12,6 @@ class Cronos_model extends CI_Model {
 
 //madar a correr cada segundo
   public function procesar_sms_pendientes(){
-    log_message('error','pasa por pendientes');
-
     $sql0="SELECT * FROM `busquedas` WHERE `act_id` = '0'  AND `bus_estado`='r'";
     $query0=$this->db->query($sql0);
     if($query0->num_rows()>0){
@@ -21,7 +19,6 @@ class Cronos_model extends CI_Model {
         $this->enviar_mensaje($fila->bus_id,$fila->act_id,$fila->bus_texto);
       }
     }
-
 
     require_once('./nusoap.php');
     $cliente = new nusoap_client(base_url()."resources/vmserversms/web-service/server-sms.php");
@@ -60,6 +57,7 @@ class Cronos_model extends CI_Model {
     if($query->num_rows()>0){
       foreach ($query->result() as $fila) {
         $result = $cliente->call("enviarSMS",array($fila->tel_destinatario,$fila->mensaje));
+        log_message('error', 'ERROR DE CONEXION CELULAR - PROVEEDOR.ERROR-ANTERIOR'.$result);    
         if($result=="success"){
           $this->db->where("id",$fila->id);
           $this->db->update("envio_sms",array("estado"=>'e'));
@@ -117,7 +115,6 @@ class Cronos_model extends CI_Model {
       }
     }
 
-
     if($bandera==true){
       $bus_celular=datoDeTablaCampo("busquedas","bus_id","bus_celular",$bus_id);
       $busqueda=cortar_texto(datoDeTablaCampo("busquedas","bus_id","bus_texto",$bus_id),50);
@@ -157,6 +154,7 @@ class Cronos_model extends CI_Model {
     if($query->num_rows()>0){
       foreach ($query->result() as $fila) {
         $result = $cliente->call("enviarSMS",array($fila->tel_destinatario,$fila->mensaje));
+        log_message('error', 'ERROR DE CONEXION CELULAR - PROCESAR SMS CLI. ERROR-ANTES'.$result);
         if($result=="success"){
          $this->db->where("id",$fila->id);
          $this->db->update("envio_sms",array("estado"=>'e'));
