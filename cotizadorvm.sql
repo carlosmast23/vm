@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-11-2017 a las 15:35:07
+-- Tiempo de generación: 21-11-2017 a las 22:59:49
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -98,72 +98,6 @@ CREATE TABLE `busquedas` (
   `bus_estado` enum('p','r','e','a') NOT NULL DEFAULT 'p' COMMENT 'Pendiente Revisado Enviado Anulado'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Volcado de datos para la tabla `busquedas`
---
-
-INSERT INTO `busquedas` (`bus_id`, `act_id`, `bus_celular`, `bus_texto`, `bus_tiempo`, `bus_fecha`, `bus_fechafin`, `bus_estado`) VALUES
-(1, 0, '+593983528439', 'zapatos adidas', 'u', '2017-10-30 19:11:47', '2017-10-30 19:41:47', 'e'),
-(2, 0, '+593983528439', 'escritorio', 'u', '2017-10-30 19:15:28', '2017-10-30 19:45:28', 'e'),
-(3, 0, '+593983528439', 'celulara iphone 8G', 'u', '2017-10-30 20:49:59', '2017-10-30 21:19:59', 'e'),
-(4, 0, '611', 'CNT INFORMA:  Por fin llego! Hoy visita los locales de CNT a nivel nacional y obten los mejores beneficios en tus planes. CNT lo que eres.', 'n', '2017-10-30 21:21:01', '2017-10-30 21:21:01', 'p'),
-(5, 0, '+593990444927', 'celulares Huawei $200. Genere su propuesta https://goo.gl/AZx2CS', 'n', '2017-10-31 17:02:18', '2017-10-31 17:02:18', 'p'),
-(6, 0, '+593990444927', 'celulares Huawei  200. Genere su propuesta https://goo.gl/ssX2S8', 'n', '2017-10-31 17:02:19', '2017-10-31 17:02:19', 'p'),
-(7, 0, '+593990444927', 'Ha sido respondido su pregunta. Genere su propuesta https://goo.gl/bCiKJJ', 'n', '2017-10-31 17:12:11', '2017-10-31 17:12:11', 'p'),
-(8, 0, '+593990444927', 'Contacte pronto con +593984782080, le interesa tu producto.', 'n', '2017-10-31 17:12:15', '2017-10-31 17:12:15', 'p'),
-(9, 0, '+593990444927', 'articulos de limpieza. Genere su propuesta https://goo.gl/Ahuzgd', 'n', '2017-10-31 17:58:17', '2017-10-31 17:58:17', 'p'),
-(10, 0, '+593990444927', 'articulos de limpieza. Genere su propuesta https://goo.gl/CxhBrX', 'n', '2017-10-31 17:58:19', '2017-10-31 17:58:19', 'p'),
-(11, 0, '+593990444927', 'pantalones  40. Genere su propuesta https://goo.gl/HvFBq7', 'n', '2017-10-31 19:42:19', '2017-10-31 19:42:19', 'p'),
-(12, 0, '+593990444927', 'lavadoras  300. Genere su propuesta https://goo.gl/eeh8t5', 'n', '2017-10-31 19:42:31', '2017-10-31 19:42:31', 'p'),
-(13, 0, '+593990444927', 'Buenas tardes alguien me puede ayudar mandando precios de laptops para videojuegos. Genere su propuesta https://goo.gl/qEy71v', 'n', '2017-10-31 20:19:23', '2017-10-31 20:19:23', 'p'),
-(14, 0, '+593990444927', 'Ha sido respondido su pregunta. Genere su propuesta https://goo.gl/7GbXFq', 'n', '2017-10-31 20:22:08', '2017-10-31 20:22:08', 'p'),
-(15, 0, '+593990444927', 'Ha sido respondido su pregunta. Genere su propuesta https://goo.gl/hqxh7X', 'n', '2017-10-31 20:24:07', '2017-10-31 20:24:07', 'p'),
-(16, 0, '+593990444927', 'Contacte pronto con +593994725020, le interesa tu producto.', 'n', '2017-10-31 20:31:10', '2017-10-31 20:31:10', 'p'),
-(18, 0, '1040', 'CNT informa: Sr(a) PINARGO, estamos proximos a realizar el debito de su factura por USD 14,55, favor mantener los fondos necesarios, Gracias.', 'n', '2017-11-01 18:28:15', '2017-11-01 18:28:15', 'p'),
-(19, 0, '+593990444927', 'computador core 7 6ta generacion s. Genere su propuesta https://goo.gl/zWaiUt', 'n', '2017-11-01 22:01:21', '2017-11-01 22:01:21', 'p'),
-(20, 0, '+593990444927', 'El proveedor genero una pregunta. Ver https://goo.gl/qyGFxA', 'n', '2017-11-01 22:18:10', '2017-11-01 22:18:10', 'p'),
-(21, 0, '+593990444927', 'Ha sido respondido su pregunta. Genere su propuesta https://goo.gl/Puj27L', 'n', '2017-11-01 22:20:07', '2017-11-01 22:20:07', 'p'),
-(22, 0, '+593990444927', 'Revise sus resultados. Link https://goo.gl/yk9Uky', 'n', '2017-11-01 22:25:08', '2017-11-01 22:25:08', 'p'),
-(23, 0, '2482', 'MINEDUC INFORMA: SE HA PUBLICADO LA CONVOCATORIA A LA EVALUACION DE RAZONAMIENTO DE QSM6, REVISAR LA PAGINA WEB DEL MINEDUC Y SU CUENTA SIME V2.0', 'n', '2017-11-06 17:03:13', '2017-11-06 17:03:13', 'p'),
-(24, 0, '3741', 'HOY, jueves 9, Dia del Solcio CLUBPYCCA!!! Ven y llevate TODO* con el 25% dscto. Adelanta tus compras de juguetes con el mejor precio. *Aplica restricciones.', 'n', '2017-11-09 22:29:00', '2017-11-09 22:29:00', 'p'),
-(25, 0, '+593990444927', 'Actualiza tus datos y manten activa tu cuenta en Virtual Mall.Enlace https://goo.gl/tcQJYt', 'n', '2017-11-10 23:15:22', '2017-11-10 23:15:22', 'p'),
-(26, 0, '611', 'CNT INFORMA, LUNES duplica tus recargas desde $3 en Farmacias Economicas, Medicity y Santa Martha de Manabi.', 'n', '2017-11-13 19:17:15', '2017-11-13 19:17:15', 'p'),
-(27, 0, '+593990444927', 'Necesito comprar pan en Sangolqui. Genere su propuesta https://goo.gl/4TCQbQ', 'n', '2017-11-14 17:58:30', '2017-11-14 17:58:30', 'p'),
-(28, 0, '+593990444927', 'achojcha rellenas. Genere su propuesta https://goo.gl/DG5p14', 'n', '2017-11-14 17:59:25', '2017-11-14 17:59:25', 'p'),
-(29, 0, '+593990444927', 'Ha sido respondido su pregunta. Genere su propuesta https://goo.gl/xzwUU6', 'n', '2017-11-14 18:03:13', '2017-11-14 18:03:13', 'p'),
-(30, 0, '+593990444927', 'Contacte pronto con +593997426212, le interesa tu producto.', 'n', '2017-11-14 18:13:17', '2017-11-14 18:13:17', 'p'),
-(31, 0, '+593990444927', 'El proveedor genero una pregunta. Ver https://goo.gl/MQPiYs', 'n', '2017-11-14 18:52:18', '2017-11-14 18:52:18', 'p'),
-(32, 0, '+593990444927', 'El proveedor genero una pregunta. Ver https://goo.gl/tzn162', 'n', '2017-11-14 18:52:19', '2017-11-14 18:52:19', 'p'),
-(33, 0, '+593990444927', 'El proveedor genero una pregunta. Ver https://goo.gl/TMk7w6', 'n', '2017-11-14 18:52:21', '2017-11-14 18:52:21', 'p'),
-(34, 0, '+593990444927', 'El proveedor genero una pregunta. Ver https://goo.gl/EJNK6z', 'n', '2017-11-14 18:52:24', '2017-11-14 18:52:24', 'p'),
-(35, 0, '611', 'CNT INFORMA, MARTES DUPLICA  TUS RECARGAS desde $3 EN PHARMACYS, CRUZ AZUL y Almacenes TIA.', 'n', '2017-11-14 19:21:52', '2017-11-14 19:21:52', 'p'),
-(36, 0, '2482', 'MINEDUC INFORMA: REVISE LA RECONVOCATORIA A LA PRUEBA DE RAZONAMIENTO DE LA ETAPA DE ELEGIBILIDAD DE QSM6 PUBLICADA EN LA PAGINA WEB DEL MINISTERIO.', 'n', '2017-11-14 22:33:00', '2017-11-14 22:33:00', 'p'),
-(37, 0, '611', 'CNT Informa: Hoy 15 de NOVIEMBRE  recibe el DOBLE en tus recargas desde $3.', 'n', '2017-11-15 19:43:17', '2017-11-15 19:43:17', 'p'),
-(38, 0, '+593990444927', 'Deseo comprar un mouse para videojuegos. Genere su propuesta https://goo.gl/rxRDcy', 'n', '2017-11-15 21:24:24', '2017-11-15 21:24:24', 'p'),
-(39, 0, '+593990444927', 'Deseo comprar un mouse para videojuegos. Genere su propuesta https://goo.gl/kzPNcX', 'n', '2017-11-15 21:24:27', '2017-11-15 21:24:27', 'p'),
-(40, 0, '+593990444927', 'Deseo comprar un pulpi. Genere su propuesta https://goo.gl/BKaFBU', 'n', '2017-11-15 21:25:20', '2017-11-15 21:25:20', 'p'),
-(41, 0, '+593990444927', 'Deseo comprar un pulpi. Genere su propuesta https://goo.gl/LALBvA', 'n', '2017-11-15 21:25:29', '2017-11-15 21:25:29', 'p'),
-(42, 0, '+593990444927', 'Ha sido respondido su pregunta. Genere su propuesta https://goo.gl/pVg32j', 'n', '2017-11-15 21:41:11', '2017-11-15 21:41:11', 'p'),
-(43, 0, '+593990444927', 'Ha sido respondido su pregunta. Genere su propuesta https://goo.gl/pGyTiZ', 'n', '2017-11-15 21:41:13', '2017-11-15 21:41:13', 'p'),
-(44, 0, '+593990444927', 'Neceito comprar un caco para ir de viaje al cotopaxi que me recomiendan?. Genere su propuesta https://goo.gl/WcYpgE', 'n', '2017-11-15 21:48:08', '2017-11-15 21:48:08', 'p'),
-(45, 0, '+593990444927', 'Neceito comprar un caco para ir de viaje al cotopaxi que me recomiendan?. Genere su propuesta https://goo.gl/nUmA1Q', 'n', '2017-11-15 21:48:15', '2017-11-15 21:48:15', 'p'),
-(46, 0, '+593990444927', 'Ha sido respondido su pregunta. Genere su propuesta https://goo.gl/hg4YNV', 'n', '2017-11-15 21:50:16', '2017-11-15 21:50:16', 'p'),
-(47, 0, '+593990444927', 'Ha sido respondido su pregunta. Genere su propuesta https://goo.gl/ngFpu8', 'n', '2017-11-15 21:51:07', '2017-11-15 21:51:07', 'p'),
-(48, 0, '+593990444927', 'Contacte pronto con +593994725020, le interesa tu producto.', 'n', '2017-11-15 21:55:17', '2017-11-15 21:55:17', 'p'),
-(49, 0, '+593990444927', 'necesito comprar unas alitas . Genere su propuesta https://goo.gl/ZsGrjc', 'n', '2017-11-16 18:51:13', '2017-11-16 18:51:13', 'p'),
-(50, 0, '+593990444927', 'necesito comprar unas alitas . Genere su propuesta https://goo.gl/QgnVnn', 'n', '2017-11-16 18:51:14', '2017-11-16 18:51:14', 'p'),
-(51, 0, '+593990444927', 'Pregunta respondida \'Cuantas alitas requiere \'. Genere su propuesta https://goo.gl/88zUQw', 'n', '2017-11-16 18:54:07', '2017-11-16 18:54:07', 'p'),
-(52, 0, '+593990444927', 'Pregunta respondida \'Grandes o pequeñas \'. Genere su propuesta https://goo.gl/PWBG1X', 'n', '2017-11-16 18:54:11', '2017-11-16 18:54:11', 'p'),
-(53, 0, '+593990444927', 'Pregunta respondida \'Grandes o pequeñas \'. Genere su propuesta https://goo.gl/tGCWdi', 'n', '2017-11-16 18:55:18', '2017-11-16 18:55:18', 'p'),
-(54, 0, '+593990444927', 'Pregunta respondida \'Grandes o pequeñas \'. Genere su propuesta https://goo.gl/zEBhof', 'n', '2017-11-16 18:55:20', '2017-11-16 18:55:20', 'p'),
-(55, 0, '+593990444927', 'Pregunta respondida \'Cuantas dispone \'. Genere su propuesta https://goo.gl/Zgxbtv', 'n', '2017-11-16 18:59:15', '2017-11-16 18:59:15', 'p'),
-(56, 0, '+593990444927', 'Pregunta respondida \'Tiene de las de pincho\'. Genere su propuesta https://goo.gl/JKZojP', 'n', '2017-11-16 19:02:08', '2017-11-16 19:02:08', 'p'),
-(57, 0, '+593990444927', 'Pregunta respondida \'Requiere este producto \'. Genere su propuesta https://goo.gl/ja8zfW', 'n', '2017-11-16 19:15:08', '2017-11-16 19:15:08', 'p'),
-(58, 0, '+593990444927', 'Contacte pronto con +593994725020, le interesa tu producto Alitas en salsa de hongo.', 'n', '2017-11-16 19:28:08', '2017-11-16 19:28:08', 'p'),
-(59, 0, '+593990444927', 'Contacte pronto con +593994725020, le interesa tu producto Alitas en salsa de hongo.', 'n', '2017-11-16 19:28:10', '2017-11-16 19:28:10', 'p'),
-(60, 0, '+593990444927', 'Contacte pronto con +593994725020, le interesa tu producto Alitas en salsa de hongo.', 'n', '2017-11-16 19:28:14', '2017-11-16 19:28:14', 'p'),
-(61, 0, '611', 'CNT INFORMA, JUEVES DUPLICA TUS RECARGAS desde $3 en Fybeca, SanaSana y Oki Doki.', 'n', '2017-11-16 19:33:51', '2017-11-16 19:33:51', 'p');
-
 -- --------------------------------------------------------
 
 --
@@ -201,23 +135,6 @@ CREATE TABLE `envio_email` (
   `deque` varchar(3) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
---
--- Volcado de datos para la tabla `envio_email`
---
-
-INSERT INTO `envio_email` (`id`, `bus_id`, `ser_id`, `usu_id`, `email_destinatario`, `asunto`, `mensaje`, `estado`, `fecha`, `fecha_envio`, `deque`) VALUES
-(1, 2, 1, 2, 'jcp_computer@hotmail.com\r\n', 'Solicitud Producto VirtuallMall', 'escritorio. Genere su propuesta https://goo.gl/qBLUiy', 'e', '2017-10-30 19:15:56', '2017-11-14 18:37:00', 'p'),
-(2, 2, 1, 3, 'jc100pl@hotmail.com', 'Solicitud Producto VirtuallMall', 'escritorio. Genere su propuesta https://goo.gl/yZXqQQ', 'e', '2017-10-30 19:15:56', '2017-11-14 18:37:03', 'p'),
-(3, 1, 1, 2, 'jcp_computer@hotmail.com\r\n', 'Solicitud Producto VirtuallMall', 'zapatos adidas. Genere su propuesta https://goo.gl/qrEAWa', 'e', '2017-10-30 20:51:51', '2017-11-14 18:37:06', 'p'),
-(4, 1, 1, 3, 'jc100pl@hotmail.com', 'Solicitud Producto VirtuallMall', 'zapatos adidas. Genere su propuesta https://goo.gl/E7Duuu', 'e', '2017-10-30 20:51:51', '2017-11-14 18:37:08', 'p'),
-(5, 3, 1, 2, 'jcp_computer@hotmail.com\r\n', 'Solicitud Producto VirtuallMall', 'celulara iphone 8G. Genere su propuesta https://goo.gl/MjUefa', 'e', '2017-10-30 20:55:57', '2017-11-14 18:37:11', 'p'),
-(6, 3, 1, 3, 'jc100pl@hotmail.com', 'Solicitud Producto VirtuallMall', 'celulara iphone 8G. Genere su propuesta https://goo.gl/9CFEAu', 'e', '2017-10-30 20:55:57', '2017-11-14 18:37:13', 'p'),
-(7, 3, 1, 3, 'jc100pl@hotmail.com', '', 'Contacte pronto con +593983528439, le interesa tu producto.', 'e', '2017-10-30 21:08:28', '2017-11-14 18:37:16', 'cp'),
-(8, 0, 1, 1, 'demo@gmail.com', 'Cuenta Virtual Mall', 'Actualiza tus datos y manten activa tu cuenta.Enlace https://goo.gl/F4t5pn', 'e', '2017-11-10 21:44:58', '2017-11-14 18:37:19', 'pm'),
-(9, 0, 1, 2, 'jcp_computer@hotmail.com\r\n', 'Cuenta Virtual Mall', 'Actualiza tus datos y manten activa tu cuenta.Enlace https://goo.gl/P1SCBT', 'e', '2017-11-10 21:44:59', '2017-11-14 18:37:21', 'pm'),
-(10, 0, 1, 3, 'jc100pl@hotmail.com', 'Cuenta Virtual Mall', 'Actualiza tus datos y manten activa tu cuenta.Enlace https://goo.gl/Y3WFC5', 'e', '2017-11-10 21:44:59', '2017-11-14 18:37:24', 'pm'),
-(11, 0, 1, 4, 'cwc_jc100pl@hotmail.com', 'Cuenta Virtual Mall', 'Actualiza tus datos y manten activa tu cuenta.Enlace https://goo.gl/GBPn3X', 'e', '2017-11-10 21:45:00', '2017-11-14 18:37:26', 'pm');
-
 -- --------------------------------------------------------
 
 --
@@ -235,45 +152,6 @@ CREATE TABLE `envio_sms` (
   `fecha` datetime NOT NULL,
   `deque` varchar(3) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `envio_sms`
---
-
-INSERT INTO `envio_sms` (`id`, `bus_id`, `ser_id`, `usu_id`, `tel_destinatario`, `mensaje`, `estado`, `fecha`, `deque`) VALUES
-(1, 2, 1, 2, '+593994725020​⁠​', 'escritorio. Genere su propuesta https://goo.gl/qBLUiy', 'e', '2017-10-30 19:15:56', 'p'),
-(2, 2, 1, 3, '+593983528439', 'escritorio. Genere su propuesta https://goo.gl/yZXqQQ', 'e', '2017-10-30 19:15:56', 'p'),
-(3, 2, 1, 0, '+593983528439', 'Revise sus resultados. Link https://goo.gl/exsYUY', 'e', '2017-10-30 19:15:56', 'c'),
-(4, 1, 1, 2, '+593994725020​⁠​', 'zapatos adidas. Genere su propuesta https://goo.gl/qrEAWa', 'e', '2017-10-30 20:51:51', 'p'),
-(5, 1, 1, 3, '+593983528439', 'zapatos adidas. Genere su propuesta https://goo.gl/E7Duuu', 'p', '2017-10-30 20:51:51', 'p'),
-(6, 1, 1, 0, '+593983528439', 'Revise sus resultados. Link https://goo.gl/sCHznP', 'p', '2017-10-30 20:51:51', 'c'),
-(7, 1, 1, 0, '+593983528439', 'Su busqueda no obtuvo resultados, genere una nueva solictud (amplie su tiempo de respuesta)', 'e', '2017-10-30 20:52:02', 'cn'),
-(8, 3, 1, 2, '+593994725020​⁠​', 'celulara iphone 8G. Genere su propuesta https://goo.gl/MjUefa', 'p', '2017-10-30 20:55:57', 'p'),
-(9, 3, 1, 3, '+593983528439', 'celulara iphone 8G. Genere su propuesta https://goo.gl/9CFEAu', 'p', '2017-10-30 20:55:57', 'p'),
-(10, 3, 1, 0, '+593983528439', 'Revise sus resultados. Link https://goo.gl/VMVvYH', 'p', '2017-10-30 20:55:57', 'c'),
-(11, 1, 1, 0, '+593983528439', 'Su busqueda no obtuvo resultados, genere una nueva solictud (amplie su tiempo de respuesta)', 'e', '2017-10-30 20:56:14', 'cn'),
-(12, 3, 1, 3, '+593983528439', 'Contacte pronto con +593983528439, le interesa tu producto.', 'p', '2017-10-30 21:08:28', 'cp'),
-(13, 3, 1, 3, '+593983528439', 'Contacte pronto con +593983528439, le interesa tu producto.', 'p', '2017-10-30 21:08:28', 'cp'),
-(14, 3, 1, 3, '+593983528439', 'Contacte pronto con +593983528439, le interesa tu producto.', 'p', '2017-10-30 21:08:28', 'cp'),
-(15, 3, 1, 3, '+593983528439', 'Contacte pronto con +593983528439, le interesa tu producto.', 'p', '2017-10-30 21:08:28', 'cp'),
-(16, 1, 1, 0, '+593983528439', 'Su busqueda no obtuvo resultados, genere una nueva solictud (amplie su tiempo de respuesta)', 'e', '2017-10-30 20:56:14', 'cn'),
-(17, 3, 1, 0, '+593983528439', 'Revise sus resultados. Link https://goo.gl/VMVvYH', 'p', '2017-10-30 20:55:57', 'c'),
-(18, 3, 1, 3, '+593983528439', 'celulara iphone 8G. Genere su propuesta https://goo.gl/9CFEAu', 'p', '2017-10-30 20:55:57', 'p'),
-(19, 3, 1, 2, '+593994725020​⁠​', 'celulara iphone 8G. Genere su propuesta https://goo.gl/MjUefa', 'p', '2017-10-30 20:55:57', 'p'),
-(20, 1, 1, 0, '+593983528439', 'Su busqueda no obtuvo resultados, genere una nueva solictud (amplie su tiempo de respuesta)', 'e', '2017-10-30 20:52:02', 'cn'),
-(21, 1, 1, 0, '+593983528439', 'Revise sus resultados. Link https://goo.gl/sCHznP', 'p', '2017-10-30 20:51:51', 'c'),
-(22, 1, 1, 3, '+593983528439', 'zapatos adidas. Genere su propuesta https://goo.gl/E7Duuu', 'p', '2017-10-30 20:51:51', 'p'),
-(23, 1, 1, 2, '+593994725020​⁠​', 'zapatos adidas. Genere su propuesta https://goo.gl/qrEAWa', 'e', '2017-10-30 20:51:51', 'p'),
-(24, 2, 1, 0, '+593983528439', 'Revise sus resultados. Link https://goo.gl/exsYUY', 'e', '2017-10-30 19:15:56', 'c'),
-(25, 2, 1, 3, '+593983528439', 'escritorio. Genere su propuesta https://goo.gl/yZXqQQ', 'e', '2017-10-30 19:15:56', 'p'),
-(26, 2, 1, 2, '+593994725020​⁠​', 'escritorio. Genere su propuesta https://goo.gl/qBLUiy', 'e', '2017-10-30 19:15:56', 'p'),
-(27, 0, 1, 1, '+593994905332​⁠​', 'Actualiza tus datos y manten activa tu cuenta en Virtual Mall.Enlace https://goo.gl/F4t5pn', 'p', '2017-11-10 21:44:58', 'pm'),
-(28, 0, 1, 2, '+593994725020​⁠​', 'Actualiza tus datos y manten activa tu cuenta en Virtual Mall.Enlace https://goo.gl/P1SCBT', 'p', '2017-11-10 21:44:59', 'pm'),
-(29, 0, 1, 3, '+593983528439', 'Actualiza tus datos y manten activa tu cuenta en Virtual Mall.Enlace https://goo.gl/Y3WFC5', 'p', '2017-11-10 21:44:59', 'pm'),
-(30, 0, 1, 4, '+593994725021', 'Actualiza tus datos y manten activa tu cuenta en Virtual Mall.Enlace https://goo.gl/GBPn3X', 'p', '2017-11-10 21:45:00', 'pm'),
-(31, 1, 1, 0, '+593983528439', 'El proveedor genero una pregunta. Ver https://goo.gl/2anwWT', 'p', '2017-11-14 18:29:52', 'cg'),
-(32, 1, 1, 0, '+593983528439', 'El proveedor genero una pregunta. Ver https://goo.gl/TDRe65', 'p', '2017-11-14 18:30:44', 'cg'),
-(33, 1, 1, 0, '+593983528439', 'El proveedor genero una pregunta. Ver https://goo.gl/Y6Edgq', 'p', '2017-11-14 18:58:21', 'cg');
 
 -- --------------------------------------------------------
 
@@ -311,15 +189,6 @@ CREATE TABLE `preguntas_pro` (
   `prg_respuesta` varchar(200) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Volcado de datos para la tabla `preguntas_pro`
---
-
-INSERT INTO `preguntas_pro` (`prg_id`, `bus_id`, `prv_id`, `prg_pregunta`, `prg_respuesta`) VALUES
-(1, 1, 3, 'pregunta numero 1', ''),
-(2, 1, 3, 'pregunta numero 2', ''),
-(3, 1, 3, 'preguntando', '');
-
 -- --------------------------------------------------------
 
 --
@@ -352,14 +221,6 @@ CREATE TABLE `propuestas` (
   `pro_estado` enum('p','r','a') NOT NULL DEFAULT 'p' COMMENT 'Pendiente Revisado Aprobado',
   `pro_fecha` datetime NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
-
---
--- Volcado de datos para la tabla `propuestas`
---
-
-INSERT INTO `propuestas` (`pro_id`, `prv_id`, `bus_id`, `pro_desc`, `pro_cantidad`, `pro_precio`, `pro_tipo`, `pro_entrega`, `pro_obs`, `pro_estado`, `pro_fecha`) VALUES
-(1, 3, 2, 'Escritorio madera', 1, 300, 'n', 'n', 'observacion', 'p', '2017-10-30 20:41:20'),
-(2, 3, 3, 'descripcion', 1, 50, 'n', 'n', '', 'a', '2017-10-30 21:00:16');
 
 -- --------------------------------------------------------
 
@@ -625,15 +486,6 @@ CREATE TABLE `rel_bus_act` (
   `estado` enum('p','r') NOT NULL DEFAULT 'p'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
---
--- Volcado de datos para la tabla `rel_bus_act`
---
-
-INSERT INTO `rel_bus_act` (`id`, `bus_id`, `act_id`, `estado`) VALUES
-(1, 2, 2, 'r'),
-(2, 1, 2, 'r'),
-(3, 3, 2, 'r');
-
 -- --------------------------------------------------------
 
 --
@@ -669,7 +521,10 @@ INSERT INTO `visitas` (`id`, `ip`, `fecha`, `num`) VALUES
 (3, '::1', '2017-11-10', 1),
 (4, '::1', '2017-11-13', 1),
 (5, '::1', '2017-11-14', 1),
-(6, '::1', '2017-11-16', 1);
+(6, '::1', '2017-11-16', 1),
+(7, '::1', '2017-11-20', 1),
+(8, '127.0.0.1', '2017-11-20', 1),
+(9, '::1', '2017-11-21', 1);
 
 --
 -- Índices para tablas volcadas
@@ -777,7 +632,7 @@ ALTER TABLE `archivos`
 -- AUTO_INCREMENT de la tabla `busquedas`
 --
 ALTER TABLE `busquedas`
-  MODIFY `bus_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `bus_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `clientes`
 --
@@ -787,12 +642,12 @@ ALTER TABLE `clientes`
 -- AUTO_INCREMENT de la tabla `envio_email`
 --
 ALTER TABLE `envio_email`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `envio_sms`
 --
 ALTER TABLE `envio_sms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `localidades`
 --
@@ -802,7 +657,7 @@ ALTER TABLE `localidades`
 -- AUTO_INCREMENT de la tabla `preguntas_pro`
 --
 ALTER TABLE `preguntas_pro`
-  MODIFY `prg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `prg_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
@@ -812,7 +667,7 @@ ALTER TABLE `productos`
 -- AUTO_INCREMENT de la tabla `propuestas`
 --
 ALTER TABLE `propuestas`
-  MODIFY `pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `pro_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `proveedores`
 --
@@ -822,7 +677,7 @@ ALTER TABLE `proveedores`
 -- AUTO_INCREMENT de la tabla `rel_bus_act`
 --
 ALTER TABLE `rel_bus_act`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `rel_prv_act`
 --
@@ -832,7 +687,7 @@ ALTER TABLE `rel_prv_act`
 -- AUTO_INCREMENT de la tabla `visitas`
 --
 ALTER TABLE `visitas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
