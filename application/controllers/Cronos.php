@@ -49,4 +49,9 @@ class Cronos extends MY_Controller {
 		log_message("error","MENSAJE:".$mensaje);
 	}
 
+	public function demo(){
+				log_message("error","DEMOSTRACION CRONOS:".hoy('c'));
+
+	}
+
 }

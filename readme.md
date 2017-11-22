@@ -17,6 +17,7 @@
 - Configuracion de config/config.php
 - Configuracion de config/autoload.php
 - Configuracion de config/database.php
+- Crear directorio uploads en servidor (raiz)
 
 ## Enlaces
 base_url( ) - Ruta del proyecto
@@ -51,3 +52,6 @@ base_url( ) - Ruta del proyecto
 ## Servidor de Socket
 - Servidor: ( /var/www/vm/public_html/) resources/vmserversms/socket-service/servidor_socket.php
 - Web: base_url() resources/vmserversms/socket-service/servidor_socket.php
+
+-Revisar archivos de configuraciones excluidos
+
