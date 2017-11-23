@@ -60,7 +60,7 @@ class Cronos_model extends CI_Model {
           $this->db->where("id",$fila->id);
           $this->db->update("envio_sms",array("estado"=>'e'));
         }else
-        log_message('error', 'ERROR DE CONEXION CELULAR - PROVEEDOR.ERROR'.$result);    
+        log_message('error', 'ERROR DE CONEXION CELULAR-PROCESARSMSPROV- PROVEEDOR.ERROR'.$result);    
       }
     }
 
