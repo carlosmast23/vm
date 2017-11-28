@@ -44,13 +44,23 @@ class Cronos extends MY_Controller {
 	}
 
 	public function recibir_alert(){
-		
 		$mensaje=$this->input->get("mensaje",TRUE);
-		log_message("error","MENSAJE:".$mensaje);
+		//log_message("error","MENSAJE:".$mensaje);
+
+		require_once('./nusoap.php');
+		$cliente = new nusoap_client(base_url()."resources/vmserversms/web-service/server-sms.php");
+		$error = $cliente->getError();
+		if ($error){
+			log_message('error', 'ERROR WEBSERVICE.');
+		}
+		$result = $cliente->call("enviarSMS",array("+593994725020","ALERTA SERVIDOR SMS: $mensaje"));
+		if($result!="success")
+			log_message('error', 'ERROR DE CONEXION CELULAR - ALERT SERVIDOR SMS'.$result);
+
 	}
 
 	public function demo(){
-				log_message("error","DEMOSTRACION CRONOS:".hoy('c'));
+		log_message("error","DEMOSTRACION CRONOS:".hoy('c'));
 
 	}
 

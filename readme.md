@@ -18,12 +18,14 @@
 - Configuracion de config/autoload.php
 - Configuracion de config/database.php
 - Crear directorio uploads en servidor (raiz)
+-CONFIGURAR: /etc/sysconfig/selinux and specify SELINUX=disabled.
 
 ## Enlaces
-base_url( ) - Ruta del proyecto
+- base_url( ) - Ruta del proyecto
 
 - Asignar categorias a busquedas: base_url( ) admin/busquedas
-
+- Solicitar actualizacion de datos: base_url( ) admin/proveedores/solicitar_actualizacion
+- Alerta error Server SMS= base_url() /cronos/recibir_alert
 ## Acortador de enlaces
 - Controller/GoogleUrl.php
 - API URL=[https://www.googleapis.com/urlshortener/v1/url](https://www.googleapis.com/urlshortener/v1/url)
@@ -39,7 +41,7 @@ base_url( ) - Ruta del proyecto
 - procesar3= cada 10 minutos - envio de mensajes de acuerdo a intervalo de tiempo, obtuno o no resultados en el tiempo especificado
 - procesar_email=cada 5 minutos - envio de emails a proveedores
 - prueba=verificacion de funcionalidad de envio de email
-
+-INSALAR LA ULTIMA VERSION DE CRONIE
 ## Catalogo
 - base_url( ) /catalogo
 
@@ -55,3 +57,6 @@ base_url( ) - Ruta del proyecto
 
 -Revisar archivos de configuraciones excluidos
 
+#SOAP
+- configurar instalacion SOAP en PHP
+- verificar dev/null
