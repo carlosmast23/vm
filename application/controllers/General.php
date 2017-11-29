@@ -42,58 +42,63 @@ class General extends MY_Controller {
   public function modificar_proveedor(){
    $this->load->library('encrypt');
 
-    $enc_username=$this->uri->segment(3);
-    $dec_username=str_replace(array('-', '_', '~'), array('+', '/', '='), $enc_username);
-    $dec_username=$this->encrypt->decode($dec_username);
+   $enc_username=$this->uri->segment(3);
+   $dec_username=str_replace(array('-', '_', '~'), array('+', '/', '='), $enc_username);
+   $dec_username=$this->encrypt->decode($dec_username);
 
+   if(datoDeTablaCampo("proveedores","prv_id","prv_estado",$dec_username)=='i'){
     $this->load->model("admin/actividades_model");
     $data=$this->model->datos_proveedor_mdl($dec_username);
     $data['cmb_actividades']=$this->actividades_model->cmb_actividades($data['act_id']);
     $data['prv_telefono']=format_celular($data['prv_telefono'],"i");
     $this->loadTemplates("principal/actualizar_proveedor",$data);
-  }
+  }else
+  redirect("general/erroract","refresh");
 
-  public function actualizar_prov(){
-    $this->model->actualizar_proveedor_mdl();
-    redirect("general/success","refresh");
-  }
 
-  public function success(){
-    $this->loadTemplates("principal/success");
-  }
+}
 
-  public function errorprov(){
-    $this->loadTemplates("principal/errorprov");
-  }
+public function actualizar_prov(){
+  $this->model->actualizar_proveedor_mdl();
+  redirect("general/success","refresh");
+}
+
+public function success(){
+  $this->loadTemplates("principal/success");
+}
+
+public function errorprov(){
+  $this->loadTemplates("principal/errorprov");
+}
+public function erroract(){
+  $this->loadTemplates("principal/erroract");
+}
+
 
 //enlaces externos
-  public function conocenos(){
-    $this->loadTemplates("principal/conocenos");
-  }
+public function conocenos(){
+  $this->loadTemplates("principal/conocenos");
+}
 
 
-  public function servicios(){
-    $this->loadTemplates("principal/servicios");
-  }
+public function servicios(){
+  $this->loadTemplates("principal/servicios");
+}
 
-  public function politica(){
-    $this->loadTemplates("principal/politica");
-  }
+public function politica(){
+  $this->loadTemplates("principal/politica");
+}
 
-  public function publicidad(){
-    $tipo=$this->uri->segment(3);
-    if($tipo=="c")
-      $data["columnas"]="col-xs-8 col-xs-offset-2";
-    else if($tipo=="b")
-      $data["columnas"]="col-xs-12";
-    $data["tipo"]=$tipo;
-    $this->load->view("principal/publicidad",$data);
-  }
+public function publicidad(){
+  $tipo=$this->uri->segment(3);
+  if($tipo=="c")
+    $data["columnas"]="col-xs-8 col-xs-offset-2";
+  else if($tipo=="b")
+    $data["columnas"]="col-xs-12";
+  $data["tipo"]=$tipo;
+  $this->load->view("principal/publicidad",$data);
+}
 
-
- public function liteinfo(){
-    $this->loadTemplates("principal/liteinfo");
-  }
 
 
 

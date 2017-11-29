@@ -82,7 +82,10 @@ class Proveedores_model extends CI_Model {
                     "deque"=>"pm",
                     );
                 $this->db->insert("envio_sms",$data3);
-
+                
+                echo "<pre>";
+                var_dump($data3);
+                echo "<hr>";
                 $data3e= array(
                     "bus_id"=>0,
                     'ser_id' => 1, 
@@ -94,6 +97,9 @@ class Proveedores_model extends CI_Model {
                     "deque"=>"pm",
                     );
                 $this->db->insert("envio_email",$data3e);
+
+                echo "<pre>";
+                var_dump($data3e);
 
 
             }

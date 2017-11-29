@@ -10,19 +10,7 @@ class General_model extends CI_Model {
         $this->load->library('encrypt');
     }
 
-    public function registrar_cliente_mdl(){
-        $data=array(
-            "cli_nombres"=>$this->input->post("cli_nombres"),
-            "cli_apellidos"=>$this->input->post("cli_apellidos"),
-            "cli_direccion"=>$this->input->post("cli_direccion"),
-            "cli_telefono"=>$this->input->post("cli_telefono"),
-            "cli_email"=>$this->input->post("cli_email"),
-            "cli_fechan"=>$this->input->post("cli_fechan"),
-            "cli_genero"=>$this->input->post("cli_genero"),
-            );
-        $this->db->insert("clientes",$data);
-    }
-
+  
     public function registrar_proveedor_mdl(){
 
      $ncel=format_celular($this->input->post("prv_telefono"));
@@ -69,6 +57,7 @@ class General_model extends CI_Model {
         "prv_direccion" => $this->input->post('prv_direccion'), 
         "prv_latitud" => $this->input->post('loc_latitud'), 
         "prv_longitud" => $this->input->post('loc_longitud'), 
+        "prv_estado" => "a", 
         );
     $this->db->where("prv_id",$prv_id);
     $this->db->update("proveedores",$arr);
