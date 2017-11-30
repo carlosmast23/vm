@@ -106,13 +106,13 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>Tipo:</label><br>
-									<input type="radio" id="pro_tipo_n" value="n" checked /> Nuevo
-									<input type="radio" id="pro_tipo_u" value="u" /> Usado
+									<input type="radio" name="tipo" id="pro_tipo_n" value="n" checked /> Nuevo
+									<input type="radio" name="tipo" id="pro_tipo_u" value="u" /> Usado
 								</div>
 								<div class="form-group">
 									<label>Entrega a domicilio:</label><br>
-									<input type="radio" id="pro_entrega_n" value="n" checked /> No
-									<input type="radio" id="pro_entrega_s" value="s" /> Si
+									<input type="radio" name="entrega" id="pro_entrega_n" value="n" checked /> No
+									<input type="radio" name="entrega" id="pro_entrega_s" value="s" /> Si
 								</div>
 								<div class="form-group">
 									<label>Imagen adjunta:</label><br>
