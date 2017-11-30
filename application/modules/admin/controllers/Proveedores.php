@@ -12,6 +12,8 @@ class Proveedores extends MY_Controller {
 //
 	public function solicitar_actualizacion(){
 		$this->model->lista_proveedores();
+		$this->model->lista_proveedores_codesoft();
+		
 	}
 
 }

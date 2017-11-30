@@ -64,7 +64,7 @@ class Proveedores_model extends CI_Model {
 
     public function lista_proveedores(){
         $this->load->model("GoogleURL_model","google");
-        $sql = "SELECT * FROM `proveedores` WHERE `prv_estado`='i'";
+        $sql = "SELECT * FROM `proveedores` WHERE `prv_estado`='i' AND `contacto`='v'";
         $query = $this->db->query($sql);
 
         if ($query->num_rows() > 0) {
@@ -78,7 +78,7 @@ class Proveedores_model extends CI_Model {
                         'ser_id' => 1, 
                         "usu_id"=>$fila->prv_id,
                         "tel_destinatario"=>$fila->prv_telefono,
-                        "mensaje"=>"Actualiza tus datos y manten activa tu cuenta en Virtual Mall.Enlace ".$url_cli,
+                        "mensaje"=>"Virtual Mal, le informa que debe actualizar sus datos para mantener activa su cuenta. Enlace ".$url_cli,
                         "fecha"=>hoy('c'),
                         "deque"=>"pm",
                         );
@@ -95,7 +95,55 @@ class Proveedores_model extends CI_Model {
                         "usu_id"=>$fila->prv_id,
                         "asunto"=>"Cuenta Virtual Mall",
                         "email_destinatario"=>$fila->prv_email,
-                        "mensaje"=>"Actualiza tus datos y manten activa tu cuenta.Enlace ".$url_cli,
+                        "mensaje"=>"Actualiza tus datos y manten activa tu cuenta Virtual Mall. Gracias por formar parte de nuestra cadena de clientes, proveedores y negocios locales. Enlace ".$url_cli,
+                        "fecha"=>hoy('c'),
+                        "deque"=>"pm",
+                        );
+                    $this->db->insert("envio_email",$data3e);
+
+                    echo "<pre>";
+                    var_dump($data3e);
+                }
+
+            }
+        }
+    }
+
+
+    public function lista_proveedores_codesoft(){
+        echo "<h2>CLIENTES CODESOFT</h2>";
+        $sql = "SELECT * FROM `proveedores` WHERE `prv_estado`='i' AND `contacto`='c'";
+        $query = $this->db->query($sql);
+
+        if ($query->num_rows() > 0) {
+            $html = "";
+            foreach ($query->result() as $fila) {
+                $url_cli= base_url()."general/registro";
+
+                if($fila->prv_telefono!=""){
+                    $data3= array(
+                        "bus_id"=>0,
+                        'ser_id' => 1, 
+                        "usu_id"=>$fila->prv_id,
+                        "tel_destinatario"=>$fila->prv_telefono,
+                        "mensaje"=>"Virtual Mall te invita a formar parte de una cadena de clientes, proveedores y negocios locales en Quito. Registrate aqui".$url_cli,
+                        "fecha"=>hoy('c'),
+                        "deque"=>"pm",
+                        );
+                    $this->db->insert("envio_sms",$data3);
+
+                    echo "<pre>";
+                    var_dump($data3);
+                    echo "<hr>";
+                }
+                if($fila->prv_email!=""){
+                    $data3e= array(
+                        "bus_id"=>0,
+                        'ser_id' => 1, 
+                        "usu_id"=>$fila->prv_id,
+                        "asunto"=>"Invitación Virtual Mall",
+                        "email_destinatario"=>$fila->prv_email,
+                        "mensaje"=>"Virtual Mall te invita a formar parte de una cadena de clientes, proveedores y negocios locales en Quito. Registrate aqui".$url_cli,
                         "fecha"=>hoy('c'),
                         "deque"=>"pm",
                         );
