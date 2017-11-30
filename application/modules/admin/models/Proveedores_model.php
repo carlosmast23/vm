@@ -64,7 +64,7 @@ class Proveedores_model extends CI_Model {
 
     public function lista_proveedores(){
         $this->load->model("GoogleURL_model","google");
-        $sql = "SELECT * FROM `proveedores` WHERE `prv_estado`='a'";
+        $sql = "SELECT * FROM `proveedores` WHERE `prv_estado`='i'";
         $query = $this->db->query($sql);
 
         if ($query->num_rows() > 0) {
@@ -72,35 +72,38 @@ class Proveedores_model extends CI_Model {
             foreach ($query->result() as $fila) {
                 $url_cli= $this->google->codificar_parametro("general/modificar_proveedor/",$fila->prv_id);
 
-                $data3= array(
-                    "bus_id"=>0,
-                    'ser_id' => 1, 
-                    "usu_id"=>$fila->prv_id,
-                    "tel_destinatario"=>$fila->prv_telefono,
-                    "mensaje"=>"Actualiza tus datos y manten activa tu cuenta en Virtual Mall.Enlace ".$url_cli,
-                    "fecha"=>hoy('c'),
-                    "deque"=>"pm",
-                    );
-                $this->db->insert("envio_sms",$data3);
-                
-                echo "<pre>";
-                var_dump($data3);
-                echo "<hr>";
-                $data3e= array(
-                    "bus_id"=>0,
-                    'ser_id' => 1, 
-                    "usu_id"=>$fila->prv_id,
-                    "asunto"=>"Cuenta Virtual Mall",
-                    "email_destinatario"=>$fila->prv_email,
-                    "mensaje"=>"Actualiza tus datos y manten activa tu cuenta.Enlace ".$url_cli,
-                    "fecha"=>hoy('c'),
-                    "deque"=>"pm",
-                    );
-                $this->db->insert("envio_email",$data3e);
+                if($fila->prv_telefono!=""){
+                    $data3= array(
+                        "bus_id"=>0,
+                        'ser_id' => 1, 
+                        "usu_id"=>$fila->prv_id,
+                        "tel_destinatario"=>$fila->prv_telefono,
+                        "mensaje"=>"Actualiza tus datos y manten activa tu cuenta en Virtual Mall.Enlace ".$url_cli,
+                        "fecha"=>hoy('c'),
+                        "deque"=>"pm",
+                        );
+                    $this->db->insert("envio_sms",$data3);
 
-                echo "<pre>";
-                var_dump($data3e);
+                    echo "<pre>";
+                    var_dump($data3);
+                    echo "<hr>";
+                }
+                if($fila->prv_email!=""){
+                    $data3e= array(
+                        "bus_id"=>0,
+                        'ser_id' => 1, 
+                        "usu_id"=>$fila->prv_id,
+                        "asunto"=>"Cuenta Virtual Mall",
+                        "email_destinatario"=>$fila->prv_email,
+                        "mensaje"=>"Actualiza tus datos y manten activa tu cuenta.Enlace ".$url_cli,
+                        "fecha"=>hoy('c'),
+                        "deque"=>"pm",
+                        );
+                    $this->db->insert("envio_email",$data3e);
 
+                    echo "<pre>";
+                    var_dump($data3e);
+                }
 
             }
         }
