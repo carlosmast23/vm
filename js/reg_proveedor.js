@@ -58,5 +58,13 @@ $(document).ready(function() {
 		ev.preventDefault();
 	});
 
+	$("#almacenar").prop("disabled", true);
+	$("#acepto").click(function () {
+		if ($('#acepto').prop('checked'))
+			$("#almacenar").attr("disabled", false) ;
+		else
+			$("#almacenar").attr("disabled", true);
+
+	});
 
 });

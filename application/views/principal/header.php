@@ -49,11 +49,16 @@
 
       </ul>
       <ul class="nav navbar-nav navbar-right">
+      <li><a href="#">Agreganos como contacto 0979654635</a></li>  
+      <li><a target="_blank" href="https://api.whatsapp.com/send?phone=593994725020&text=Más información VIRTUAL MALL"><img src="<?=base_url()?>img/w.png" alt="Contactanos via whatsapp" height="25" title="Contactanos via whatsapp" /></a></li>
+        <li><a target="_blank" href="https://m.me/vmquito"><img src="<?=base_url()?>img/m.png" alt="Contactanos via messenger"  title="Contactanos via messenger" height="25"/></a></li>
+        <!--
         <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
         <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
-    </div>
+      -->
+    </ul>
   </div>
+</div>
 </nav>
 <br><br>
 <div class="container-fluid">
