@@ -56,7 +56,7 @@
 <body>
   <div class="container-fluid">
     <div class="row">
-      <div class="<?=$columnas?>">
+      <div class="col-xs-12">
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
           <!-- Indicators -->
           <ol class="carousel-indicators">
@@ -67,42 +67,7 @@
 
           <!-- Wrapper for slides -->
           <div class="carousel-inner">
-            <?php if($tipo=='c'):?>
-              <div class="item active">
-                <img src="<?=aleatorio('a')?>" alt="...">
-              </div>
-              <div class="item">
-                <img src="<?=aleatorio('a')?>" alt="...">
-              </div>
-              <div class="item">
-                <img src="<?=aleatorio('a')?>" alt="...">
-              </div> 
-              <div class="item">
-                <img src="<?=aleatorio('a')?>" alt="...">
-              </div>     
-              <div class="item">
-                <img src="<?=aleatorio('a')?>" alt="...">
-              </div>
-            <?php else:?>
-              <div class="item active">
-                <img src="<?=aleatorio('a')?>" alt="...">
-              </div>
-              <div class="item">
-                <img src="<?=aleatorio('a')?>" alt="...">
-              </div>
-              <div class="item">
-                <img src="<?=aleatorio('a')?>" alt="...">
-              </div> 
-              <div class="item">
-                <img src="<?=aleatorio('a')?>" alt="...">
-              </div> 
-              <div class="item">
-                <img src="<?=aleatorio('a')?>" alt="...">
-              </div>
-            <?php endif;?>
-
-
-
+            <?=$anuncios?>
           </div>
 
 

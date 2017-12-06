@@ -10,14 +10,14 @@ class Archivos extends MY_Controller {
     }
 
     public function vensubir() {
-        $arc_ref_id = $this->uri->segment(4); // $this->input->post('arc_ref_id');
+        $arc_ref_id = $this->uri->segment(3); // $this->input->post('arc_ref_id');
         $data['arc_ref_id'] = $arc_ref_id;
         $this->loadTemplates('archivos/subir', $data);
     }
 
     public function ver() {
         //$arc_ref_id = $this->input->post('arc_ref_id');
-        $arc_ref_id = $this->uri->segment(4);
+        $arc_ref_id = $this->uri->segment(3);
         $datos['arc_ref_id'] = $arc_ref_id;
         $datos["archivos"] = $this->model->ver_archivos_mdl($arc_ref_id, '', true);
         $this->loadTemplates('archivos/lista_archivos', $datos);
@@ -29,7 +29,7 @@ class Archivos extends MY_Controller {
     }
 
     public function almacenar_archivo() {
-        echo $this->model->almacenar_archivo_mdl();
+        echo $this->model->almacenar_anuncio_mdl();
     }
 
     public function descargar_archivo() {
@@ -37,15 +37,15 @@ class Archivos extends MY_Controller {
     }
 
     public function eliminar_archivo() {
-        $id = $this->uri->segment(4);
+        $id = $this->uri->segment(3);
         $this->model->eliminar_archivo_mdl($id);
     }
 
     public function actualizar() {
-        $act_id = $this->input->post('act_id');
-        $pro_id = datoDeTablaCampo("actividades", "act_id", "pro_id", $act_id);
+        $act_id = 0;
+        $pro_id = 0;
         $this->model->actualizar_mdl();
-        redirect("gestion/archivos/ver/$act_id/$pro_id", "refresh");
+        redirect("archivos/ver/$act_id/$pro_id", "refresh");
     }
 
 }

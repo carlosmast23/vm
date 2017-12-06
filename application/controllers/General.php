@@ -12,9 +12,11 @@ class General extends MY_Controller {
 
   public function index() {
     $this->load->model("admin/actividades_model");
+    $this->load->model("archivos_model");
     $data['cmb_actividades']=$this->actividades_model->cmb_actividades();
     $data['numprov']=$this->model->nproveedores_mdl()*10;
     $data['transacciones']=$this->model->transacciones_mdl();
+    $data['anuncios']=$this->archivos_model->ver_anuncios();
     $visitas=$this->model->contador_mdl();
     $this->session->set_userdata(array('visitas'=>$visitas));
     $this->loadTemplates("principal/index",$data);
@@ -90,12 +92,8 @@ public function politica(){
 }
 
 public function publicidad(){
-  $tipo=$this->uri->segment(3);
-  if($tipo=="c")
-    $data["columnas"]="col-xs-8 col-xs-offset-2";
-  else if($tipo=="b")
-    $data["columnas"]="col-xs-12";
-  $data["tipo"]=$tipo;
+  $this->load->model("archivos_model");
+  $data['anuncios']=$this->archivos_model->ver_anuncios();
   $this->load->view("principal/publicidad",$data);
 }
 

@@ -27,9 +27,6 @@ class Archivos_model extends CI_Model {
         $query = $this->db->query($sql);
         if ($query->num_rows() > 0) {
             foreach ($query->result() as $fila) {
-                /* if ($permiso == 'a' && ($reg_fecha > $hoy))
-                  $fila->ver = false;
-                  else */
                 if ($fila->arc_publico == 's')
                     $fila->arc_publico = "Si";
                 else
@@ -45,7 +42,7 @@ class Archivos_model extends CI_Model {
         $this->load->library('upload');
         $carpeta = "./uploads/";//$this->config->item('archivos');
         $config['upload_path'] = $carpeta;
-        $config['allowed_types'] = '*';
+        $config['allowed_types'] = 'gif|jpg|png';
         $config['remove_spaces'] = false;
         $this->upload->initialize($config);
         if (!$this->upload->do_upload()) {
@@ -60,7 +57,37 @@ class Archivos_model extends CI_Model {
                 "ref_id" => $ref_id,
                 "arc_nombre" => $file_name,
                 "arc_fecha" => hoy('c'),
-            );
+                );
+            $this->db->insert('archivos', $arreglo);
+            $id = $this->db->insert_id();
+            rename($full_path, $file_path . "$id");
+            return $id;
+        }
+    }
+
+
+    public function almacenar_anuncio_mdl() {
+        $this->load->library('upload');
+        $ref_id = $this->input->post('ref_id');
+        $carpeta = "./uploads/";//$this->config->item('archivos');
+        $config['upload_path'] = $carpeta;
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['remove_spaces'] = false;
+        $this->upload->initialize($config);
+        if (!$this->upload->do_upload()) {
+            $datos = array('error' => $this->upload->display_errors());
+            $this->load->view('archivos/erroralsubir', $datos);
+        } else {
+            $arr = $this->upload->data();
+            $file_name = $arr["file_name"];
+            $file_path = $arr["file_path"];
+            $full_path = $arr["full_path"];
+            $arreglo = array(
+                "ref_id" => $ref_id,
+                "arc_nombre" => $file_name,
+                "arc_fecha" => hoy('c'),
+                "arc_deque" =>"a"
+                );
             $this->db->insert('archivos', $arreglo);
             $id = $this->db->insert_id();
             rename($full_path, $file_path . "$id");
@@ -69,10 +96,10 @@ class Archivos_model extends CI_Model {
     }
 
     public function descargar_mdl() {
-        $id = $this->uri->segment(4);
-        $carpeta = $this->config->item('archivos');
+        $id = $this->uri->segment(3);
+        $carpeta = "./uploads/";//$this->config->item('archivos');
         $this->load->helper('download');
-        $archivo = datoDeTabla("archivos", "arc_nombre", $id);
+        $archivo = datoDeTablaCampo("archivos", "arc_id","arc_nombre", $id);
         if ($archivo != false) {
             $datos = file_get_contents("$carpeta/$id"); // Leer el contenido del archivo
             if ($datos == FALSE)
@@ -80,14 +107,14 @@ class Archivos_model extends CI_Model {
             else
                 force_download(trim($archivo), $datos);
         } else
-            force_download("lastima.txt", "Archivo eliminado, no existe :( la unica pista que tenemos es que el id era $id ");
+        force_download("lastima.txt", "Archivo eliminado, no existe :( la unica pista que tenemos es que el id era $id ");
     }
 
     public function eliminar_archivo_mdl($id) {
-        $this->db->where('id', $id);
+        $this->db->where('arc_id', $id);
         $this->db->delete('archivos');
-        $carpeta = $this->config->item('archivos');
-        $carpeta_recycled = $this->config->item('recycled');
+        $carpeta = "./uploads/";
+        $carpeta_recycled = "./recycled/";
         if (file_exists("./$carpeta/$id"))
             rename("./$carpeta/$id", "./$carpeta_recycled/$id");
     }
@@ -102,8 +129,8 @@ class Archivos_model extends CI_Model {
     }
 
     public function datos_mdl() {
-        $id = $this->uri->segment(4);
-        $this->db->where("id", $id);
+        $id = $this->uri->segment(3);
+        $this->db->where("arc_id", $id);
         $query = $this->db->get("archivos");
         if ($query->num_rows() > 0) {
             return $query->row_array();
@@ -114,12 +141,44 @@ class Archivos_model extends CI_Model {
         $id = $this->input->post("id");
         $arr = array(
             "arc_publico" => $this->input->post("arc_publico"),
-            "arc_titulo" => $this->input->post("arc_titulo"),
-            "arc_desc" => $this->input->post("arc_desc"),
-        );
-        $this->db->where("id", $id);
+            );
+        $this->db->where("arc_id", $id);
         $this->db->update("archivos", $arr);
         return true;
     }
+
+
+    public function ver_anuncios(){
+        $html="";
+        $query= $this->db->query("SELECT * FROM `archivos` WHERE `arc_publico`='s' AND `ref_id`='0' ");
+        $i=0;
+        $arr=array();
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $fila) {
+
+                if(file_exists("./uploads/".$fila->arc_id))
+                    $arr[]= $fila->arc_id;
+
+            }
+        }
+
+        shuffle($arr);
+        foreach ($arr as $data => $value) {
+            if($i==1)
+                $dato['activo']="active";
+            else
+                $dato['activo']="";
+
+            $dato['arc_id'] = $value;
+            $html.= $this->parser->parse('archivos/anuncios_tpl', $dato, TRUE);
+            $i++;
+
+        }
+
+        return $html;
+
+
+    }
+
 
 }

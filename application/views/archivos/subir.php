@@ -50,24 +50,8 @@
             </div>
         </div>
     </form>
-    <!--    <div class="row">
-            <div class="col-sm-6 col-md-3">
-                <div class="thumbnail">
-                    <img data-src="<?= base_url() ?>files/demo.jpg"  alt="...">
-                    <img src='<?= base_url() ?>files/1' width='100' height='100'>
-                    <div class="caption">
-                        <h3>Título de la imagen</h3>
-                        <p>Descripcion.</p>
-                        <p>
-                            <a href="#" class="btn btn-primary" role="button">Botón</a>
-                            <a href="#" class="btn btn-default" role="button">Botón</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>-->
+
 
 </div>
 
-<!--<img src='<?= base_url() ?>files/1' width='250' height='250'>-->
 <script src="<?= base_url() ?>js/archivos.js"></script>  

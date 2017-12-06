@@ -60,3 +60,6 @@
 #SOAP
 - configurar instalacion SOAP en PHP
 - verificar dev/null
+
+#Administración de anuncios
+-Ruta: base_url( ) archivos/ver/0/0

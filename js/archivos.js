@@ -3,7 +3,7 @@ $(document).ready(function () {
     $("a[rel='descargar']").click(function (evento) {
         evento.preventDefault();
         var id = $(this).attr('valor');
-        var url = $("#base_url").val() + "gestion/archivos/descargar_archivo/" + id;
+        var url = $("#base_url").val() + "archivos/descargar_archivo/" + id;
         $('<form action="' + url + '" method="post">' + '</form>').appendTo('body').submit().remove();
     });
 
@@ -11,7 +11,7 @@ $(document).ready(function () {
         evento.preventDefault();
         var id = $(this).attr('valor');
         if (confirm("¿Está seguro de eliminar archivo el archivo seleccionado?")) {
-            var url = $("#base_url").val() + "gestion/archivos/eliminar_archivo/" + id;
+            var url = $("#base_url").val() + "archivos/eliminar_archivo/" + id;
             $.ajax({
                 type: "POST",
                 url: url
@@ -70,9 +70,6 @@ $(document).ready(function () {
     }
 
     function uploadFile(archivo, arcIdTemp) {
-        //var fd = new FormData();
-        //fd.append("fileToUpload", document.getElementById('fileToUpload').files[0]);
-        //var fd = new FormData(document.getElementById('form1'));
         var fd = new FormData();
         fd.append("userfile", archivo);
         var id_deque = $("#id_deque").val();
@@ -95,7 +92,7 @@ $(document).ready(function () {
         // value that determines whether the request should be dealt with asynchronously
         var base_url = $("#base_url").val();
         //console.log("hola"+base_url);
-        xhr.open("POST", base_url + "gestion/archivos/almacenar_archivo", true);
+        xhr.open("POST", base_url + "archivos/almacenar_archivo", true);
         xhr.send(fd);
     }
 
@@ -140,7 +137,7 @@ $(document).ready(function () {
 
 function eliminar_archivo(obj) {
     var id = $(obj).attr('arc_id');
-    var url = $("#base_url").val() + "gestion/archivos/eliminar_archivo/" + id;
+    var url = $("#base_url").val() + "archivos/eliminar_archivo/" + id;
     $.ajax({
         type: "POST",
         url: url

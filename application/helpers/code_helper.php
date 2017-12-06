@@ -147,25 +147,6 @@ function getRealIP(){
 }
 
 
-function aleatorio($tipo="a"){
-    $ci = &get_instance();
-    if($tipo=="a"){
-        $query= $ci->db->query("SELECT COUNT(`arc_id`) as total FROM `archivos` ");
-        $num=$query->row()->total;
-
-        if($num>0){
-            $num=rand(1,$num);
-            if(file_exists("./uploads/".$num))
-                return base_url()."uploads/".$num;
-            else
-                return base_url()."img/demo.png";
-        }else
-        return base_url()."img/demo.png";
-    }
-    return false;
-}
-
-
 function format_celular($numero,$tipo='d'){
     if($tipo=="d")
        return "+593".substr($numero, 1);
