@@ -25,7 +25,7 @@
    </div>
    <div class="form-group">
      <label class='with-square-checkbox'>
-     <input type='checkbox' id="acepto">
+       <input type='checkbox' id="acepto">
        <span>He leído y acepto los términos y <a href="#"  data-toggle="modal" data-target="#terminos">condiciones de uso del servicio. </a></span>
      </label>
    </div>
@@ -105,6 +105,10 @@
 
 
 
+      </div>
+
+      <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
       </div>
 
     </div>
