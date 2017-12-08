@@ -16,6 +16,7 @@ $(document).ready(function() {
 			prv_usuario: "required",
 			prv_telefono: {
 				required: true,
+				minlength: 10,
 				remote: $("#base_url").val() + "validaciones/prov/" + prv_id + "/t/"+deque
 			},
 			prv_email: {
@@ -32,7 +33,7 @@ $(document).ready(function() {
 			prv_usuario: "* Campo requerido",
 			prv_telefono: {
 				required:"* Campo requerido, ingrese numero celular (0994725020)",
-				digits:"* Solo se puede ingresar números",
+				minlength:"* Ingrese un numero celular válido",
 				remote: "* Este numero celular ha sido usado ",
 			},
 			prv_email: {
