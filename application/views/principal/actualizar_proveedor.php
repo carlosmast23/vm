@@ -52,7 +52,7 @@
          </div> 
        </div>      
        <div class="form-group">
-         <label class="col-md-3 control-label">Actividad:</label>
+         <label class="col-md-3 control-label">*Actividad:</label>
          <div class="col-md-8">    
            <?=$cmb_actividades?>
          </div>
@@ -60,7 +60,7 @@
      </div>
      <div class="col-md-12"> 
       <div class="form-group">
-        <label class="col-md-2 control-label">Direccion</label>
+        <label class="col-md-2 control-label">*Direccion</label>
         <div class="col-md-6">
           <input type="text" class="form-control" name="prv_direccion" id="prv_direccion" placeholder="Ingrese direccion y seleccionar ubicación"/>
         </div>

@@ -10,22 +10,30 @@ class General_model extends CI_Model {
         $this->load->library('encrypt');
     }
 
-  
+    
     public function registrar_proveedor_mdl(){
 
-     $ncel=format_celular($this->input->post("prv_telefono"));
-     $email=$this->input->post("prv_email");
+       $ncel=format_celular($this->input->post("prv_telefono"));
+       $email=$this->input->post("prv_email");
 
-     $data=array(
+       $data=array(
+        "act_id"=>$this->input->post("act_id"),
         "prv_usuario"=>$this->input->post("prv_usuario"),
         "prv_telefono"=>$ncel,
         "prv_email"=>$email,
-        "act_id"=>$this->input->post("act_id"),
+        "prv_convencional" => $this->input->post('prv_convencional'), 
+        "prv_ruc" => $this->input->post('prv_ruc'), 
+        "prv_razonsocial" => strtoupper($this->input->post('prv_razonsocial')), 
+        "prv_representante" => strtoupper($this->input->post('prv_representante')), 
+        "prv_direccion" => $this->input->post('prv_direccion'), 
+        "prv_latitud" => $this->input->post('loc_latitud'), 
+        "prv_longitud" => $this->input->post('loc_longitud'), 
+        "prv_estado" => "a", 
         "prv_fecharegistro"=>hoy('c'),
         );
-     $this->db->insert("proveedores",$data);
+       $this->db->insert("proveedores",$data);
 
-     $d1=array(
+       $d1=array(
         "bus_id"=>0,
         'ser_id' => 1, 
         "usu_id"=>0,
@@ -34,12 +42,12 @@ class General_model extends CI_Model {
         "fecha"=>hoy('c'),
         "deque"=>"pr",
         );
-     $this->db->insert("envio_sms",$d1);
+       $this->db->insert("envio_sms",$d1);
 
- }
+   }
 
 
- public function actualizar_proveedor_mdl(){
+   public function actualizar_proveedor_mdl(){
     $prv_id=$this->input->post("prv_id");
     
     $ncel=format_celular($this->input->post("prv_telefono"));
@@ -72,9 +80,9 @@ public function existe_proveedor($telefono,$email){
 }
 
 public function nproveedores_mdl(){
-   $sql="SELECT COUNT(`prv_id`) as total FROM `proveedores`";
-   $query=$this->db->query($sql);
-   return $query->row()->total;   
+ $sql="SELECT COUNT(`prv_id`) as total FROM `proveedores`";
+ $query=$this->db->query($sql);
+ return $query->row()->total;   
 }
 
 public function transacciones_mdl(){
@@ -152,16 +160,16 @@ public function buscar_dato($prv_id,$campo,$deque) {
     $valor = $this->input->get('$campo', TRUE);
 
     if($deque=="c"){
-     if ($valor != '') {
-      $sql = "SELECT * FROM `proveedores` WHERE `$campo` like '%$valor%'";
-      $query = $this->db->query($sql);
-      $cantidad = $query->num_rows();
-      if ($cantidad != 0) {
-        return "false";
+       if ($valor != '') {
+          $sql = "SELECT * FROM `proveedores` WHERE `$campo` like '%$valor%'";
+          $query = $this->db->query($sql);
+          $cantidad = $query->num_rows();
+          if ($cantidad != 0) {
+            return "false";
+        } else
+        return "true";
     } else
     return "true";
-} else
-return "true";
 }else if($deque=='m'){
     if ($valor != '') {
         $sql = "SELECT * FROM `proveedores` WHERE `$campo` like '%$valor%' AND `prv_id` = '$prv_id'";

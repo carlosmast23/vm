@@ -23,6 +23,7 @@ $(document).ready(function() {
 				email: true,
 				remote: $("#base_url").val() + "validaciones/prov/" + prv_id + "/e/"+deque
 			},
+			prv_direccion:"required",
 			act_id:"required",
 			loc_latitud:"required",
 			loc_longitud:"required",
@@ -39,9 +40,10 @@ $(document).ready(function() {
 				email: "* Ingrese correo electrónico válido  ejm: name@domain.com",
 				remote: "* Este correo electrónico ya ha sido usado ",
 			},
+			prv_direccion:"* Campo requerido. Ingrese direccón",
 			act_id:"* Campo requerido",
-			loc_latitud:"* Campo requerido",
-			loc_longitud:"* Campo requerido",
+			loc_latitud:"* Campo requerido. Ingrese latitud",
+			loc_longitud:"* Campo requerido. Ingrese longitud",
 		}
 	});
 
