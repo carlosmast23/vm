@@ -48,7 +48,7 @@ class General extends MY_Controller {
    $dec_username=str_replace(array('-', '_', '~'), array('+', '/', '='), $enc_username);
    $dec_username=$this->encrypt->decode($dec_username);
 
-   if(datoDeTablaCampo("proveedores","prv_id","prv_estado",$dec_username)=='i'){
+   if(datoDeTablaCampo("proveedores","prv_id","prv_latitud",$dec_username)==''){
     $this->load->model("admin/actividades_model");
     $data=$this->model->datos_proveedor_mdl($dec_username);
     $data['cmb_actividades']=$this->actividades_model->cmb_actividades($data['act_id']);
@@ -67,6 +67,9 @@ public function actualizar_prov(){
 
 public function success(){
   $this->loadTemplates("principal/success");
+}
+public function success_act(){
+  $this->loadTemplates("principal/success_act");
 }
 
 public function errorprov(){

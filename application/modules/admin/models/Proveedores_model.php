@@ -110,6 +110,50 @@ class Proveedores_model extends CI_Model {
     }
 
 
+    public function sol_act_prov(){
+        $prv_id=$this->uri->segment(4);
+        $this->load->model("GoogleURL_model","google");
+        $sql = "SELECT * FROM `proveedores` WHERE `prv_id`='$prv_id' AND `contacto`='v' LIMIT 0,1";
+        $query = $this->db->query($sql);
+
+        if ($query->num_rows() > 0) {
+            $html = "";
+            foreach ($query->result() as $fila) {
+                $url_cli= $this->google->codificar_parametro("general/modificar_proveedor/",$fila->prv_id);
+
+                if($fila->prv_telefono!=""){
+                    $data3= array(
+                        "bus_id"=>0,
+                        'ser_id' => 1, 
+                        "usu_id"=>$fila->prv_id,
+                        "tel_destinatario"=>$fila->prv_telefono,
+                        "mensaje"=>"Virtual Mal, le informa que debe actualizar sus datos para mantener activa su cuenta. Enlace ".$url_cli,
+                        "fecha"=>hoy('c'),
+                        "deque"=>"pm",
+                        );
+                    $this->db->insert("envio_sms",$data3);
+
+             
+                }
+                if($fila->prv_email!=""){
+                    $data3e= array(
+                        "bus_id"=>0,
+                        'ser_id' => 1, 
+                        "usu_id"=>$fila->prv_id,
+                        "asunto"=>"Cuenta Virtual Mall",
+                        "email_destinatario"=>$fila->prv_email,
+                        "mensaje"=>"Actualiza tus datos y manten activa tu cuenta Virtual Mall. Gracias por formar parte de nuestra cadena de clientes, proveedores y negocios locales. Enlace ".$url_cli,
+                        "fecha"=>hoy('c'),
+                        "deque"=>"pm",
+                        );
+                    $this->db->insert("envio_email",$data3e);
+
+                }
+
+            }
+        }
+    }
+
     public function lista_proveedores_codesoft(){
         echo "<h2>CLIENTES CODESOFT</h2>";
         $sql = "SELECT * FROM `proveedores` WHERE `prv_estado`='i' AND `contacto`='c'";

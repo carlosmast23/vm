@@ -33,11 +33,11 @@ class Propuestas extends MY_Controller {
     }
 
     public function aprobar(){
-       $this->model->aprobar_mdl();
-   }
+     $this->model->aprobar_mdl();
+ }
 
 
-   public function recibir(){
+ public function recibir(){
     $this->load->library('encrypt');
 
     $enc_username=$this->uri->segment(3);
@@ -47,27 +47,33 @@ class Propuestas extends MY_Controller {
 
     $bus_id= $datcod[0];
     $prv_id=$datcod[1];
-
-    if($this->model->tiene_propuestas_mdl($bus_id,$prv_id)==0){
-        $this->load->model('busquedas_model');
-        $data=$this->busquedas_model->datos_mdl($bus_id);
-        switch ($data['bus_tiempo']) {
-            case 'u':$data['bus_tiempo_txt']="Urgente (15 minutos)";break;
-            case 'a':$data['bus_tiempo_txt']="Alta (1 hora)";break;
-            case 'm':$data['bus_tiempo_txt']="Media (1 dia)";break;
-            case 'd':$data['bus_tiempo_txt']="Moderada (1 semana)";break;
+    if(datoDeTablaCampo("proveedores","prv_id","prv_longitud",$prv_id)!=""){
+        if($this->model->tiene_propuestas_mdl($bus_id,$prv_id)==0){
+            $this->load->model('busquedas_model');
+            $data=$this->busquedas_model->datos_mdl($bus_id);
+            switch ($data['bus_tiempo']) {
+                case 'u':$data['bus_tiempo_txt']="Urgente (15 minutos)";break;
+                case 'a':$data['bus_tiempo_txt']="Alta (1 hora)";break;
+                case 'm':$data['bus_tiempo_txt']="Media (1 dia)";break;
+                case 'd':$data['bus_tiempo_txt']="Moderada (1 semana)";break;
+                default:$data['bus_tiempo_txt']="";break;
+            }
+            $data["prv_id"]=$prv_id;
+            $data["preguntas"]=$this->model->lista_preguntas($bus_id,$prv_id);
+            $data["data"]=$this->model->datos_mapa_mdl($bus_id);
+            $this->loadTemplates("propuestas/reg_propuestas",$data);
+        }else{
+            $this->loadTemplates("propuestas/error_propuesta");
         }
-        $data["prv_id"]=$prv_id;
-        $data["preguntas"]=$this->model->lista_preguntas($bus_id,$prv_id);
-        $data["data"]=$this->model->datos_mapa_mdl($bus_id);
-        $this->loadTemplates("propuestas/reg_propuestas",$data);
     }else{
-        $this->loadTemplates("propuestas/error_propuesta");
+        $data["prv_id"]=$prv_id;
+        $this->loadTemplates("principal/info_act",$data);
+
     }
 }
 
 public function registrar_pregunta(){
- $this->model->registrar_pregunta_mdl();
+   $this->model->registrar_pregunta_mdl();
 //redirect("propuestas/successp","refresh");
 }
 

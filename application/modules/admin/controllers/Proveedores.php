@@ -16,4 +16,9 @@ class Proveedores extends MY_Controller {
 		
 	}
 
+	public function sol_act_prov(){
+		$this->model->sol_act_prov();
+		redirect("general/success_act","refresh");
+	}
+
 }
