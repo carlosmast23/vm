@@ -16,7 +16,7 @@ class Cronos_model extends CI_Model {
     $query0=$this->db->query($sql0);
     if($query0->num_rows()>0){
       foreach ($query0->result() as $fila) {
-        $this->enviar_mensaje($fila->bus_id,$fila->act_id,$fila->bus_texto);
+        $this->enviar_mensaje($fila->bus_id,$fila->act_id,cortar_texto($fila->bus_texto,50));
       }
     }
 
@@ -87,7 +87,7 @@ class Cronos_model extends CI_Model {
               "ser_id"=>1,
               "usu_id"=>$fila->prv_id,
               "email_destinatario"=>$fila->prv_email,
-              "asunto"=>"Solicitud Producto VirtuallMall",
+              "asunto"=>"Solicitud Producto Virtual Mall",
               "mensaje"=>"$buscar. Genere su propuesta ".$url,
               "fecha"=>hoy('c'),
               "deque"=>"p",
@@ -152,7 +152,6 @@ class Cronos_model extends CI_Model {
     if($query->num_rows()>0){
       foreach ($query->result() as $fila) {
         $result = $cliente->call("enviarSMS",array($fila->tel_destinatario,$fila->mensaje));
-        log_message('error', 'ERROR DE CONEXION CELULAR - PROCESAR SMS CLI. ERROR-ANTES'.$result);
         if($result=="success"){
          $this->db->where("id",$fila->id);
          $this->db->update("envio_sms",array("estado"=>'e'));
@@ -165,13 +164,15 @@ class Cronos_model extends CI_Model {
 
 
  public function procesar_sms_clipendientes(){
+  $this->load->model("GoogleURL_model","google");
+
   $sql="SELECT * FROM `busquedas` WHERE `bus_estado`='p' AND `bus_estado`='r' ";
 
   $query=$this->db->query($sql);
   if($query->num_rows()>0){
     foreach ($query->result() as $fila) {
       $pro_id=datoDeTablaCampo("propuestas","bus_id","pro_id",$fila->bus_id);
-      $texto=cortar_texto($fila->bus_texto,45);
+      $texto=cortar_texto($fila->bus_texto,35);
 
       if($pro_id == false  &&  hoy('c') > $fila->bus_fechafin ){
         $sms="Su busqueda '$texto' no obtuvo resultados, genere una nueva solictud (amplie su tiempo de respuesta)";
@@ -182,8 +183,12 @@ class Cronos_model extends CI_Model {
         $this->db->update("busquedas",$arr);
 
       }else if($pro_id > 0 &&  hoy('c') >= $fila->bus_fechafin){
-        $sms="Busqueda de resultados finalizada'$texto', esperamos que alguna propuesta haya sido de tu agrado";
+        $url_fb= $this->google->encode("https://www.facebook.com/sharer.php?u=https://www.facebook.com/vmquito/&t=VirtualMall");
+
+        $sms="Busqueda finalizada '$texto',¿alguna propuesta fue de tu agrado?.Comenta y comparte $url_fb";
         $this->insertar_sms($fila->bus_id,$bus_celular,$sms,"cf");
+
+
 
         $arr= array('bus_estado' => 'e');
         $this->db->where("bus_id",$fila->bus_id);

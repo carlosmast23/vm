@@ -14,12 +14,12 @@ class Propuestas_model extends CI_Model {
         $data=array(
             "prv_id"=>$this->input->post("prv_id",true),
             "bus_id"=>$this->input->post("bus_id",true),
-            "pro_desc"=>$this->input->post("pro_desc",true),
+            "pro_desc"=>limpiar_texto($this->input->post("pro_desc",true)),
             "pro_cantidad"=>$this->input->post("pro_cantidad",true),
             "pro_precio"=>$this->input->post("pro_precio",true),
             "pro_tipo"=>$this->input->post("pro_tipo",true),
             "pro_entrega"=>$this->input->post("pro_entrega",true),
-            "pro_obs"=>$this->input->post("pro_obs",true),
+            "pro_obs"=>limpiar_texto($this->input->post("pro_obs",true)),
             "pro_fecha"=>hoy('c')
             );
         $this->db->insert("propuestas",$data); 
@@ -136,7 +136,8 @@ public function registrar_pregunta_mdl(){
     $data=array(
         "bus_id"=>$bus_id,
         "prv_id"=>$prv_id,
-        "prg_pregunta"=>$pregunta,
+        "prg_pregunta"=>limpiar_texto($pregunta),
+        "prg_fecha"=>hoy('c')
         );
     $this->db->insert("preguntas_pro",$data); 
 

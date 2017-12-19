@@ -19,7 +19,7 @@
   <div class="row" id="cont_busqueda">
     <form class="" action="#" id="form_buscar">
       <div class="col-xs-12 col-xs-offset-0 col-sm-7 col-sm-offset-0 col-md-6 col-md-offset-1">
-        <input type="text" class="form-control" id="txt_buscar"  placeholder="Escribe aquí lo que que estas buscando de manera detallada...">
+        <input type="text" class="form-control" id="txt_buscar"  placeholder="Escribe aquí lo que que estas buscando de manera detallada..." maxlength="100" >
       </div>
 
       <div class="col-xs-12 col-xs-offset-0 col-sm-2 col-sm-offset-0 col-md-3 col-md-offset-0 ">
@@ -154,7 +154,6 @@
          <strong>Datos obligatorios:</strong> 
          <ul>
            <li>* Ingrese un texto para su búsqueda.</li>  
-           <li>* Seleccione la categoría.</li>  
            <li>* Ingrese número de celular para contactarnos con usted. </li>  
            <li>* Seleccione el tiempo en que desea obtener una respuesta. </li>  
          </ul>   
@@ -187,21 +186,105 @@
 </div>
 </div>
 
+<div class="modal fade" id="video" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Virtual Mall!</h4>
+      </div>
+      <div class="modal-body">
+
+       <div id="player">
+
+       </div>
+
+     </div>
+     <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal" id="cerrarvm">Cerrar</button>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
 
 </div><!-- .container -->
 
 
 
 <script src="<?= base_url() ?>assets/choseen/chosen.jquery.js"></script>
+
 <script>
- if ($(".chosen-select").length)
-  $(".chosen-select").chosen({no_results_text: "No existe informacion", width: "100%"});
+  'use strict';
+    // repeat with the interval of 2 seconds
+    //let timerId = setInterval(() => alert('tick'), 2000);
+    
+    // after 5 seconds stop
+    setTimeout(() => { $("#video").modal("show"); }, 5000);
+  </script>
 
-$("#enviar").on("click",function () {
 
-  var tiempo= $('input:radio[name=radio]:checked').val()
+  <script>
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
 
-  $("#mbuscar").modal("hide");
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '400',
+          width: '100%',
+          videoId: 'jk4BntyPKD4',
+          events: {
+            'onReady': onPlayerReady,
+            //'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      // 4. The API will call this function when the video player is ready.
+      function onPlayerReady(event) {
+        event.target.playVideo();
+      }
+
+      // 5. The API calls this function when the player's state changes.
+      //    The function indicates that when playing a video (state=1),
+      //    the player should play for six seconds and then stop.
+      var done = false;
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING && !done) {
+          setTimeout(stopVideo, 6000);
+          done = true;
+        }
+      }
+      function stopVideo() {
+        player.stopVideo();
+      }
+
+
+      $("#cerrarvm").on("click",function () {
+        stopVideo();
+      });
+    </script>
+
+    <script>
+
+
+     if ($(".chosen-select").length)
+      $(".chosen-select").chosen({no_results_text: "No existe informacion", width: "100%"});
+
+    $("#enviar").on("click",function () {
+
+      var tiempo= $('input:radio[name=radio]:checked').val()
+
+      $("#mbuscar").modal("hide");
 
   var act_id = 0;//$("#act_id").val();
   var celular=$("#celular").val();
@@ -222,9 +305,12 @@ $("#enviar").on("click",function () {
    $("#info_error").modal("show");
  }
  
+ $("#txt_buscar").val("");
 
 
 });
+
+
 
 </script>
 

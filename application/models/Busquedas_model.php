@@ -24,7 +24,7 @@ class Busquedas_model extends CI_Model {
    $data=array(
     "act_id"=>0,
     "bus_celular"=>$ncel,
-    "bus_texto"=>$buscar,
+    "bus_texto"=>limpiar_texto($buscar),
     "bus_fecha"=>$hoy,
     "bus_fechafin"=>diamas($hoy,$tiempo),
     "bus_tiempo"=>$tiempo,

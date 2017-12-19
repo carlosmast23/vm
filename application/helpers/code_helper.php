@@ -111,10 +111,16 @@ function fecha_texto($fecha, $tipo = 'f') {
 }
 
 function cortar_texto($texto, $n = 75) {
+     $texto = preg_replace('([^A-Za-z0-9])', '', $texto);                         
     if (strlen($texto) > $n)
         return substr($texto, 0, $n) . "...";
     else
         return $texto;
+}
+
+function limpiar_texto($texto){
+      $textoLimpio = preg_replace('([^A-Za-z0-9])', '', $texto);                            
+      return $textoLimpio;
 }
 
 function getRealIP(){
