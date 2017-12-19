@@ -269,7 +269,7 @@
       }
 
 
-      $("#cerrarvm").on("click",function () {
+$("[data-dismiss=modal]").on("click",function () {
         stopVideo();
       });
     </script>
@@ -308,9 +308,8 @@
  $("#txt_buscar").val("");
 
 
+
+
 });
-
-
-
 </script>
 
