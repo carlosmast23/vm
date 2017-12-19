@@ -22,7 +22,10 @@
 			<div class="col-md-4 col-md-offset-4">
 				<p class="text-center">
 					<span class="badge pull-center"><?=$this->session->visitas;?></span> <b>Visitas </b> 
-					<a title="Facebook" href="https://www.facebook.com/vmquito/"><span class="fa-stack fa-lg"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-facebook fa-stack-1x"></i></span></a> <a title="Twitter" href=""><span class="fa-stack fa-lg"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-twitter fa-stack-1x"></i></span></a> <a title="Google+" href="https://plus.google.com/u/0/108614474425964538449"><span class="fa-stack fa-lg"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-google-plus fa-stack-1x"></i></span></a>      <a title="E-mail" href="mailto:virtualmallecu@gmail.com"><span class="fa-stack fa-lg"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-envelope fa-stack-1x"></i></span></a>  <a title="Catálogo" href="<?=base_url()?>general/catalogo"><span class="fa-stack fa-lg"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-print fa-stack-1x"></i></span></a>
+					<a title="Facebook" href="https://www.facebook.com/vmquito/"><span class="fa-stack fa-lg"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-facebook fa-stack-1x"></i></span></a>
+<a title="Youtube" href="https://youtu.be/jk4BntyPKD4"><span class="fa-stack fa-lg"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-youtube-play fa-stack-1x"></i></span></a> 
+
+					 <a title="Twitter" href=""><span class="fa-stack fa-lg"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-twitter fa-stack-1x"></i></span></a> <a title="Google+" href="https://plus.google.com/u/0/108614474425964538449"><span class="fa-stack fa-lg"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-google-plus fa-stack-1x"></i></span></a>      <a title="E-mail" href="mailto:virtualmallecu@gmail.com"><span class="fa-stack fa-lg"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-envelope fa-stack-1x"></i></span></a>  <a title="Catálogo" href="<?=base_url()?>general/catalogo"><span class="fa-stack fa-lg"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-print fa-stack-1x"></i></span></a>
 				</p>
 				<p class="text-center">Agreganos como contacto 0979654635</p>
 				<p class="text-center">
