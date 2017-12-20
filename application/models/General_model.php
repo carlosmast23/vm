@@ -136,7 +136,7 @@ public function contador_mdl(){
     set_cookie('contador', 1, time()+3700);
 
     $query=$this->db->query("SELECT count(`id`) as total FROM `visitas` ");
-    return $query->row()->total*1000;
+    return $query->row()->total;
 }
 
 
