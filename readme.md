@@ -63,3 +63,6 @@
 
 #Administración de anuncios
 -Ruta: base_url( ) archivos/ver/0/0
+
+#Webservice a virtuall malll buscar
+-Ruta; base_url() mysoapserver
