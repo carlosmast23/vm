@@ -8,14 +8,11 @@ class Busquedas_model extends CI_Model {
   }
 
 
-  public function buscar_mdl($txt_celular="",$tx_buscar="",$time="") {
+  public function buscar_mdl($txt_celular="",$tx_buscar="") {
     if(strlen($txt_celular) >0 && strlen($tx_buscar) > 0){
       $ncel=$txt_celular;
       $buscar=$tx_buscar;
-      if($time=="")
-        $tiempo="n";
-      else
-        $tiempo=$time;
+      $tiempo="n";
     }else{
      $celular=$this->input->post("celular");
      $buscar=$this->input->post("txt_buscar");
@@ -48,18 +45,12 @@ class Busquedas_model extends CI_Model {
 
 public function buscar2_mdl($txt_celular="",$tx_buscar="",$time="") {
   if(strlen($txt_celular) >0 && strlen($tx_buscar) > 0){
-    $ncel=$txt_celular;
+    $celular=$txt_celular;
     $buscar=$tx_buscar;
-    if($time=="")
-      $tiempo="n";
-    else
-      $tiempo=$time;
-  }else{
-   $celular=$this->input->post("celular");
-   $buscar=$this->input->post("txt_buscar");
-   $tiempo=$this->input->post("tiempo");
-   $ncel="+593".substr($celular, 1);
- }
+    $tiempo=$time;
+    $ncel="+593".substr($celular, 1);
+
+  }
 
  $hoy=hoy('c');
  $data=array(
