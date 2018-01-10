@@ -25,7 +25,7 @@ class Mysoapserver extends MY_Controller {
        function buscarvm($celular,$buscar,$time){
         $ci = &get_instance();
         $ci->load->model('busquedas_model');
-        $ci->busquedas_model->buscar_mdl($celular,$buscar,$time);
+        $ci->busquedas_model->buscar2_mdl($celular,$buscar,$time);
         return "success";
     }
 
