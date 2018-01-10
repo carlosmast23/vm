@@ -903,7 +903,7 @@ class nusoap_base {
 */
 function timestamp_to_iso8601($timestamp,$utc=true){
 	$datestr = date('Y-m-d\TH:i:sO',$timestamp);
-	$pos = strrpos($datestr, "+");
+	/*$pos = strrpos($datestr, "+");
 	if ($pos === FALSE) {
 		$pos = strrpos($datestr, "-");
 	}
@@ -911,7 +911,7 @@ function timestamp_to_iso8601($timestamp,$utc=true){
 		if (strlen($datestr) == $pos + 5) {
 			$datestr = substr($datestr, 0, $pos + 3) . ':' . substr($datestr, -2);
 		}
-	}
+	}*/
 	if($utc){
 		$pattern = '/'.
 		'([0-9]{4})-'.	// centuries & years CCYY-
