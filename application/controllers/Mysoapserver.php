@@ -16,7 +16,7 @@ class Mysoapserver extends MY_Controller {
 
         $input_array2 = array ('celular' => "xsd:string", 'buscar' => "xsd:string",'time' => "xsd:string");
         $return_array2= array ("return" => "xsd:string");
-        $this->nusoap_server->register('buscarvm', $input_array2, $return_array2, "urn:SOAPServerWSDL", "urn:".$ns."/buscarvm", "rpc", "encoded", "Buscar en Virtual Mall");
+        $this->nusoap_server->register('buscarvm', $input_array2, $return_array2, "urn:SOAPServerWSDL", "urn:".$ns."/buscarvm", "document", "literal", "Buscar en Virtual Mall");
 
     }
 
