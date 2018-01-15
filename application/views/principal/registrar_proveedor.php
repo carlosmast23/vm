@@ -34,7 +34,7 @@
          </div>
        </div> 
        <div class="form-group">
-         <label class="col-md-2 control-label">RUC:</label>
+         <label class="col-md-2 control-label">RUC/CI:</label>
          <div class="col-md-8">
            <input type="number" class="form-control" name="prv_ruc" id="prv_ruc" />
          </div>
