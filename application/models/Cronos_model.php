@@ -39,9 +39,8 @@ class Cronos_model extends CI_Model {
         log_message('error', 'ERROR DE CONEXION CELULAR - PROCESAR SMS CLI. ERROR'.$result);
       }
     }
-
-
   }
+
 
   public function procesar_sms_prov(){
     require_once('./nusoap.php');
